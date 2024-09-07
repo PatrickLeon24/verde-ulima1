@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useRouter } from 'expo-router';
 
 const LoginScreen = () => {
+  const router = useRouter();
   return (
     <View style={styles.container}>
       {/* Título */}
@@ -31,7 +33,7 @@ const LoginScreen = () => {
       />
 
       {/* Botón de Login */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
@@ -39,10 +41,15 @@ const LoginScreen = () => {
       <Text style={styles.orText}>or continue with</Text>
       <TouchableOpacity style={styles.googleButton}>
         <Image
-          source={require('@/assets/images/google.jpg')}
+          source={ require ('@/assets/images/google.jpg') }
           style={styles.googleIcon}
         />
         <Text style={styles.googleButtonText}>Google</Text>
+      </TouchableOpacity>
+
+      {/* Botón de Registrarse */}
+      <TouchableOpacity style={styles.registerButton} onPress={()=>router.push('/Register/Register_I')}>
+        <Text style={styles.registerText}>¿No tienes cuenta? Regístrate</Text>
       </TouchableOpacity>
     </View>
   );
@@ -121,6 +128,14 @@ const styles = StyleSheet.create({
   googleButtonText: {
     fontSize: 16,
   },
+  registerButton: {
+    marginTop: 20,
+  },
+  registerText: {
+    color: '#000',
+    textDecorationLine: 'underline',
+  },
 });
 
 export default LoginScreen;
+
