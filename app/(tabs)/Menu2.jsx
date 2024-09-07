@@ -6,7 +6,7 @@ const PantallaConBarraVerde1 = () => {
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
-        <Text style={styles.textoBarra}>Verd ulima</Text>
+        <Text style={styles.textoBarra}>Verde ulima</Text>
       </View>
 
       {/* Contenido en blanco */}
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   barraSuperior: {
     height: 60, // Altura de la barra superior
-    backgroundColor: 'green', // Color verde para la barra superior
+    backgroundColor: '#34A853', // Color verde para la barra superior
     justifyContent: 'center',
     alignItems: 'center',
   },
