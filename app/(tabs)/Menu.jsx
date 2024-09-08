@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView ,Image,TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView ,Image,TouchableOpacity, Linking} from 'react-native';
 import { useRouter } from 'expo-router';
 
 const PantallaConBarraVerde = () => {
@@ -50,8 +50,9 @@ const PantallaConBarraVerde = () => {
           source={require('@/assets/images/WhatsApp_icon.png') } // Reemplaza con la URL de tu foto
           style={styles.image2}
         />
-        <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Menu2')}>
+        <TouchableOpacity 
+          style={styles.button} 
+          onPress={() => Linking.openURL('https://wa.me/message/IUHQDJHMMT3QL1')}>
           <Text style={styles.buttonText}>CONTÁCTANOS</Text>
         </TouchableOpacity>
         

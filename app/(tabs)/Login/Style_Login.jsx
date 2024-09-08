@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const Styles_Login = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
+    flex: 1, 
+    paddingHorizontal: 20, // Margen horizontal
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -14,14 +14,15 @@ const Styles_Login = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 200, 
     marginBottom: 20,
   },
   subtitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    textAlign: 'center',
   },
   instructions: {
     fontSize: 14,
@@ -30,7 +31,7 @@ const Styles_Login = StyleSheet.create({
     textAlign: 'center',
   },
   input: {
-    width: '100%',
+    width: '100%', // Ocupar todo el ancho disponible
     height: 50,
     borderColor: '#ccc',
     borderWidth: 1,
@@ -41,7 +42,7 @@ const Styles_Login = StyleSheet.create({
   button: {
     backgroundColor: '#000',
     paddingVertical: 15,
-    width: '100%',
+    width: '100%', // Ocupar todo el ancho disponible
     borderRadius: 10,
     alignItems: 'center',
     marginBottom: 20,
@@ -59,7 +60,7 @@ const Styles_Login = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%',
+    width: '100%', // Ocupar todo el ancho disponible
     paddingVertical: 15,
     borderWidth: 1,
     borderColor: '#ccc',
