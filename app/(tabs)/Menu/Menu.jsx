@@ -27,7 +27,7 @@ const PantallaConBarraVerde = () => {
           style={styles.image2}
         />
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Menu2')}>
+          onPress={()=>router.push('/Menu/Menu2')}>
           <Text style={styles.buttonText}>CUPONES</Text>
         </TouchableOpacity>
         <Image
@@ -35,7 +35,7 @@ const PantallaConBarraVerde = () => {
           style={styles.image2}
         />
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Menu2')}>
+          onPress={()=>router.push('/Menu/Menu2')}>
           <Text style={styles.buttonText}>PLANES DE RECOLECCIÓN</Text>
         </TouchableOpacity>
         <Image
@@ -43,7 +43,7 @@ const PantallaConBarraVerde = () => {
           style={styles.image2}
         />
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Login/Login')}>
+          onPress={()=>router.push('/Menu/Menu2')}>
           <Text style={styles.buttonText}>SOLICITAR RECOJO</Text>
         </TouchableOpacity>
         <Image

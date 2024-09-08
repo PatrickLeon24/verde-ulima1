@@ -34,7 +34,7 @@ const Login = () => {
       />
 
       {/* Botón de Login */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/Menu/Menu')}>
         <Text style={styles.buttonText}>Iniciar sesion</Text>
       </TouchableOpacity>
 
