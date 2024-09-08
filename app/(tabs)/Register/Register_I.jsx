@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Modal, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Modal, Button } from 'react-native';
 import { useRouter } from 'expo-router';
 import styles from './Style_RegisterI'; // Importa los estilos desde el archivo separado
 

@@ -81,6 +81,33 @@ const Styles_Login = StyleSheet.create({
     color: '#000',
     textDecorationLine: 'underline',
   },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)'
+  },
+  modalContent: {
+    width: '80%',
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center'
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 15,
+    textAlign: 'center'
+  },
+  modalButton: {
+    padding: 10,
+    backgroundColor: '#007BFF',
+    borderRadius: 5,
+  },
+  modalButtonText: {
+    color: 'white',
+    fontSize: 16,
+  }
 });
 
 export default Styles_Login;
