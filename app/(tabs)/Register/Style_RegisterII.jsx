@@ -17,7 +17,6 @@ const Style_RegisterII = StyleSheet.create({
       fontSize: 20,
       fontWeight: 'semibold',
       position: 'absolute',
-
     },
     subTitle: {
         fontSize: 16,
