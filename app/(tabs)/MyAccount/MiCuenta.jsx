@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useColorScheme } from 'react-native'; // Si usas un hook para los temas
-
+import { useRouter } from 'expo-router';
 const AccountScreen = () => {
+  const router = useRouter();
   const colorScheme = useColorScheme();
   const colors = colorScheme === 'dark' ? darkThemeColors : lightThemeColors;
 
@@ -45,7 +46,7 @@ const AccountScreen = () => {
           <Text style={styles.optionText}>Ver mi Pedido</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText}>Ver mi Plan</Text>
+          <Text style={styles.optionText} onPress={()=>router.push('/Planes/MiPlan')}>Ver mi Plan</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
           <Text style={styles.optionText}>Ver mis Puntos</Text>

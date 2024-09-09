@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',        // Alinea el texto al centro
       marginVertical: 30, 
       borderWidth: 1,             // Ancho del borde
-      borderColor: '#ffffff',
+      borderColor: '#34A853',
       // Sombra para iOS
       shadowColor: '#000', // Color de la sombra
       shadowOffset: { width: 0, height: 2 }, // Desplazamiento de la sombra
@@ -162,6 +162,8 @@ const styles = StyleSheet.create({
       width: 60,              // Ancho de la imagen circular
       height: 60,             // Alto de la imagen circular
       borderRadius: 30,
+      borderWidth: 1,             // Ancho del borde
+      borderColor: '#34A853',
           // Hace la imagen circular
       
       

@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import PlanItem from './PlanItem'; 
 import planesData from '../Planes/Planes.json';
 
-const PantallaVerPlanes = () => {
+const PantallaPlan = () => {
   const router = useRouter();
 
   const handlePressPlan = (id) => {
@@ -18,15 +18,24 @@ const PantallaVerPlanes = () => {
       {/* Barra superior verde */}
       
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.push('/Menu/Menu')} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => router.push('/MyAccount/MiCuenta')} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.textoBarra}>Planes de Recolección</Text>
+        <Text style={styles.textoBarra}>Mi plan</Text>
       </View>
-      <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/MyAccount/MiCuenta')}>
-          <Text style={styles.buttonText}>≡   Filtros</Text>
+      <PlanItem
+            nombre={"SI"}
+            descripcion={"SI"}
+            onPress={() => router.push('/Planes/VerPlanes')} // Navegar al plan específico
+          />
+      <View style={styles.barramedia}>
+      <Text style={styles.buttonText}>Quieres cambiar de plan ?</Text>
+      <TouchableOpacity onPress={() => router.push('/Planes/VerPlanes')} style={styles.botonRetroceso}>
+          <Ionicons name="arrow-forward" size={24} color="black" />
         </TouchableOpacity>
+      </View>
+        
+        
 
       {/* Lista de planes */}
       <FlatList
@@ -66,10 +75,10 @@ const styles = StyleSheet.create({
            // Espaciado vertical
   },
   buttonText: {
-    color: '#34A853',              // Color del texto
-    fontSize: 12,                // Tamaño de la fuente
-    fontWeight: 'semibold',
-    textAlign: 'center', 
+    color: '#000000',              // Color del texto
+    fontSize: 24,                // Tamaño de la fuente
+    fontWeight: 'BOLD',
+    
     paddingHorizontal: 10,
               // Negrita para el texto
   },
@@ -78,6 +87,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#34A853',
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  barramedia: {
+    
+    
+    flexDirection: 'row',
+    
     paddingHorizontal: 10,
   },
   botonRetroceso: {
@@ -93,4 +109,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PantallaVerPlanes;
+export default PantallaPlan;
