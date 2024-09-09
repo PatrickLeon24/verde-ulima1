@@ -23,7 +23,7 @@ const AccountScreen = () => {
         <View>
           <Text style={styles.userName}>nombre apellido</Text>
           <Text style={styles.userInfoText}>DNI: XXXXXXXX</Text>
-          <Text style={styles.userInfoText}>Dirección</Text>
+          <Text style={styles.userInfoText}>Dirección: </Text>
         </View>
       </View>
 
@@ -72,9 +72,11 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   header: {
+    height: 60, // Altura de la barra superior
+    backgroundColor: '#34A853', // Color verde para la barra superior
+    justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
-    borderRadius: 5,
+    flexDirection: 'row',
   },
   headerText: {
     fontSize: 18,
