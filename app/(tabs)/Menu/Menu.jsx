@@ -40,7 +40,7 @@ const PantallaConBarraVerde = () => {
           style={styles.image2}
         />
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Menu/Menu2')}>
+          onPress={()=>router.push('/MyAccount/MiCuenta')}>
           <Text style={styles.buttonText}>SOLICITAR RECOJO</Text>
         </TouchableOpacity>
         <Image
