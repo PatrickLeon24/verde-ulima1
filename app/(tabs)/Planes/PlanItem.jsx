@@ -1,22 +1,52 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-const PlanItem = ({ nombre, descripcion }) => {
+const PlanItem = ({ nombre, descripcion, onPress }) => {
   return (
-    <View style={styles.planContainer}>
-      <Text style={styles.planNombre}>{nombre}</Text>
-      <Text style={styles.planDescripcion}>{descripcion}</Text>
-    </View>
+    <TouchableOpacity onPress={onPress} style={styles.planContainer}>
+      <View style={styles.iconContainer}>
+        <Ionicons name="image-outline" size={40} color="#999" />
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.planNombre}>{nombre}</Text>
+        <Text style={styles.planDescripcion}>Ver más</Text>
+      </View>
+      <View style={styles.infoContainer}>
+        <Ionicons name="add-circle-outline" size={20} color="#999" />
+        <Text style={styles.planTime}>Today · 23 min</Text>
+      </View>
+      <Ionicons name="chevron-forward" size={20} color="#000" />
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   planContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10,
     marginVertical: 8,
     marginHorizontal: 16,
     backgroundColor: '#f2f2f2',
-    borderRadius: 5,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  iconContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: '#e0e0e0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textContainer: {
+    flex: 1,
+    marginLeft: 15,
   },
   planNombre: {
     fontSize: 18,
@@ -24,7 +54,16 @@ const styles = StyleSheet.create({
   },
   planDescripcion: {
     fontSize: 14,
-    color: '#555',
+    color: '#999',
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  planTime: {
+    fontSize: 12,
+    color: '#999',
+    marginLeft: 5,
   },
 });
 

@@ -8,10 +8,15 @@ const PantallaConBarraVerde = () => {
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
-      <Image
+      <TouchableOpacity 
+          onPress={()=>router.push('/MyAccount/MiCuenta')}>
+            <Image
           source={require('@/assets/images/SAzRztbw_400x400.jpg') } // Reemplaza con la URL de tu foto
           style={styles.image}
         />
+
+          </TouchableOpacity>
+      
        
         <Text style={styles.textoBarra}>Hola, nombre</Text>
         
