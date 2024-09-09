@@ -12,10 +12,7 @@ const PantallaConBarraVerde = () => {
           source={require('@/assets/images/SAzRztbw_400x400.jpg') } // Reemplaza con la URL de tu foto
           style={styles.image}
         />
-      <Image
-          source={require('@/assets/images/SAzRztbw_400x400.jpg') } // Reemplaza con la URL de tu foto
-          style={styles.image1}
-        />  
+       
         <Text style={styles.textoBarra}>Hola, nombre</Text>
         
       </View>
