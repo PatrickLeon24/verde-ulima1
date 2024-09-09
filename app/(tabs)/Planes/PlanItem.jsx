@@ -14,7 +14,7 @@ const PlanItem = ({ nombre, descripcion, onPress }) => {
       </View>
       <View style={styles.infoContainer}>
         <Ionicons name="add-circle-outline" size={20} color="#999" />
-        <Text style={styles.planTime}>Today · 23 min</Text>
+        <Text style={styles.planTime}>Today</Text>
       </View>
       <Ionicons name="chevron-forward" size={20} color="#000" />
     </TouchableOpacity>

@@ -24,37 +24,45 @@ const PantallaConBarraVerde = () => {
       
       {/* Contenedor de botones */}
       <View style={styles.botonContainer}>
-        <Image
+        
+        <TouchableOpacity style={styles.button} 
+          onPress={()=>router.push('/Menu/Menu2')}>
+            <Image
           source={require('@/assets/images/cupon.jpg') } // Reemplaza con la URL de tu foto
           style={styles.image2}
         />
-        <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Menu/Menu2')}>
+        <Text style={styles.buttonText1}></Text>
           <Text style={styles.buttonText}>CUPONES</Text>
         </TouchableOpacity>
-        <Image
+        
+        <TouchableOpacity style={styles.button} 
+          onPress={()=>router.push('/Planes/VerPlanes')}>
+            <Image
           source={require('@/assets/images/reciclaje.jpg') } // Reemplaza con la URL de tu foto
           style={styles.image2}
         />
-        <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Planes/VerPlanes')}>
+        <Text style={styles.buttonText1}></Text>
           <Text style={styles.buttonText}>PLANES DE RECOLECCIÓN</Text>
         </TouchableOpacity>
-        <Image
+        
+        <TouchableOpacity style={styles.button} 
+          onPress={()=>router.push('/MyAccount/MiCuenta')}>
+            <Image
           source={require('@/assets/images/images.jpeg') } // Reemplaza con la URL de tu foto
           style={styles.image2}
         />
-        <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/MyAccount/MiCuenta')}>
+        <Text style={styles.buttonText1}></Text>
           <Text style={styles.buttonText}>SOLICITAR RECOJO</Text>
         </TouchableOpacity>
-        <Image
-          source={require('@/assets/images/WhatsApp_icon.png') } // Reemplaza con la URL de tu foto
-          style={styles.image2}
-        />
+        
         <TouchableOpacity 
           style={styles.button} 
           onPress={() => Linking.openURL('https://wa.me/message/IUHQDJHMMT3QL1')}>
+            <Image
+          source={require('@/assets/images/WhatsApp_icon.png') } // Reemplaza con la URL de tu foto
+          style={styles.image2}
+        />
+        <Text style={styles.buttonText1}></Text>
           <Text style={styles.buttonText}>CONTÁCTANOS</Text>
         </TouchableOpacity>
         
@@ -93,10 +101,10 @@ const styles = StyleSheet.create({
     button: {
       backgroundColor: 'white', // Color del botón
       width: 219,               // Ancho fijo del botón
-      height: 69,        // Espacio horizontal interno
+      height: 79,        // Espacio horizontal interno
       borderRadius: 15,            // Hace el botón redondeado
       alignItems: 'center',        // Alinea el texto al centro
-      marginVertical: 20, 
+      marginVertical: 30, 
       borderWidth: 1,             // Ancho del borde
       borderColor: '#ffffff',
       // Sombra para iOS
@@ -108,12 +116,24 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
              // Espaciado vertical
     },
+    buttonText1: {
+      color: '#000000',              // Color del texto
+      fontSize: 12,                // Tamaño de la fuente
+      fontWeight: 'bold',
+      textAlign: 'center', 
+      marginVertical:45,
+      
+      
+                // Negrita para el texto
+    },
     buttonText: {
       color: '#000000',              // Color del texto
       fontSize: 12,                // Tamaño de la fuente
-      fontWeight: 'semibold',
+      fontWeight: 'bold',
       textAlign: 'center', 
-      paddingHorizontal: 10,
+      position: 'absolute',
+      
+      
                 // Negrita para el texto
     },
     
@@ -139,9 +159,10 @@ const styles = StyleSheet.create({
             // Espaciado entre la imagen y el texto
     },
     image2: {
-      width: 45,              // Ancho de la imagen circular
-      height: 45,             // Alto de la imagen circular
-      borderRadius: 20,       // Hace la imagen circular
+      width: 60,              // Ancho de la imagen circular
+      height: 60,             // Alto de la imagen circular
+      borderRadius: 30,
+          // Hace la imagen circular
       
       
             // Espaciado entre la imagen y el texto
