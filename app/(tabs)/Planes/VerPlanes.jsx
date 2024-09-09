@@ -18,7 +18,7 @@ const PantallaVerPlanes = () => {
       {/* Barra superior verde */}
       
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.push('/Menu/Menu')} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Planes de Recolección</Text>

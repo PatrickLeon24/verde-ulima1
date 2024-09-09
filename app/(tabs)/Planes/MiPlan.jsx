@@ -9,37 +9,38 @@ const PantallaPlan = () => {
   const router = useRouter();
 
   const handlePressPlan = (id) => {
-    // Navegar a la pantalla de detalles del plan, por ejemplo:
+    // Navegar a la pantalla de detalles del plan
     router.push(`/Planes/DetallePlan/${id}`);
   };
+
+  // Limitar la cantidad de planes que se muestran
+  const MAX_PLANES_TO_SHOW = 4; // Puedes ajustar este valor según tus necesidades
+  const limitedPlanesData = planesData.slice(0, MAX_PLANES_TO_SHOW);
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
-      
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.push('/MyAccount/MiCuenta')} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Mi plan</Text>
       </View>
       <PlanItem
-            nombre={"SI"}
-            descripcion={"SI"}
-            onPress={() => router.push('/Planes/VerPlanes')} // Navegar al plan específico
-          />
+        nombre={"SI"}
+        descripcion={"SI"}
+        onPress={() => router.push('')} // Navegar al plan específico
+      />
       <View style={styles.barramedia}>
-      <Text style={styles.buttonText}>Quieres cambiar de plan ?</Text>
-      <TouchableOpacity onPress={() => router.push('/Planes/VerPlanes')} style={styles.botonRetroceso}>
+        <Text style={styles.buttonText}>¿Quieres cambiar de plan?</Text>
+        <TouchableOpacity onPress={() => router.push('/Planes/VerPlanes')} style={styles.botonRetroceso}>
           <Ionicons name="arrow-forward" size={24} color="black" />
         </TouchableOpacity>
       </View>
-        
-        
-
+      
       {/* Lista de planes */}
       <FlatList
-        data={planesData}
+        data={limitedPlanesData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <PlanItem
@@ -62,25 +63,21 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white', // Color del botón
     width: 107,               // Ancho fijo del botón
-    height: 40,        // Espacio horizontal interno
-    borderRadius: 30,            // Hace el botón redondeado
-    alignItems: 'center',        // Alinea el texto al centro
+    height: 40,               // Espacio horizontal interno
+    borderRadius: 30,         // Hace el botón redondeado
+    alignItems: 'center',     // Alinea el texto al centro
     marginVertical: 20,
-    marginHorizontal:10, 
-    borderWidth: 1,             // Ancho del borde
+    marginHorizontal: 10, 
+    borderWidth: 1,           // Ancho del borde
     borderColor: '#34A853',
     // Sombra para iOS
-    
-    justifyContent: 'center',
-           // Espaciado vertical
+    justifyContent: 'center', // Espaciado vertical
   },
   buttonText: {
-    color: '#000000',              // Color del texto
-    fontSize: 24,                // Tamaño de la fuente
-    fontWeight: 'BOLD',
-    
+    color: '#000000',         // Color del texto
+    fontSize: 24,             // Tamaño de la fuente
+    fontWeight: 'bold',       // Cambié 'BOLD' a 'bold'
     paddingHorizontal: 10,
-              // Negrita para el texto
   },
   barraSuperior: {
     height: 60,
@@ -90,11 +87,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   barramedia: {
-    
-    
     flexDirection: 'row',
-    
     paddingHorizontal: 10,
+    alignItems: 'center', // Alinea verticalmente el texto y el ícono
   },
   botonRetroceso: {
     marginRight: 30,
