@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',        // Alinea el texto al centro
       marginVertical: 30, 
       borderWidth: 1,             // Ancho del borde
-      borderColor: '#34A853',
+      borderColor: 'white',
       // Sombra para iOS
       shadowColor: '#000', // Color de la sombra
       shadowOffset: { width: 0, height: 2 }, // Desplazamiento de la sombra
