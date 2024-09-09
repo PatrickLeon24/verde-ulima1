@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useColorScheme } from 'react-native'; // Si usas un hook para los temas
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 const AccountScreen = () => {
   const router = useRouter();
   const colorScheme = useColorScheme();
@@ -10,6 +11,9 @@ const AccountScreen = () => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+          <Ionicons name="arrow-back" size={24} color="white" />
+        </TouchableOpacity>
         <Text style={[styles.headerText, { backgroundColor: colors.primary }]}>
           Mi cuenta
         </Text>
