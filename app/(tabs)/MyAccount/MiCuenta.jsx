@@ -17,7 +17,7 @@ const AccountScreen = () => {
 
       <View style={styles.userInfo}>
         <Image
-          //source={require('../assets/images/user-icon.png')} // Icono del usuario
+          source={require('../../../assets/images/SAzRztbw_400x400.jpg')} // Icono del usuario
           style={styles.userImage}
         />
         <View>
