@@ -32,7 +32,7 @@ const PantallaConBarraVerde = () => {
           style={styles.image2}
         />
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Menu/Menu2')}>
+          onPress={()=>router.push('/Planes/VerPlanes')}>
           <Text style={styles.buttonText}>PLANES DE RECOLECCIÓN</Text>
         </TouchableOpacity>
         <Image
@@ -93,7 +93,12 @@ const styles = StyleSheet.create({
       alignItems: 'center',        // Alinea el texto al centro
       marginVertical: 20, 
       borderWidth: 1,             // Ancho del borde
-      borderColor: '#ffffff',     //
+      borderColor: '#ffffff',
+      // Sombra para iOS
+      shadowColor: '#000', // Color de la sombra
+      shadowOffset: { width: 0, height: 2 }, // Desplazamiento de la sombra
+      shadowOpacity: 0.25, // Opacidad de la sombra
+      shadowRadius: 3.84, // Radio de desenfoque de la sombra     //
       elevation: 10, 
       justifyContent: 'center',
              // Espaciado vertical

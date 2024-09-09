@@ -1,0 +1,18 @@
+[
+    {
+      "id": 1,
+      "nombre": "Plan A",
+      "descripcion": "Descripción del Plan A"
+    },
+    {
+      "id": 2,
+      "nombre": "Plan B",
+      "descripcion": "Descripción del Plan B"
+    },
+    {
+      "id": 3,
+      "nombre": "Plan C",
+      "descripcion": "Descripción del Plan C"
+    }
+  ]
+  
