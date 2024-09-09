@@ -14,8 +14,7 @@ const PantallaConBarraVerde = () => {
           source={require('@/assets/images/SAzRztbw_400x400.jpg') } // Reemplaza con la URL de tu foto
           style={styles.image}
         />
-
-          </TouchableOpacity>
+      </TouchableOpacity>
       
        
         <Text style={styles.textoBarra}>Hola, nombre</Text>

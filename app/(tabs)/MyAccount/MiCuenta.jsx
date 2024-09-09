@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useColorScheme } from 'react-native'; // Si usas un hook para los temas
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+
 const AccountScreen = () => {
   const router = useRouter();
   const colorScheme = useColorScheme();
@@ -10,27 +11,28 @@ const AccountScreen = () => {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <View style={styles.header}>
+      {/* Barra Superior */}
+      <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={[styles.headerText, { backgroundColor: colors.primary }]}>
-          Mi cuenta
-        </Text>
+        <Text style={styles.textoBarra}>Mi cuenta</Text>
       </View>
 
+      {/* Información del Usuario */}
       <View style={styles.userInfo}>
         <Image
           source={require('../../../assets/images/SAzRztbw_400x400.jpg')} // Icono del usuario
           style={styles.userImage}
         />
-        <View>
+        <View style={styles.userDetails}>
           <Text style={styles.userName}>nombre apellido</Text>
           <Text style={styles.userInfoText}>DNI: XXXXXXXX</Text>
-          <Text style={styles.userInfoText}>Dirección: </Text>
+          <Text style={styles.userInfoText}>Dirección:</Text>
         </View>
       </View>
 
+      {/* Sección de Información Personal */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Información Personal</Text>
         <TouchableOpacity style={styles.option}>
@@ -44,13 +46,14 @@ const AccountScreen = () => {
         </TouchableOpacity>
       </View>
 
+      {/* Sección de Servicios */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Servicios</Text>
         <TouchableOpacity style={styles.option}>
           <Text style={styles.optionText}>Ver mi Pedido</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText} onPress={()=>router.push('/Planes/MiPlan')}>Ver mi Plan</Text>
+          <Text style={styles.optionText} onPress={() => router.push('/Planes/MiPlan')}>Ver mi Plan</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
           <Text style={styles.optionText}>Ver mis Puntos</Text>
@@ -75,21 +78,26 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  header: {
-    height: 60, // Altura de la barra superior
-    backgroundColor: '#34A853', // Color verde para la barra superior
-    justifyContent: 'center',
-    alignItems: 'center',
+  barraSuperior: {
+    height: 60,
+    backgroundColor: '#34A853',
     flexDirection: 'row',
+    alignItems: 'center',
   },
-  headerText: {
-    fontSize: 18,
-    fontWeight: 'bold',
+  botonRetroceso: {
+    paddingLeft: 10, // Alinea el botón a la izquierda
+  },
+  textoBarra: {
+    flex: 1, // Permite que el texto tome todo el espacio restante
     color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center', // Alinea el texto al centro
   },
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     marginVertical: 16,
   },
   userImage: {
@@ -97,6 +105,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     marginRight: 12,
+  },
+  userDetails: {
+    alignItems: 'center',
   },
   userName: {
     fontSize: 16,
@@ -108,18 +119,20 @@ const styles = StyleSheet.create({
   },
   section: {
     marginVertical: 16,
+    alignItems: 'center',
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 8,
+    textAlign: 'center',
   },
   option: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    width: '100%',
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+    alignItems: 'center',
   },
   optionText: {
     fontSize: 16,
