@@ -46,7 +46,7 @@ const PantallaConBarraVerde = () => {
         </TouchableOpacity>
         
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/MyAccount/MiCuenta')}>
+          onPress={()=>router.push('/Menu/Menu2')}>
             <Image
           source={require('@/assets/images/images.jpeg') } // Reemplaza con la URL de tu foto
           style={styles.image2}
