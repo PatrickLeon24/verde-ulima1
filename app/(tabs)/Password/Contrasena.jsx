@@ -31,7 +31,7 @@ const ChangePasswordScreen = () => {
         <Text style={styles.label}>Confirmar contraseña</Text>
         <TextInput
           style={styles.input}
-          placeholder="Ingrese su contraseña"
+          placeholder="Confirme su contraseña"
           secureTextEntry
           value={confirmPassword}
           onChangeText={setConfirmPassword}
