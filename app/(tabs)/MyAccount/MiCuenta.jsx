@@ -1,16 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { useColorScheme } from 'react-native'; // Si usas un hook para los temas
+import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 const AccountScreen = () => {
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === 'dark' ? darkThemeColors : lightThemeColors;
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
@@ -59,40 +56,31 @@ const AccountScreen = () => {
           <Text style={styles.optionText}>Ver mis Puntos</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
-};
-
-const lightThemeColors = {
-  background: '#fff',
-  primary: '#4CAF50', // Color verde del header
-};
-
-const darkThemeColors = {
-  background: '#000',
-  primary: '#333',
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    backgroundColor: 'white', // Usa backgroundColor en lugar de background
   },
   barraSuperior: {
     height: 60,
     backgroundColor: '#34A853',
-    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   botonRetroceso: {
-    paddingLeft: 10, // Alinea el botón a la izquierda
+    paddingLeft: 10,
   },
   textoBarra: {
-    flex: 1, // Permite que el texto tome todo el espacio restante
+    flex: 1,
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center', // Alinea el texto al centro
+    textAlign: 'center',
   },
   userInfo: {
     flexDirection: 'row',

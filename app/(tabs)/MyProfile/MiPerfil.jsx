@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
-import { useColorScheme } from 'react-native'; // Si usas un hook para los temas
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 const EditProfileScreen = () => {
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === 'dark' ? darkThemeColors : lightThemeColors;
-
   const [nombre, setNombre] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [dni, setDni] = useState('');
@@ -16,7 +12,7 @@ const EditProfileScreen = () => {
   const [direccion, setDireccion] = useState('');
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
@@ -63,34 +59,24 @@ const EditProfileScreen = () => {
       <TouchableOpacity style={styles.saveButton} onPress={() => alert('Cambios guardados')}>
         <Text style={styles.saveButtonText}>Guardar cambios</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
-};
-
-const lightThemeColors = {
-  background: '#fff',
-  primary: '#4CAF50', // Color verde del header
-};
-
-const darkThemeColors = {
-  background: '#000',
-  primary: '#333',
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    backgroundColor: 'white', // Color de fondo blanco
   },
   barraSuperior: {
-    height: 60,
-    backgroundColor: '#34A853',
-    flexDirection: 'row',
+    height: 60, // Altura de la barra superior
+    backgroundColor: '#34A853', // Color verde para la barra superior
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    flexDirection: 'row',
   },
   botonRetroceso: {
-    marginRight: 10,
+    paddingLeft: 10,
   },
   textoBarra: {
     flex: 1,
@@ -104,23 +90,23 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   input: {
-    height: 40,
-    borderWidth: 1,
+    width: '90%',
+    alignSelf: 'center',
+    height: 50, 
     borderColor: '#ccc',
-    borderRadius: 5,
+    borderWidth: 1,
+    borderRadius: 12, 
     paddingHorizontal: 10,
-    marginBottom: 20,
+    marginBottom: 25 
   },
   saveButton: {
-    backgroundColor: 'black',
-    borderRadius: 8,
-    paddingVertical: 15,
-    marginHorizontal: 16,
+    backgroundColor: '#000',
+    paddingVertical: 18, // Aumentar el tamaño del botón
+    borderRadius: 12, // Más redondeo para el botón
     alignItems: 'center',
-    position: 'absolute',
-    bottom: 20,
-    left: 0,
-    right: 0,
+    marginTop: 30, // Más espacio en la parte superior del botón
+    width: '90%',
+    alignSelf: 'center'
   },
   saveButtonText: {
     color: 'white',
