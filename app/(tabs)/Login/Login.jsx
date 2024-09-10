@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, Modal, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, Modal, Button} from 'react-native';
 import { useRouter } from 'expo-router';
 import styles from './Style_Login'; // Importa los estilos desde el archivo separado
 import users from './Usuario.json'; // Asegúrate de que la ruta es correcta
