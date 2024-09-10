@@ -35,10 +35,10 @@ const AccountScreen = () => {
       {/* Sección de Información Personal */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Información Personal</Text>
-        <TouchableOpacity style={styles.option}>
+        <TouchableOpacity style={styles.option} onPress={()=>router.push('/MyProfile/MiPerfil')}>
           <Text style={styles.optionText}>Editar Perfil</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
+        <TouchableOpacity style={styles.option} onPress={()=>router.push('/Password/Contrasena')}>
           <Text style={styles.optionText}>Cambiar Contraseña</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
