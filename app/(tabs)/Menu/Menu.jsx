@@ -25,7 +25,7 @@ const PantallaConBarraVerde = () => {
       <View style={styles.botonContainer}>
         
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Menu/Menu2')}>
+          onPress={()=>router.push('/Cupones/Cupones')}>
             <Image
           source={require('@/assets/images/cupon.jpg') } // Reemplaza con la URL de tu foto
           style={styles.image2}
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     textoBarra: {
       color: 'white',
       fontSize: 20,
-      fontWeight: 'semibold',
+      fontWeight: 'bold',
       position: 'absolute'
     },
     botonContainer: {

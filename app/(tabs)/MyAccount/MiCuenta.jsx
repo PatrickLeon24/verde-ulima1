@@ -47,13 +47,13 @@ const AccountScreen = () => {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Servicios</Text>
         <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText}>Ver mi Pedido</Text>
+          <Text style={styles.optionText} onPress={() => router.push('/Pedido/MiPedido')}>Ver mi Pedido</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
           <Text style={styles.optionText} onPress={() => router.push('/Planes/MiPlan')}>Ver mi Plan</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText}>Ver mis Puntos</Text>
+          <Text style={styles.optionText} onPress={() => router.push('/Puntos/MisPuntos')}>Ver mis Puntos</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
