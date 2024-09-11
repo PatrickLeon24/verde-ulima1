@@ -2,16 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-
+import CuponItem from './CuponItem';
+import Cuponesnom from '../Cupones/Cupons.json';
 
 const PantallaPuntos = () => {
   const router = useRouter();
-
- 
-
- 
- 
-
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
@@ -21,11 +16,14 @@ const PantallaPuntos = () => {
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Cupones</Text>
       </View>
-      
-      
-      
-      {/* Lista de planes */}
-      
+      <View style={styles.BarradeBusqueda}>
+        aqui seria la barra xdd
+      </View>
+      <Text style={styles.Palasexo}>
+        Comida Rápida
+      </Text>
+      waza
+
     </SafeAreaView>
   );
 };
@@ -54,6 +52,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',       // Cambié 'BOLD' a 'bold'
     paddingHorizontal: 10,
   },
+  Palasexo: {
+    color: '#000000',         // Color del texto
+    fontSize: 24,             // Tamaño de la fuente
+    fontWeight: 'bold',       // Cambié 'BOLD' a 'bold'
+    paddingHorizontal: 10,
+    paddingTop: 15,
+  },
   barraSuperior: {
     height: 60,
     backgroundColor: '#34A853',
@@ -77,6 +82,14 @@ const styles = StyleSheet.create({
   listaContenido: {
     paddingVertical: 10, // Añadir espacio vertical entre los elementos
   },
+  BarradeBusqueda: {
+    height: 60, // Altura de la barra superior
+    backgroundColor: 'rgba(52, 168, 83, 0.10)', 
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  }
 });
 
 export default PantallaPuntos;

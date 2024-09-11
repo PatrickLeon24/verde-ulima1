@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "nombre": "Burguer King",
+      "descripcion": "Descripción del Plan A"
+    },
+    {
+      "id": 2,
+      "nombre": "KFC",
+      "descripcion": "Descripción del Plan B"
+    },
+    {
+      "id": 3,
+      "nombre": "KFC",
+      "descripcion": "Descripción del Plan B"
+    }
+]
