@@ -1,95 +1,75 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/Ionicons'
 import { useRouter } from 'expo-router';
-import CuponItem from './CuponItem';
-import Cuponesnom from '../Cupones/Cupons.json';
-
+import styles from './estilosCup';
+import CuponItem from './CuponItem'; 
+import CuponInfo from '../Cupones/Cupons.json';
 const PantallaPuntos = () => {
   const router = useRouter();
+
+  const handlePressPlan = (id) => {
+    // Navegar a la pantalla de detalles del plan, por ejemplo:
+    router.push(`/Cupones/CuponesInfo/${id}`);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* Barra superior verde */}
+      {/* - - - - - Barra superior verde - - - - - */}
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Cupones</Text>
       </View>
-      <View style={styles.BarradeBusqueda}>
-        aqui seria la barra xdd
-      </View>
-      <Text style={styles.Palasexo}>
-        Comida Rápida
-      </Text>
-      waza
 
+      {/* - - - - - Navbar - - - - - */ }
+      <View style={styles.navbar}>
+        <TouchableOpacity style={styles.iconoxd}>
+          <Icon name="fast-food-outline" size={24} color="black" />
+          <Text style={styles.iconLabel}>
+            Comida rápida
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconoxd}>
+          <Icon name="football-outline" size={24} color="black" />
+          <Text style={styles.iconLabel}>
+            Deportes
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconoxd}>
+          <Icon name="woman-outline" size={24} color="black" />
+          <Text style={styles.iconLabel}>
+            Belleza
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconoxd}>
+          <Icon name="ticket-outline" size={24} color="black" />
+          <Text style={styles.iconLabel}>
+            Eventos
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* - - - - - Lo demas - - - - - */}
+      
+
+      {/* - - - - - Lista de Cupones - - - - - */}
+      <FlatList
+        data={CuponInfo}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <CuponItem
+            nombre={item.nombre}
+            descripcion={item.descripcion}
+            onPress={() => handlePressPlan(item.id)} // Navegar al plan específico
+          />
+        )}
+        contentContainerStyle = {styles.listaContenido} // Añadido para mejor estilo de contenido
+      />
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  button: {
-    backgroundColor: 'white', // Color del botón
-    width: 107,               // Ancho fijo del botón
-    height: 40,               // Espacio horizontal interno
-    borderRadius: 30,         // Hace el botón redondeado
-    alignItems: 'center',     // Alinea el texto al centro
-    marginVertical: 20,
-    marginHorizontal: 10, 
-    borderWidth: 1,           // Ancho del borde
-    borderColor: '#34A853',
-    // Sombra para iOS
-    justifyContent: 'center', // Espaciado vertical
-  },
-  buttonText: {
-    color: '#000000',         // Color del texto
-    fontSize: 24,             // Tamaño de la fuente
-    fontWeight: 'bold',       // Cambié 'BOLD' a 'bold'
-    paddingHorizontal: 10,
-  },
-  Palasexo: {
-    color: '#000000',         // Color del texto
-    fontSize: 24,             // Tamaño de la fuente
-    fontWeight: 'bold',       // Cambié 'BOLD' a 'bold'
-    paddingHorizontal: 10,
-    paddingTop: 15,
-  },
-  barraSuperior: {
-    height: 60,
-    backgroundColor: '#34A853',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-  },
-  barramedia: {
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    alignItems: 'center', // Alinea verticalmente el texto y el ícono
-  },
-  botonRetroceso: {
-    marginRight: 30,
-  },
-  textoBarra: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  listaContenido: {
-    paddingVertical: 10, // Añadir espacio vertical entre los elementos
-  },
-  BarradeBusqueda: {
-    height: 60, // Altura de la barra superior
-    backgroundColor: 'rgba(52, 168, 83, 0.10)', 
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  }
-});
 
 export default PantallaPuntos;
