@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import PlanItem from './PlanItem'; 
 import planesData from '../Planes/Planes.json';
 
-const PantallaPlan = () => {
+const PantallaPlan = ({navigation}) => {
   const router = useRouter();
 
   const handlePressPlan = (id) => {
@@ -21,7 +21,7 @@ const PantallaPlan = () => {
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Mi plan</Text>
@@ -29,14 +29,13 @@ const PantallaPlan = () => {
       <PlanItem
         nombre={"SI"}
         descripcion={"SI"}
-        onPress={() => router.push('')} // Navegar al plan específico
+        onPress={() => navigation.navigate('')} // Navegar al plan específico
       />
       <View style={styles.barramedia}>
         <Text style={styles.buttonText}>¿Quieres cambiar de plan?</Text>
-        <TouchableOpacity onPress={() => router.push('/Planes/VerPlanes')} style={styles.botonRetroceso}>
-          <Ionicons name="arrow-forward" size={24} color="black" />
-        </TouchableOpacity>
+        
       </View>
+      
       
       {/* Lista de planes */}
       <FlatList
@@ -46,7 +45,7 @@ const PantallaPlan = () => {
           <PlanItem
             nombre={item.nombre}
             descripcion={item.descripcion}
-            onPress={() => handlePressPlan(item.id)} // Navegar al plan específico
+            onPress={() => navigation.navigate('verpla', { item })} // Navegar al plan específico
           />
         )}
         contentContainerStyle={styles.listaContenido} // Añadido para mejor estilo de contenido

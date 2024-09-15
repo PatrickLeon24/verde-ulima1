@@ -1,30 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+
 import PlanItem from './PlanItem'; 
 import planesData from '../Planes/Planes.json';
 
-const PantallaVerPlanes = () => {
-  const router = useRouter();
 
-  const handlePressPlan = (id) => {
-    // Navegar a la pantalla de detalles del plan, por ejemplo:
-    router.push(`/Planes/DetallePlan/${id}`);
-  };
+const PantallaVerPlanes = ({ navigation }) => {
+  
+
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Planes de Recolección</Text>
       </View>
       <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/MyAccount/MiCuenta')}>
+          onPress={() => navigation.navigate('Login')}>
           <Text style={styles.buttonText}>≡   Filtros</Text>
         </TouchableOpacity>
 
@@ -32,11 +29,12 @@ const PantallaVerPlanes = () => {
       <FlatList
         data={planesData}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
+        renderItem={({ item}) => (
           <PlanItem
             nombre={item.nombre}
             descripcion={item.descripcion}
-            onPress={() => handlePressPlan(item.id)} // Navegar al plan específico
+            precio={item.precio}
+            onPress={() =>  navigation.navigate('verpla', { item })} // Navegar al plan específico
           />
         )}
         contentContainerStyle={styles.listaContenido} // Añadido para mejor estilo de contenido

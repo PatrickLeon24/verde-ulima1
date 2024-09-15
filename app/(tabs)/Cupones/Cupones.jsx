@@ -6,19 +6,16 @@ import { useRouter } from 'expo-router';
 import styles from './estilosCup';
 import CuponItem from './CuponItem'; 
 import CuponInfo from '../Cupones/Cupons.json';
-const PantallaPuntos = () => {
+const PantallaPuntos = ({navigation}) => {
   const router = useRouter();
 
-  const handlePressPlan = (id) => {
-    // Navegar a la pantalla de detalles del plan, por ejemplo:
-    router.push(`/Cupones/CuponesInfo/${id}`);
-  };
+
 
   return (
     <SafeAreaView style={styles.container}>
       {/* - - - - - Barra superior verde - - - - - */}
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Cupones</Text>
@@ -63,7 +60,9 @@ const PantallaPuntos = () => {
           <CuponItem
             nombre={item.nombre}
             descripcion={item.descripcion}
-            onPress={() => handlePressPlan(item.id)} // Navegar al plan específico
+            local={item.local}
+            indic={item.indic}
+            onPress={() =>  navigation.navigate('vercup', { item })} // Navegar al plan específico
           />
         )}
         contentContainerStyle = {styles.listaContenido} // Añadido para mejor estilo de contenido

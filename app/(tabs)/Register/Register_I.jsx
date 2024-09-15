@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, Modal, Button } fr
 import { useRouter } from 'expo-router';
 import styles from './Style_RegisterI'; // Importa los estilos desde el archivo separado
 
-const RegisterI = () => {
+const RegisterI = ({navigation}) => {
   const router = useRouter();
 
   const [nombres, setNombres] = useState('');
@@ -18,7 +18,7 @@ const RegisterI = () => {
     if (!nombres || !apellidos || !dni || !direccion || !correo || !Genero_seleccionado) {
       setModalVisible(true); // Mostrar el modal si hay campos vacíos
     } else {
-      router.push('/Register/Register_II');
+      navigation.navigate('Register_II');
     }
   };
 
