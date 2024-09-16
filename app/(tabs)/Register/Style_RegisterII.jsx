@@ -4,6 +4,7 @@ const Style_RegisterII = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: 'white',
+      paddingVertical: 40
     },
     header: {
       height: 60,

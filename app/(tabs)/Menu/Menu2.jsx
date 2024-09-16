@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white', // Color de fondo blanco
+    paddingVertical: 40
   },
   barraSuperior: {
     height: 60, // Altura de la barra superior

@@ -3,14 +3,14 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'r
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-const AccountScreen = () => {
+const AccountScreen = ({navigation}) => {
   const router = useRouter();
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Mi cuenta</Text>
@@ -32,10 +32,10 @@ const AccountScreen = () => {
       {/* Sección de Información Personal */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Información Personal</Text>
-        <TouchableOpacity style={styles.option} onPress={()=>router.push('/MyProfile/MiPerfil')}>
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil')}>
           <Text style={styles.optionText}>Editar Perfil</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option} onPress={()=>router.push('/Password/Contrasena')}>
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>
           <Text style={styles.optionText}>Cambiar Contraseña</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
@@ -47,13 +47,13 @@ const AccountScreen = () => {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Servicios</Text>
         <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText} onPress={() => router.push('/Pedido/MiPedido')}>Ver mi Pedido</Text>
+          <Text style={styles.optionText} onPress={() => navigation.navigate('MiPedido')}>Ver mi Pedido</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText} onPress={() => router.push('/Planes/MiPlan')}>Ver mi Plan</Text>
+          <Text style={styles.optionText} onPress={() => navigation.navigate('MiPlan')}>Ver mi Plan</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText} onPress={() => router.push('/Puntos/MisPuntos')}>Ver mis Puntos</Text>
+          <Text style={styles.optionText} onPress={() => navigation.navigate('MisPuntos')}>Ver mis Puntos</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white', // Usa backgroundColor en lugar de background
+    paddingVertical: 40
   },
   barraSuperior: {
     height: 60,

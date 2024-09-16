@@ -2,16 +2,22 @@
     {
       "id": 1,
       "nombre": "Burguer King",
-      "descripcion": "Descripción del Plan A"
+      "descripcion": "Descripción del cupon A",
+      "local": "Miraflores",
+      "indic":"Acercate a la tienda más cercana"
     },
     {
       "id": 2,
       "nombre": "KFC",
-      "descripcion": "Descripción del Plan B"
+      "descripcion": "Descripción del cupon B",
+      "local": "San borja",
+      "indic":"Acercate a la tienda más cercana"
     },
     {
       "id": 3,
       "nombre": "KFC",
-      "descripcion": "Descripción del Plan B"
+      "descripcion": "Descripción del cupon B",
+      "local": "Surco",
+      "indic":"Acercate a la tienda más cercana"
     }
 ]

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } fro
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-const EditProfileScreen = () => {
+const EditProfileScreen = ({navigation}) => {
   const router = useRouter();
   const [nombre, setNombre] = useState('');
   const [apellidos, setApellidos] = useState('');
@@ -15,7 +15,7 @@ const EditProfileScreen = () => {
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Mi Perfil</Text>
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white', // Color de fondo blanco
+    paddingVertical: 40
   },
   barraSuperior: {
     height: 60, // Altura de la barra superior

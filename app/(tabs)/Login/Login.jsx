@@ -3,8 +3,10 @@ import { View, Text, TextInput, TouchableOpacity, Image, Modal, Button} from 're
 import { useRouter } from 'expo-router';
 import styles from './Style_Login'; // Importa los estilos desde el archivo separado
 import users from './Usuario.json'; // Asegúrate de que la ruta es correcta
+import logo from '../../../assets/images/logo.jpg'
+import google from '../../../assets/images/google.jpg'
 
-const Login = () => {
+const Login = ({navigation}) => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +26,7 @@ const Login = () => {
     
     if (user) {
       // Si las credenciales son válidas, navega al menú
-      router.push('/Menu/Menu');
+      navigation.navigate('Menu');
     } else {
       // Mostrar una alerta si las credenciales son incorrectas
       setModalMessage('El correo o la contraseña ingresados son incorrectos.');
@@ -39,7 +41,7 @@ const Login = () => {
 
       {/* Imagen de reciclaje */}
       <Image
-        source={require('@/assets/images/logo.jpg')} 
+        source={logo}
         style={styles.image}
       />
 
@@ -73,14 +75,14 @@ const Login = () => {
       <Text style={styles.orText}>o continua con</Text>
       <TouchableOpacity style={styles.googleButton}>
         <Image
-          source={require('@/assets/images/google.jpg')}
+          source={google}
           style={styles.googleIcon}
         />
         <Text style={styles.googleButtonText}>Google</Text>
       </TouchableOpacity>
 
       {/* Botón de Registrarse */}
-      <TouchableOpacity style={styles.registerButton} onPress={() => router.push('/Register/Register_I')}>
+      <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Register_I')}>
         <Text style={styles.registerText}>¿No tienes cuenta? Regístrate</Text>
       </TouchableOpacity>
 

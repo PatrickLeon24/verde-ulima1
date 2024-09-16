@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 const PlanItem = ({ nombre, descripcion, onPress }) => {
+
+  const router = useRouter();
   return (
     <TouchableOpacity onPress={onPress} style={styles.planContainer}>
       <View style={styles.iconContainer}>

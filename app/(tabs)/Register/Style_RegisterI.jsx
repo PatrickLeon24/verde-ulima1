@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 const Style_RegisterI = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    paddingVertical: 40
   },
   header: {
     height: 60, 

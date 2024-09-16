@@ -1,17 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView ,Image,TouchableOpacity, Linking} from 'react-native';
 import { useRouter } from 'expo-router';
+import cuatrocientos from '../../../assets/images/SAzRztbw_400x400.jpg'
+import cupon from '../../../assets/images/cupon.jpg'
+import reciclaje from '../../../assets/images/reciclaje.jpg'
+import imagenes from '../../../assets/images/images.jpg'
+import whatssap from '../../../assets/images/WhatsApp_icon.png'
 
-const PantallaConBarraVerde = () => {
+const PantallaConBarraVerde = ({navigation}) => {
     const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
       <TouchableOpacity 
-          onPress={()=>router.push('/MyAccount/MiCuenta')}>
+          onPress={() => navigation.navigate('Micuenta')}>
             <Image
-          source={require('@/assets/images/SAzRztbw_400x400.jpg') } // Reemplaza con la URL de tu foto
+          source={cuatrocientos} // Reemplaza con la URL de tu foto
           style={styles.image}
         />
       </TouchableOpacity>
@@ -25,9 +30,9 @@ const PantallaConBarraVerde = () => {
       <View style={styles.botonContainer}>
         
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Cupones/Cupones')}>
+          onPress={() => navigation.navigate('Cupones')}>
             <Image
-          source={require('@/assets/images/cupon.jpg') } // Reemplaza con la URL de tu foto
+          source={cupon} // Reemplaza con la URL de tu foto
           style={styles.image2}
         />
         <Text style={styles.buttonText1}></Text>
@@ -35,9 +40,9 @@ const PantallaConBarraVerde = () => {
         </TouchableOpacity>
         
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Planes/VerPlanes')}>
+          onPress={() => navigation.navigate('VerPlanes')}>
             <Image
-          source={require('@/assets/images/reciclaje.jpg') } // Reemplaza con la URL de tu foto
+          source={reciclaje} // Reemplaza con la URL de tu foto
           style={styles.image2}
         />
         <Text style={styles.buttonText1}></Text>
@@ -45,9 +50,9 @@ const PantallaConBarraVerde = () => {
         </TouchableOpacity>
         
         <TouchableOpacity style={styles.button} 
-          onPress={()=>router.push('/Menu/Menu2')}>
+          onPress={() => navigation.navigate('Menu2')}>
             <Image
-          source={require('@/assets/images/images.jpeg') } // Reemplaza con la URL de tu foto
+          source={imagenes} // Reemplaza con la URL de tu foto
           style={styles.image2}
         />
         <Text style={styles.buttonText1}></Text>
@@ -58,7 +63,7 @@ const PantallaConBarraVerde = () => {
           style={styles.button} 
           onPress={() => Linking.openURL('https://wa.me/message/IUHQDJHMMT3QL1')}>
             <Image
-          source={require('@/assets/images/WhatsApp_icon.png') } // Reemplaza con la URL de tu foto
+          source={whatssap} // Reemplaza con la URL de tu foto
           style={styles.image2}
         />
         <Text style={styles.buttonText1}></Text>
@@ -77,6 +82,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: 'white', // Color de fondo blanco
+      paddingVertical: 40
     },
     barraSuperior: {
       height: 60, // Altura de la barra superior

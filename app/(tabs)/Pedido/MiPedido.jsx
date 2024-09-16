@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
 
 
-const PantallaPedido = () => {
-  const router = useRouter();
+
+const PantallaPedido = ({navigation}) => {
+  
 
  
 
@@ -16,7 +16,7 @@ const PantallaPedido = () => {
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Mi Pedido</Text>
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    paddingVertical: 40
   },
   button: {
     backgroundColor: 'white', // Color del botón

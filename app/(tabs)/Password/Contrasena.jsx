@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } from 'react-native';
-import { useRouter } from 'expo-router';
+
 import { Ionicons } from '@expo/vector-icons';
 
-const ChangePasswordScreen = () => {
-  const router = useRouter();
+const ChangePasswordScreen = ({navigation}) => {
+  
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -12,7 +12,7 @@ const ChangePasswordScreen = () => {
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Contraseña</Text>
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white', // Color de fondo blanco
+    paddingVertical: 40
   },
   barraSuperior: {
     height: 60, // Altura de la barra superior

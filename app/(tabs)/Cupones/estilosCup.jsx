@@ -4,6 +4,7 @@ const estilosCup = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
+        paddingVertical: 40
       },
       button: {
         backgroundColor: 'white', // Color del botón
