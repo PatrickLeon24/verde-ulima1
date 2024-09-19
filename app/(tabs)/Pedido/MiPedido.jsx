@@ -47,8 +47,25 @@ const PantallaPedido = ({navigation}) => {
       </View>
       
       </View>
+      <View style={styles.row}>
+        <View style={styles.column}>
+          <Text>Solicitud</Text>
+          <Text>Recibida</Text>
+        </View>
+        <View style={styles.column}>
+          <Text>En preparación</Text>
+        </View>
+        <View style={styles.column}>
+          <Text>En camino</Text>
+        </View>
+        <View style={styles.column}>
+          <Text>Entregado</Text>
+        </View>
+    
+      </View>
     </View>
-
+    
+    
 
  </SafeAreaView>
   );

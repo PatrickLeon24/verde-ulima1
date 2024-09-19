@@ -109,9 +109,20 @@ const estilosPedi = StyleSheet.create({
         height: 130,
         top: 90,
         right: 595,
-
-
-      }
+      },
+      row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 10,
+      },
+      column: {
+        flex: 1,
+        alignItems: 'center',
+        borderColor: '#ccc',
+        top: 10,
+        paddingHorizontal: 180,
+        paddingVertical: 20,
+      },
   });
 
 
