@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, Image, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './estiloPedi'
-
-
+import carrogolf from '../Pedido/WAAA.png';
 const PantallaPedido = ({navigation}) => {
   
   // Limitar la cantidad de planes que se muestran
@@ -25,18 +24,31 @@ const PantallaPedido = ({navigation}) => {
         </View>
       
       
+        <View style={styles.iconContainer}>
+        <Image
+            source={carrogolf} 
+            style={styles.truckIcon}
+          />
+      </View>
       <View style={styles.contPed}>
+        
       {/* Line */}
       <View style={styles.linPed} />
       {/* Dots */}
+      
       <View style={styles.dotContainer}>
+      
+        <View style={styles.dot} />
+        
         <View style={styles.dot} />
         <View style={styles.dot} />
         <View style={styles.dot} />
-        <View style={styles.dot} />
+        
+      </View>
+      
       </View>
     </View>
-    </View>
+
 
  </SafeAreaView>
   );

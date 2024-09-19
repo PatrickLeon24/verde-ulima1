@@ -54,25 +54,35 @@ const estilosPedi = StyleSheet.create({
       justifyContent: 'space-between',
       width: '80%',
       alignSelf: 'center',
-      marginTop: 10,
+      marginTop: 100,
     },
     linPed: {
       position: 'absolute',
       width: '100%',
-      height: 2,
+      height: 7,
       backgroundColor: '#E1D5F7', // Color similar a la línea morada clara
-      top: 9,
+      top: 13,
     },
+    linPed2: {
+        position: 'absolute',
+        width: '100%',
+        height: 7,
+        backgroundColor: '#E1D5F7', // Color similar a la línea morada clara
+        top: 32,
+      },
     dotContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       width: '100%',
     },
     dot: {
-      width: 16,
-      height: 16,
-      borderRadius: 8,
+      width: 32,
+      height: 32,
+      borderRadius: 16,
       backgroundColor: '#000', // Color negro para los puntos
+    },
+    dot2: {
+        top: 32,
     },
     
     contEst: {// - - - - - - PARTE DE ARRIBA - - - - - - 
@@ -82,14 +92,26 @@ const estilosPedi = StyleSheet.create({
     },
     boxEst: {
       backgroundColor: '#D9D9D9',
-      paddingVertical: 20,
-      paddingHorizontal: 20,
+      paddingVertical: 30,
+      paddingHorizontal: 60,
       borderRadius: 1,
     },
     textoEst: {
       color: '#000',
-      fontSize: 16,
-    }
+      fontSize: 32,
+    },
+    iconContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    truckIcon: {
+        width: 130,
+        height: 130,
+        top: 90,
+        right: 595,
+
+
+      }
   });
 
 
