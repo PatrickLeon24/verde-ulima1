@@ -24,30 +24,37 @@ const PantallaPedido = ({navigation}) => {
         </View>
       
       
-        <View style={styles.iconContainer}>
-        <Image
-            source={carrogolf} 
-            style={styles.truckIcon}
-          />
-      </View>
+        
       <View style={styles.contPed}>
         
-      {/* Line */}
+      {/*Linea xdd*/}
       <View style={styles.linPed} />
       {/* Dots */}
       
       <View style={styles.dotContainer}>
-      
+      <View>
+        <Image source={carrogolf} style={styles.truckIcon}/>
         <View style={styles.dot} />
-        
+        <Text style={styles.labelx}>Solicitud</Text>
+        <Text style={styles.labelx}>Recibida</Text>
+      </View>  
+      <View>
         <View style={styles.dot} />
+        <Text style={styles.labelx}>Preparacion</Text>
+      </View>
+      <View>
         <View style={styles.dot} />
-        <View style={styles.dot} />
-        
+        <Text style={styles.labelx}>En</Text>
+        <Text style={styles.labelx}>Camino</Text>
+      </View>
+      <View>
+        <View style={styles.dotlast} />
+        <Text style={styles.labellast}>Entregado</Text>
+      </View>
       </View>
       
       </View>
-      <View style={styles.row}>
+      {/*<View style={styles.row}>
         <View style={styles.column}>
           <Text>Solicitud</Text>
           <Text>Recibida</Text>
@@ -62,7 +69,7 @@ const PantallaPedido = ({navigation}) => {
           <Text>Entregado</Text>
         </View>
     
-      </View>
+      </View>*/}
     </View>
     
     

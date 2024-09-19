@@ -59,32 +59,28 @@ const estilosPedi = StyleSheet.create({
     linPed: {
       position: 'absolute',
       width: '100%',
-      height: 7,
+      height: 7,        
       backgroundColor: '#E1D5F7', // Color similar a la línea morada clara
       top: 13,
     },
-    linPed2: {
-        position: 'absolute',
-        width: '100%',
-        height: 7,
-        backgroundColor: '#E1D5F7', // Color similar a la línea morada clara
-        top: 32,
-      },
     dotContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       width: '100%',
     },
     dot: {
-      width: 32,
-      height: 32,
-      borderRadius: 16,
+        width: 28,
+        height: 28,
+        borderRadius: 14,
       backgroundColor: '#000', // Color negro para los puntos
     },
-    dot2: {
-        top: 32,
-    },
-    
+    dotlast: {
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: '#000', // Color negro para los puntos
+        left: 35,
+      },
     contEst: {// - - - - - - PARTE DE ARRIBA - - - - - - 
       flex: 1,
       justifyContent: 'center',
@@ -99,30 +95,28 @@ const estilosPedi = StyleSheet.create({
     textoEst: {
       color: '#000',
       fontSize: 32,
+      fontWeight: 'bold',
     },
-    iconContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
+    
     truckIcon: {
-        width: 130,
-        height: 130,
-        top: 90,
-        right: 595,
+        width: 90,
+        height: 90,
+        position: 'absolute',
+        top: -80,
+        left: -30,
+    },  
+      labelx: {
+        fontSize: 12,
+        //textAlign: 'center',
+        paddingTop: 10,
+        
       },
-      row: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 10,
-      },
-      column: {
-        flex: 1,
-        alignItems: 'center',
-        borderColor: '#ccc',
-        top: 10,
-        paddingHorizontal: 180,
-        paddingVertical: 20,
-      },
+      labellast: {
+        fontSize: 12,
+        left: 20,
+        paddingTop: 10,
+        justifyContent: 'flex-end'
+      }
   });
 
 
