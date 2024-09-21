@@ -1,17 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons'; // Agregué FontAwesome para el ícono de estrella
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 
-const PantallaPuntos = () => {
+const PantallaPuntos = ({navigation}) => {
   const router = useRouter();
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.botonRetroceso}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Mis Puntos</Text>
@@ -26,11 +26,43 @@ const PantallaPuntos = () => {
         </View>
       </View>
 
-      {/* Historial */}
-      <View style={styles.historialContainer}>
-        <Text style={styles.historialTexto}>Historial</Text>
-        <View style={styles.linea}></View>
-      </View>
+      {/* Historial en ScrollView */}
+      <ScrollView style={styles.historialScroll}>
+        <View style={styles.historialContainer}>
+          <Text style={styles.historialTexto}>Historial</Text>
+          <View style={styles.linea}></View>
+
+          {/* Aquí irían los elementos del historial de canjes */}
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 1</Text>
+          </View>
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 2</Text>
+          </View>
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 3</Text>
+          </View>
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 4</Text>
+          </View>
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 5</Text>
+          </View>
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 6</Text>
+          </View>
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 7</Text>
+          </View>
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 8</Text>
+          </View>
+          <View style={styles.itemHistorial}>
+            <Text style={styles.textoItemHistorial}>Cupón 9</Text>
+          </View>
+          {/* Puedes agregar más elementos así */}
+        </View>
+      </ScrollView>
 
       {/* Canjear Código */}
       <View style={styles.canjearContainer}>
@@ -90,6 +122,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginRight: 10,
   },
+  historialScroll: {
+    flex: 1, // Para ocupar el espacio disponible
+    marginVertical: 20,
+  },
   historialContainer: {
     paddingHorizontal: 20,
   },
@@ -102,6 +138,15 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#000',
     marginBottom: 10,
+  },
+  itemHistorial: {
+    backgroundColor: '#f0f0f0',
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  textoItemHistorial: {
+    fontSize: 16,
   },
   canjearContainer: {
     paddingHorizontal: 20,
@@ -124,6 +169,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 30,
+    alignSelf: 'center',
+    width: 150,
   },
   textoBoton: {
     color: 'white',

@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "nombre": "Cupón 1",
+      "puntosGastados": 10
+    },
+    {
+      "id": 2,
+      "nombre": "Cupón 2",
+      "puntosGastados": 20
+    },
+    {
+      "id": 3,
+      "nombre": "Cupón 3",
+      "puntosGastados": 30
+    },
+    {
+        "id": 4,
+        "nombre": "Cupón 4",
+        "puntosGastados": 40
+    }
+  ]
+  
