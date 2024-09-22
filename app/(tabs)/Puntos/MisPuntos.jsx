@@ -4,6 +4,8 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import HistorialItem from './HistorialItem'; // Importamos el componente del historial
 import data from './historial.json'; // Datos del historial
 import styles from './stylesMisPuntos'; // Importamos los estilos
+import saldo from './Saldo.json'; // Importamos los puntos desde Saldo.json
+
 
 const MisPuntos = ({ navigation }) => {
   return (
@@ -20,7 +22,7 @@ const MisPuntos = ({ navigation }) => {
       <View style={styles.puntosContainer}>
         <Text style={styles.textoDisponibles}>Disponibles</Text>
         <View style={styles.puntos}>
-          <Text style={styles.numeroPuntos}>100</Text>
+          <Text style={styles.numeroPuntos}>{saldo.puntosDisponibles}</Text> {/* Valor dinámico */}
           <FontAwesome name="star" size={24} color="#000" />
         </View>
       </View>
@@ -53,5 +55,6 @@ const MisPuntos = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
 
 export default MisPuntos;
