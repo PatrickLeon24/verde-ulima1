@@ -22,7 +22,8 @@ const MisPuntos = ({ navigation }) => {
       <View style={styles.puntosContainer}>
         <Text style={styles.textoDisponibles}>Disponibles</Text>
         <View style={styles.puntos}>
-          <Text style={styles.numeroPuntos}>{saldo.puntosDisponibles}</Text> {/* Valor dinámico */}
+          {/*Puntos dinamicos*/}
+          <Text style={styles.numeroPuntos}>{saldo.puntosDisponibles}</Text> 
           <FontAwesome name="star" size={24} color="#000" />
         </View>
       </View>
