@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import UserSession from '../Login/Singleton';
 
-const EditProfileScreen = ({ route, navigation }) => {
-  const { nombres, apellidos, DNI, email, direccion } = route.params; // Recibe los parámetros
+const EditProfileScreen = ({navigation }) => {
+  const userSession = UserSession.getInstance();
+  const { nombres, apellidos, DNI, email, direccion } = userSession.getUser(); 
 
   // Inicializa los estados con los valores recibidos
   const [nombre, setNombre] = useState(nombres);

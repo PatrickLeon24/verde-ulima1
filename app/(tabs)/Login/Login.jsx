@@ -4,6 +4,8 @@ import styles from './Style_Login'; // Importa los estilos desde el archivo sepa
 import users from './Usuario.json'; // Asegúrate de que la ruta es correcta
 import logo from '../../../assets/images/logo.jpg';
 import google from '../../../assets/images/google.jpg';
+import UserSession from './Singleton';
+
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -23,16 +25,10 @@ const Login = ({ navigation }) => {
     const user = users.find(user => user.email === email && user.password === password);
 
     if (user) {
-      // Si las credenciales son válidas, navega al menú y pasa la información adicional
-      navigation.navigate('Menu', {
-        email: user.email,
-        password: user.password,
-        nombres: user.nombres,
-        apellidos: user.apellidos,
-        direccion: user.direccion,
-        DNI: user.DNI,
-        genero: user.genero,
-      });
+      // Si las credenciales son válidas, guarda los datos del usuario en el Singleton
+      const session = UserSession.getInstance();
+      session.setUser(user);
+      navigation.navigate('Menu');
     } else {
       // Mostrar una alerta si las credenciales son incorrectas
       setModalMessage('El correo o la contraseña ingresados son incorrectos.');
@@ -105,6 +101,7 @@ const Login = ({ navigation }) => {
 };
 
 export default Login;
+
 
 
 
