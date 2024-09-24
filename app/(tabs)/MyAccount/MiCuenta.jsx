@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import UserSession from '../Login/Singleton';
 
-const AccountScreen = ({ route, navigation }) => {
-  const { nombres, apellidos, direccion, DNI, email, password } = route.params;
+const AccountScreen = ({navigation }) => {
+  const userSession = UserSession.getInstance();
+  const { nombres, apellidos, direccion, DNI, email} = userSession.getUser();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,18 +34,10 @@ const AccountScreen = ({ route, navigation }) => {
       {/* Sección de Información Personal */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Información Personal</Text>
-        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil', {
-          nombres,
-          apellidos,
-          DNI,
-          email,
-          direccion
-        })}>
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil')}>
           <Text style={styles.optionText}>Editar Perfil</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena', {
-          password
-        })}>
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>
           <Text style={styles.optionText}>Cambiar Contraseña</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>

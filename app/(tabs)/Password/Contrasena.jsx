@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import UserSession from '../Login/Singleton';
 
-const ChangePasswordScreen = ({ route, navigation }) => {
-  const { password } = route.params; // Accede correctamente a los parámetros
+const ChangePasswordScreen = ({navigation }) => {
+  const userSession = UserSession.getInstance();
+  const { password } = userSession.getUser();
   const [contrasena, setContrasena] = useState(password);
   const [confirmContrasena, setConfirmContrasena] = useState(password);
 

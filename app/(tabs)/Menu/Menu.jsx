@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Linking } from 'react-native';
+import UserSession from '../Login/Singleton';
 import cuatrocientos from '../../../assets/images/SAzRztbw_400x400.jpg';
 import cupon from '../../../assets/images/cupon.jpg';
 import reciclaje from '../../../assets/images/reciclaje.jpg';
 import imagenes from '../../../assets/images/images.jpg';
 import whatssap from '../../../assets/images/WhatsApp_icon.png';
 
-const PantallaConBarraVerde = ({ route, navigation }) => {
-  const { nombres, apellidos, direccion, DNI, email, password } = route.params;  // Recibe los parámetros
+const PantallaConBarraVerde = ({ navigation }) => {
+  // Obtén los datos del usuario desde el Singleton
+  const userSession = UserSession.getInstance();
+  const {nombres, apellidos } = userSession.getUser(); 
   const primerNombre = nombres.split(' ')[0];
   const primerApellido = apellidos.split(' ')[0];
 
@@ -15,15 +18,7 @@ const PantallaConBarraVerde = ({ route, navigation }) => {
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
-      <TouchableOpacity 
-          onPress={() => navigation.navigate('Micuenta', {
-            nombres, 
-            apellidos, 
-            direccion, 
-            DNI, 
-            email,
-            password
-          })}>
+        <TouchableOpacity onPress={() => navigation.navigate('Micuenta')}>
           <Image source={cuatrocientos} style={styles.image} />
         </TouchableOpacity>
 
