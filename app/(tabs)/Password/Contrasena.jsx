@@ -74,8 +74,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'gray',
+    color: '#333',
     marginBottom: 8,
+    fontWeight: '600', // Negrita para mejorar la visibilidad
   },
   input: {
     width: '90%',
@@ -86,7 +87,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 10,
     marginBottom: 25,
-    backgroundColor: 'white', // Fondo blanco para los campos de entrada
+    backgroundColor: '#f9f9f9', // Fondo claro para los campos
+    fontSize: 16,
+    color: '#333', // Color de texto oscuro
   },
   saveButton: {
     backgroundColor: '#000',
