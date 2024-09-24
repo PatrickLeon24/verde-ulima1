@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, Modal, Button} from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, TextInput, TouchableOpacity, Image, Modal, Button } from 'react-native';
 import styles from './Style_Login'; // Importa los estilos desde el archivo separado
 import users from './Usuario.json'; // Asegúrate de que la ruta es correcta
-import logo from '../../../assets/images/logo.jpg'
-import google from '../../../assets/images/google.jpg'
+import logo from '../../../assets/images/logo.jpg';
+import google from '../../../assets/images/google.jpg';
 
-const Login = ({navigation}) => {
-  const router = useRouter();
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -23,10 +21,17 @@ const Login = ({navigation}) => {
 
     // Verificar las credenciales
     const user = users.find(user => user.email === email && user.password === password);
-    
+
     if (user) {
-      // Si las credenciales son válidas, navega al menú
-      navigation.navigate('Menu');
+      // Si las credenciales son válidas, navega al menú y pasa la información adicional
+      navigation.navigate('Menu', {
+        email: user.email,
+        nombres: user.nombres,
+        apellidos: user.apellidos,
+        direccion: user.direccion,
+        DNI: user.DNI,
+        genero: user.genero,
+      });
     } else {
       // Mostrar una alerta si las credenciales son incorrectas
       setModalMessage('El correo o la contraseña ingresados son incorrectos.');
@@ -40,10 +45,7 @@ const Login = ({navigation}) => {
       <Text style={styles.title}>Verde Ulima</Text>
 
       {/* Imagen de reciclaje */}
-      <Image
-        source={logo}
-        style={styles.image}
-      />
+      <Image source={logo} style={styles.image} />
 
       {/* Texto de introducción */}
       <Text style={styles.subtitle}>Entra con tu cuenta registrada</Text>
@@ -74,10 +76,7 @@ const Login = ({navigation}) => {
       {/* Opción de continuar con Google */}
       <Text style={styles.orText}>o continua con</Text>
       <TouchableOpacity style={styles.googleButton}>
-        <Image
-          source={google}
-          style={styles.googleIcon}
-        />
+        <Image source={google} style={styles.googleIcon} />
         <Text style={styles.googleButtonText}>Google</Text>
       </TouchableOpacity>
 
@@ -105,6 +104,7 @@ const Login = ({navigation}) => {
 };
 
 export default Login;
+
 
 
 

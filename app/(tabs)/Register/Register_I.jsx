@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Modal, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Modal, Button, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
 import styles from './Style_RegisterI'; // Importa los estilos desde el archivo separado
 
@@ -23,7 +23,7 @@ const RegisterI = ({navigation}) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Título */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Registro de cuenta</Text>
@@ -109,7 +109,7 @@ const RegisterI = ({navigation}) => {
           </View>
         </View>
       </Modal>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 

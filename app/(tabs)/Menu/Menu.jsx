@@ -1,79 +1,61 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView ,Image,TouchableOpacity, Linking} from 'react-native';
-import { useRouter } from 'expo-router';
-import cuatrocientos from '../../../assets/images/SAzRztbw_400x400.jpg'
-import cupon from '../../../assets/images/cupon.jpg'
-import reciclaje from '../../../assets/images/reciclaje.jpg'
-import imagenes from '../../../assets/images/images.jpg'
-import whatssap from '../../../assets/images/WhatsApp_icon.png'
+import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Linking } from 'react-native';
+import cuatrocientos from '../../../assets/images/SAzRztbw_400x400.jpg';
+import cupon from '../../../assets/images/cupon.jpg';
+import reciclaje from '../../../assets/images/reciclaje.jpg';
+import imagenes from '../../../assets/images/images.jpg';
+import whatssap from '../../../assets/images/WhatsApp_icon.png';
 
-const PantallaConBarraVerde = ({navigation}) => {
-    const router = useRouter();
+const PantallaConBarraVerde = ({ route, navigation }) => {
+  const { nombres, apellidos, direccion, DNI, email } = route.params;  // Recibe los parámetros
+  const primerNombre = nombres.split(' ')[0];
+  const primerApellido = apellidos.split(' ')[0];
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
       <TouchableOpacity 
-          onPress={() => navigation.navigate('Micuenta')}>
-            <Image
-          source={cuatrocientos} // Reemplaza con la URL de tu foto
-          style={styles.image}
-        />
-      </TouchableOpacity>
-      
-       
-        <Text style={styles.textoBarra}>Hola, nombre</Text>
-        
+          onPress={() => navigation.navigate('Micuenta', {
+            nombres, 
+            apellidos, 
+            direccion, 
+            DNI, 
+            email
+          })}>
+          <Image source={cuatrocientos} style={styles.image} />
+        </TouchableOpacity>
+
+        {/* Mostrar "Hola, primer nombre y primer apellido" */}
+        <Text style={styles.textoBarra}>Hola, {primerNombre} {primerApellido}</Text>
       </View>
-      
+
       {/* Contenedor de botones */}
       <View style={styles.botonContainer}>
-        
-        <TouchableOpacity style={styles.button} 
-          onPress={() => navigation.navigate('Cupones')}>
-            <Image
-          source={cupon} // Reemplaza con la URL de tu foto
-          style={styles.image2}
-        />
-        <Text style={styles.buttonText1}></Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Cupones')}>
+          <Image source={cupon} style={styles.image2} />
+          <Text style={styles.buttonText1}></Text>
           <Text style={styles.buttonText}>CUPONES</Text>
         </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.button} 
-          onPress={() => navigation.navigate('VerPlanes')}>
-            <Image
-          source={reciclaje} // Reemplaza con la URL de tu foto
-          style={styles.image2}
-        />
-        <Text style={styles.buttonText1}></Text>
+
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('VerPlanes')}>
+          <Image source={reciclaje} style={styles.image2} />
+          <Text style={styles.buttonText1}></Text>
           <Text style={styles.buttonText}>PLANES DE RECOLECCIÓN</Text>
         </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.button} 
-          onPress={() => navigation.navigate('Menu2')}>
-            <Image
-          source={imagenes} // Reemplaza con la URL de tu foto
-          style={styles.image2}
-        />
-        <Text style={styles.buttonText1}></Text>
+
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Menu2')}>
+          <Image source={imagenes} style={styles.image2} />
+          <Text style={styles.buttonText1}></Text>
           <Text style={styles.buttonText}>SOLICITAR RECOJO</Text>
         </TouchableOpacity>
-        
-        <TouchableOpacity 
-          style={styles.button} 
-          onPress={() => Linking.openURL('https://wa.me/message/IUHQDJHMMT3QL1')}>
-            <Image
-          source={whatssap} // Reemplaza con la URL de tu foto
-          style={styles.image2}
-        />
-        <Text style={styles.buttonText1}></Text>
+
+        <TouchableOpacity style={styles.button} onPress={() => Linking.openURL('https://wa.me/message/IUHQDJHMMT3QL1')}>
+          <Image source={whatssap} style={styles.image2} />
+          <Text style={styles.buttonText1}></Text>
           <Text style={styles.buttonText}>CONTÁCTANOS</Text>
         </TouchableOpacity>
-        
-
       </View>
-      {/* Contenido en blanco */}
-      
     </SafeAreaView>
   );
 };

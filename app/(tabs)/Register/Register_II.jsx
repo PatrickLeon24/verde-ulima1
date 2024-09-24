@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, SafeAreaView} from 'react-native';
 import styles from './Style_RegisterII'; // Importa los estilos desde el archivo separado
 
 const RegisterII = () => {
   
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <SafeAreaView style={styles.container}>
     {/* Título */}
     <View style={styles.header}>
       <Text style={styles.headerText}>Registro de cuenta</Text>
@@ -31,7 +31,7 @@ const RegisterII = () => {
       <Text style={styles.buttonText}>Registrar</Text>
     </TouchableOpacity>
 
-  </ScrollView>
+  </SafeAreaView>
   );
 };
 

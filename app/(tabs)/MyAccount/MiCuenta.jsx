@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
-import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-const AccountScreen = ({navigation}) => {
-  const router = useRouter();
+const AccountScreen = ({ route, navigation }) => {
+  const { nombres, apellidos, direccion, DNI, email } = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -19,20 +18,27 @@ const AccountScreen = ({navigation}) => {
       {/* Información del Usuario */}
       <View style={styles.userInfo}>
         <Image
-          source={require('../../../assets/images/SAzRztbw_400x400.jpg')} // Icono del usuario
+          source={require('../../../assets/images/SAzRztbw_400x400.jpg')}
           style={styles.userImage}
         />
         <View style={styles.userDetails}>
-          <Text style={styles.userName}>nombre apellido</Text>
-          <Text style={styles.userInfoText}>DNI: XXXXXXXX</Text>
-          <Text style={styles.userInfoText}>Dirección:</Text>
+          <Text style={styles.userName}>{nombres} {apellidos}</Text>
+          <Text style={styles.userInfoText}>DNI: {DNI}</Text>
+          <Text style={styles.userInfoText}>Dirección: {direccion}</Text>
+          <Text style={styles.userInfoText}>Email: {email}</Text>
         </View>
       </View>
 
       {/* Sección de Información Personal */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Información Personal</Text>
-        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil')}>
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil', {
+          nombres,
+          apellidos,
+          DNI,
+          email,
+          direccion
+        })}>
           <Text style={styles.optionText}>Editar Perfil</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>

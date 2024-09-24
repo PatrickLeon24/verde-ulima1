@@ -1,6 +1,11 @@
 [
     {
       "email": "123",
-      "password": "123"
+      "password": "123",
+      "nombres": "Daniel Alonso",
+      "apellidos" : "Taype Rojas",
+      "DNI": "47245671",
+      "direccion": "av los nogales",
+      "genero": "hombre"
     }
 ]  
