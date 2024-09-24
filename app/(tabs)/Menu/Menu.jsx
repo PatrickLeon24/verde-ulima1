@@ -7,7 +7,7 @@ import imagenes from '../../../assets/images/images.jpg';
 import whatssap from '../../../assets/images/WhatsApp_icon.png';
 
 const PantallaConBarraVerde = ({ route, navigation }) => {
-  const { nombres, apellidos, direccion, DNI, email } = route.params;  // Recibe los parámetros
+  const { nombres, apellidos, direccion, DNI, email, password } = route.params;  // Recibe los parámetros
   const primerNombre = nombres.split(' ')[0];
   const primerApellido = apellidos.split(' ')[0];
 
@@ -21,7 +21,8 @@ const PantallaConBarraVerde = ({ route, navigation }) => {
             apellidos, 
             direccion, 
             DNI, 
-            email
+            email,
+            password
           })}>
           <Image source={cuatrocientos} style={styles.image} />
         </TouchableOpacity>

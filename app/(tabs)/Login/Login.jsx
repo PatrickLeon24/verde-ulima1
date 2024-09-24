@@ -26,6 +26,7 @@ const Login = ({ navigation }) => {
       // Si las credenciales son válidas, navega al menú y pasa la información adicional
       navigation.navigate('Menu', {
         email: user.email,
+        password: user.password,
         nombres: user.nombres,
         apellidos: user.apellidos,
         direccion: user.direccion,

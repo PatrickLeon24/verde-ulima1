@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'r
 import { Ionicons } from '@expo/vector-icons';
 
 const AccountScreen = ({ route, navigation }) => {
-  const { nombres, apellidos, direccion, DNI, email } = route.params;
+  const { nombres, apellidos, direccion, DNI, email, password } = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -41,7 +41,9 @@ const AccountScreen = ({ route, navigation }) => {
         })}>
           <Text style={styles.optionText}>Editar Perfil</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena', {
+          password
+        })}>
           <Text style={styles.optionText}>Cambiar Contraseña</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>

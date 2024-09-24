@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } from 'react-native';
-
 import { Ionicons } from '@expo/vector-icons';
 
-const ChangePasswordScreen = ({navigation}) => {
-  
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+const ChangePasswordScreen = ({ route, navigation }) => {
+  const { password } = route.params; // Accede correctamente a los parámetros
+  const [contrasena, setContrasena] = useState(password);
+  const [confirmContrasena, setConfirmContrasena] = useState(password);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -20,27 +19,27 @@ const ChangePasswordScreen = ({navigation}) => {
 
       {/* Formulario de Contraseña */}
       <View style={styles.formContainer}>
-        <Text style={styles.label}>Contraseña</Text>
+        <Text style={styles.label}>Nueva Contraseña</Text>
         <TextInput
           style={styles.input}
           placeholder="Ingrese su contraseña"
           secureTextEntry
-          value={password}
-          onChangeText={setPassword}
+          value={contrasena}
+          onChangeText={setContrasena}
         />
-        <Text style={styles.label}>Confirmar contraseña</Text>
+        <Text style={styles.label}>Confirmar Contraseña</Text>
         <TextInput
           style={styles.input}
           placeholder="Confirme su contraseña"
           secureTextEntry
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
+          value={confirmContrasena}
+          onChangeText={setConfirmContrasena}
         />
       </View>
 
       {/* Botón para guardar contraseña */}
       <TouchableOpacity style={styles.saveButton} onPress={() => alert('Contraseña guardada')}>
-        <Text style={styles.saveButtonText}>Guardar contraseña</Text>
+        <Text style={styles.saveButtonText}>Guardar Contraseña</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -49,11 +48,11 @@ const ChangePasswordScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white', // Color de fondo blanco
-    paddingVertical: 40
+    backgroundColor: '#f9f9f9', // Color de fondo más suave
+    paddingVertical: 40,
   },
   barraSuperior: {
-    height: 60, // Altura de la barra superior
+    height: 60,
     backgroundColor: '#34A853', // Color verde para la barra superior
     justifyContent: 'center',
     alignItems: 'center',
@@ -81,21 +80,22 @@ const styles = StyleSheet.create({
   input: {
     width: '90%',
     alignSelf: 'center',
-    height: 50, 
+    height: 50,
     borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 12, 
+    borderRadius: 12,
     paddingHorizontal: 10,
-    marginBottom: 25 
+    marginBottom: 25,
+    backgroundColor: 'white', // Fondo blanco para los campos de entrada
   },
   saveButton: {
     backgroundColor: '#000',
-    paddingVertical: 18, // Aumentar el tamaño del botón
-    borderRadius: 12, // Más redondeo para el botón
+    paddingVertical: 18,
+    borderRadius: 12,
     alignItems: 'center',
-    marginTop: 30, // Más espacio en la parte superior del botón
+    marginTop: 30,
     width: '90%',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   saveButtonText: {
     color: 'white',
@@ -105,4 +105,5 @@ const styles = StyleSheet.create({
 });
 
 export default ChangePasswordScreen;
+
 
