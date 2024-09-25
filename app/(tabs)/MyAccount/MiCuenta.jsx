@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import UserSession from '../Login/Singleton';
+import UserSession from '../Singleton/Singleton';
 
 const AccountScreen = ({navigation }) => {
   const userSession = UserSession.getInstance();

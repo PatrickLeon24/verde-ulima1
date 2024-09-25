@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, Modal, Button } from 'react-native';
-import styles from './Style_Login'; // Importa los estilos desde el archivo separado
-import users from './Usuario.json'; // Asegúrate de que la ruta es correcta
+import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import styles from './Style_Login';
+import users from './Usuario.json';
 import logo from '../../../assets/images/logo.jpg';
 import google from '../../../assets/images/google.jpg';
-import UserSession from './Singleton';
-
+import ErrorModal from './ErrorModal';
+import UserSession from '../Singleton/Singleton';
+import { validateCredentials } from './Validacion';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -13,89 +14,61 @@ const Login = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
+  const sessionService = UserSession.getInstance();
+
   const handleLogin = () => {
-    // Verificar si los campos están vacíos
-    if (!email || !password) {
-      setModalMessage('Por favor, complete todos los campos.');
+    const { valid, message, user } = validateCredentials(email, password, users);
+    
+    if (!valid) {
+      setModalMessage(message);
       setModalVisible(true);
-      return;
-    }
-
-    // Verificar las credenciales
-    const user = users.find(user => user.email === email && user.password === password);
-
-    if (user) {
-      // Si las credenciales son válidas, guarda los datos del usuario en el Singleton
-      const session = UserSession.getInstance();
-      session.setUser(user);
-      navigation.navigate('Menu');
     } else {
-      // Mostrar una alerta si las credenciales son incorrectas
-      setModalMessage('El correo o la contraseña ingresados son incorrectos.');
-      setModalVisible(true);
+      sessionService.setUser(user);
+      navigation.navigate('Menu');
     }
   };
 
   return (
     <View style={styles.container}>
-      {/* Título */}
       <Text style={styles.title}>Verde Ulima</Text>
-
-      {/* Imagen de reciclaje */}
       <Image source={logo} style={styles.image} />
-
-      {/* Texto de introducción */}
       <Text style={styles.subtitle}>Entra con tu cuenta registrada</Text>
       <Text style={styles.instructions}>Ingrese su correo de usuario y la contraseña</Text>
 
-      {/* Campos de correo y contraseña */}
       <TextInput
-        style={styles.input}
-        placeholder="Correo de usuario"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
+      style={styles.input}
+      placeholder="Correo de usuario"
+      keyboardType="email-address"
+      autoCapitalize="none"
+      value={email}
+      onChangeText={setEmail}
+    />
+    <TextInput
+      style={styles.input}
+      placeholder="Contraseña"
+      secureTextEntry
+      value={password}
+      onChangeText={setPassword}
+    />
+    <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <Text style={styles.buttonText}>Iniciar sesión</Text>
+    </TouchableOpacity>
 
-      {/* Botón de Login */}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Iniciar sesión</Text>
-      </TouchableOpacity>
-
-      {/* Opción de continuar con Google */}
       <Text style={styles.orText}>o continua con</Text>
       <TouchableOpacity style={styles.googleButton}>
         <Image source={google} style={styles.googleIcon} />
         <Text style={styles.googleButtonText}>Google</Text>
       </TouchableOpacity>
 
-      {/* Botón de Registrarse */}
       <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Register_I')}>
         <Text style={styles.registerText}>¿No tienes cuenta? Regístrate</Text>
       </TouchableOpacity>
 
-      {/* Modal de error */}
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalText}>{modalMessage}</Text>
-            <Button title="Cerrar" onPress={() => setModalVisible(false)} />
-          </View>
-        </View>
-      </Modal>
+      <ErrorModal 
+        modalVisible={modalVisible} 
+        modalMessage={modalMessage} 
+        onClose={() => setModalVisible(false)} 
+      />
     </View>
   );
 };

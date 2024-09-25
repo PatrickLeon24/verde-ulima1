@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import UserSession from '../Login/Singleton';
+import UserSession from '../Singleton/Singleton';
 
-const ChangePasswordScreen = ({navigation }) => {
+const ChangePasswordScreen = ({navigation}) => {
   const userSession = UserSession.getInstance();
   const { password } = userSession.getUser();
   const [contrasena, setContrasena] = useState(password);
