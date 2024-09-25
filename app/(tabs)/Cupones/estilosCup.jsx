@@ -116,7 +116,15 @@ const estilosCup = StyleSheet.create({
       },    
         listaContenido: {
             paddingVertical: 10, // Añadir espacio vertical entre los elementos
-    },
+      },
+      homero: {
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingEnd: 20,
+        fontSize: 30,
+        fontWeight: 'bold',
+      }
+
 });
 
 export default estilosCup;

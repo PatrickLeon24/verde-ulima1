@@ -20,36 +20,16 @@ const PantallaPuntos = ({navigation}) => {
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Cupones</Text>
       </View>
-
+      
       {/* - - - - - Navbar - - - - - */ }
-      <View style={styles.navbar}>
-        <TouchableOpacity style={styles.iconoxd}>
-          <Icon name="fast-food-outline" size={24} color="black" />
-          <Text style={styles.iconLabel}>
-            Comida rápida
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconoxd}>
-          <Icon name="football-outline" size={24} color="black" />
-          <Text style={styles.iconLabel}>
-            Deportes
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconoxd}>
-          <Icon name="woman-outline" size={24} color="black" />
-          <Text style={styles.iconLabel}>
-            Belleza
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconoxd}>
-          <Icon name="ticket-outline" size={24} color="black" />
-          <Text style={styles.iconLabel}>
-            Eventos
-          </Text>
-        </TouchableOpacity>
+      <View>
+        <Text style={styles.homero}>
+            Lista de Cupones
+        </Text>
       </View>
-
-      {/* - - - - - Lo demas - - - - - */}
+     
+      
+      
       
 
       {/* - - - - - Lista de Cupones - - - - - */}
