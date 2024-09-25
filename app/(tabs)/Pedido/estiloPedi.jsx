@@ -87,15 +87,15 @@ const estilosPedi = StyleSheet.create({
       alignItems: 'center',
     },
     boxEst: {
-      backgroundColor: '#D9D9D9',
-      paddingVertical: 30,
-      paddingHorizontal: 60,
+      backgroundColor: '#D9D9D9', //color
+      paddingVertical: 20,
+      paddingHorizontal: 40,
       borderRadius: 1,
     },
     textoEst: {
       color: '#000',
       fontSize: 32,
-      fontWeight: 'bold',
+      //fontWeight: 'bold',
     },
     
     truckIcon: {
