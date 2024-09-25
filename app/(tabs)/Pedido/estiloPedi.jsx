@@ -43,7 +43,6 @@ const estilosPedi = StyleSheet.create({
     textoBarra: {
       color: 'white',
       fontSize: 18,
-      fontWeight: 'bold',
     },
     listaContenido: {
       paddingVertical: 10, // Añadir espacio vertical entre los elementos
