@@ -24,6 +24,7 @@ const estilosPedi = StyleSheet.create({
       fontSize: 24,             // Tamaño de la fuente
       fontWeight: 'bold',       // Cambié 'BOLD' a 'bold'
       paddingHorizontal: 10,
+      justifyContent: 'center',
     },
     barraSuperior: {
       height: 60,
