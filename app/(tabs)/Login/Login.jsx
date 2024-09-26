@@ -23,15 +23,31 @@ const Login = ({ navigation }) => {
     }
   };
 
-  const handleLogin = () => {
-    const { valid, message, user } = validateCredentials(email, password, users);
-    
-    if (!valid) {
-      setModalMessage(message);
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://192.168.18.12:8000/back/prueba', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Si las credenciales son correctas, guarda los datos del usuario y navega al menú
+        storeUserData(data);
+        navigation.navigate('Menu');
+      } else {
+        // Muestra el mensaje de error en el modal
+        setModalMessage(data.message || 'Error en el inicio de sesión');
+        setModalVisible(true);
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+      setModalMessage('Error de conexión. Intente nuevamente.');
       setModalVisible(true);
-    } else {
-      storeUserData(user);
-      navigation.navigate('Menu');
     }
   };
 
