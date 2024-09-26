@@ -3,14 +3,18 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
-const PlanItem = ({ nombre, descripcion, onPress }) => {
+const PlanItem = ({ nombre, imagen, descripcion, onPress }) => {
 
   const router = useRouter();
   return (
     <TouchableOpacity onPress={onPress} style={styles.planContainer}>
-      <View style={styles.iconContainer}>
-        <Ionicons name="image-outline" size={40} color="#999" />
-      </View>
+      {/*{<View style={styles.iconContainer}>*/} 
+      {/* <Ionicons name="image-outline" size={40} color="#999" />*/} 
+      {/*{</View>*/} 
+      <Image
+            source={{uri: imagen}}
+            style= {styles.iconContainer}
+        />
       <View style={styles.textContainer}>
         <Text style={styles.planNombre}>{nombre}</Text>
         <Text style={styles.planDescripcion}>Ver más</Text>
@@ -39,11 +43,19 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
   },
+  //iconContainer: {
+  //  width: 100,
+  //  height: 100,
+  //  borderRadius: 10,
+  //  backgroundColor: '#e0e0e0',
+  //  justifyContent: 'center',
+  //  alignItems: 'center',
+  //},
   iconContainer: {
     width: 100,
     height: 100,
     borderRadius: 10,
-    backgroundColor: '#e0e0e0',
+    //backgroundColor: '#e0e0e0',
     justifyContent: 'center',
     alignItems: 'center',
   },
