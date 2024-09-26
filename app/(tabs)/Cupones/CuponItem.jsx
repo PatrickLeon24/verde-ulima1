@@ -4,12 +4,16 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from './estilosCup';
 
 
-const CuponItem = ({ nombre, descripcion, onPress }) => {
+const CuponItem = ({ nombre, imagen, descripcion, onPress }) => {
     return(
     <TouchableOpacity onPress={onPress} style={styles.planContainer}>
-    <View style={styles.iconContainer}>
-        <Ionicons name="image-outline" size={40} color="#999" />
-    </View>
+    {/*<View style={styles.iconContainer}>*/}
+        {/*<Ionicons name="image-outline" size={40} color="#999" />*/}
+        <Image
+            source={{uri: imagen}}
+            style= {styles.iconContainer}
+        />
+   {/*</View>*/}
     <View style={styles.textContainer}>
         <Text style={styles.planNombre}>
             {nombre}

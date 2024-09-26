@@ -89,7 +89,7 @@ const estilosCup = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 10,
-        backgroundColor: '#e0e0e0',
+        //backgroundColor: '#e0e0e0',
         justifyContent: 'center',
         alignItems: 'center',
       },

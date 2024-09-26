@@ -30,9 +30,6 @@ const PantallaPuntos = ({navigation}) => {
         <View style={styles.lineatitulo}/>  
       </View>
      
-      
-      
-      
 
       {/* - - - - - Lista de Cupones - - - - - */}
       <FlatList
@@ -44,6 +41,7 @@ const PantallaPuntos = ({navigation}) => {
             descripcion={item.descripcion}
             local={item.local}
             indic={item.indic}
+            imagen={item.imagen}
             onPress={() =>  navigation.navigate('VerCupon', { item })} // Navegar al plan específico
           />
         )}

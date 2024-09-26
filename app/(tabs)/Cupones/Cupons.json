@@ -4,20 +4,39 @@
       "nombre": "Burguer King",
       "descripcion": "Descripción del cupon A",
       "local": "Miraflores",
-      "indic":"Acercate a la tienda más cercana"
+      "indic":"Acercate a la tienda más cercana",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ--1MJsy7_DWpEDHBVdc8L7Vn-neqF-M_MyA&s"
     },
     {
       "id": 2,
       "nombre": "KFC",
       "descripcion": "Descripción del cupon B",
       "local": "San borja",
-      "indic":"Acercate a la tienda más cercana"
+      "indic":"Acercate a la tienda más cercana",
+      "imagen": "https://1000marcas.net/wp-content/uploads/2020/01/KFC-logo.png"
     },
     {
       "id": 3,
-      "nombre": "KFC",
+      "nombre": "Bembos",
       "descripcion": "Descripción del cupon B",
       "local": "Surco",
-      "indic":"Acercate a la tienda más cercana"
+      "indic":"Acercate a la tienda más cercana",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS035p3ZInM-nb2P8dygx2YMSFY_5XEk69msQ&s"
+    },
+    {
+      "id": 4,
+      "nombre": "Mostaza",
+      "descripcion": "Descripción del cupon B",
+      "local": "Surco",
+      "indic":"Acercate a la tienda más cercana",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPUPuEjfpPoD_l48bGboU0qbV4Nomd2ucEnA&s"
+    },
+    {
+      "id": 5,
+      "nombre": "PIZZA HUT",
+      "descripcion": "Descripción del cupon B",
+      "local": "Surco",
+      "indic":"Acercate a la tienda más cercana",
+      "imagen": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png"
     }
 ]
