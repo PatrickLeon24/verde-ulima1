@@ -30,9 +30,7 @@ const Login = ({ navigation }) => {
       setModalMessage(message);
       setModalVisible(true);
     } else {
-      // Guarda los datos del usuario en AsyncStorage
       storeUserData(user);
-      // Navega al menú
       navigation.navigate('Menu');
     }
   };

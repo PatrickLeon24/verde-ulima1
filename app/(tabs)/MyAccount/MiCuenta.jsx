@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
 const AccountScreen = ({navigation }) => {
-  const [userData, setUserData] = useState(null); // Estado para almacenar los datos del usuario
+  const [userData, setUserData] = useState(null); 
 
   useEffect(() => {
     const getUserData = async () => {
@@ -18,12 +18,12 @@ const AccountScreen = ({navigation }) => {
       }
     };
 
-    getUserData(); // Recupera los datos del usuario al montar el componente
+    getUserData(); 
   }, []);
 
-  // Verificar si los datos del usuario han sido cargados
+  
   if (!userData) {
-    return <Text>Cargando...</Text>; // Mostrar un mensaje de carga
+    return <Text>Cargando...</Text>; 
   }
 
   const { nombres, apellidos, direccion, DNI, email, password } = userData;

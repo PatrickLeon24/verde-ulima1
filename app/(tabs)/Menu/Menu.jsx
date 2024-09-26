@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Importar AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import CuponButton from './CuponButton'; 
 import PlanButton from './PlanButton'; 
 import SolicitarButton from './SolicitarButton';
@@ -22,10 +22,10 @@ const PantallaConBarraVerde = ({ navigation }) => {
       }
     };
 
-    getUserData(); // Recupera los datos del usuario al montar el componente
+    getUserData(); 
   }, []);
 
-  // Si aún no se han cargado los datos del usuario, muestra un mensaje de carga
+  
   if (!userData) {
     return <Text>Cargando...</Text>;
   }

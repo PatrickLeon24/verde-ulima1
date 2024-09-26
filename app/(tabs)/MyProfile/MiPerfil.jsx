@@ -29,12 +29,11 @@ const EditProfileScreen = ({ navigation }) => {
       }
     };
 
-    getUserData(); // Recupera los datos del usuario al montar el componente
+    getUserData(); 
   }, []);
 
-  // Verificar si los datos del usuario han sido cargados
   if (!userData) {
-    return <Text>Cargando...</Text>; // Mostrar un mensaje de carga
+    return <Text>Cargando...</Text>;
   }
 
   return (
