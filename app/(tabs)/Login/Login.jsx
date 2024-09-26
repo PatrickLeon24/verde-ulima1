@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './Style_Login';
 import users from './Usuario.json';
 import logo from '../../../assets/images/logo.jpg';
 import google from '../../../assets/images/google.jpg';
 import ErrorModal from './ErrorModal';
-import UserSession from '../Singleton/Singleton';
 import { validateCredentials } from './Validacion';
 
 const Login = ({ navigation }) => {
@@ -14,7 +14,14 @@ const Login = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  const sessionService = UserSession.getInstance();
+  const storeUserData = async (user) => {
+    try {
+      const jsonUserData = JSON.stringify(user);
+      await AsyncStorage.setItem('userData', jsonUserData);
+    } catch (error) {
+      console.error('Error al guardar los datos del usuario:', error);
+    }
+  };
 
   const handleLogin = () => {
     const { valid, message, user } = validateCredentials(email, password, users);
@@ -23,7 +30,9 @@ const Login = ({ navigation }) => {
       setModalMessage(message);
       setModalVisible(true);
     } else {
-      sessionService.setUser(user);
+      // Guarda los datos del usuario en AsyncStorage
+      storeUserData(user);
+      // Navega al menú
       navigation.navigate('Menu');
     }
   };
@@ -36,23 +45,23 @@ const Login = ({ navigation }) => {
       <Text style={styles.instructions}>Ingrese su correo de usuario y la contraseña</Text>
 
       <TextInput
-      style={styles.input}
-      placeholder="Correo de usuario"
-      keyboardType="email-address"
-      autoCapitalize="none"
-      value={email}
-      onChangeText={setEmail}
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="Contraseña"
-      secureTextEntry
-      value={password}
-      onChangeText={setPassword}
-    />
-    <TouchableOpacity style={styles.button} onPress={handleLogin}>
-      <Text style={styles.buttonText}>Iniciar sesión</Text>
-    </TouchableOpacity>
+        style={styles.input}
+        placeholder="Correo de usuario"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        value={email}
+        onChangeText={setEmail}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Contraseña"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Iniciar sesión</Text>
+      </TouchableOpacity>
 
       <Text style={styles.orText}>o continua con</Text>
       <TouchableOpacity style={styles.googleButton}>
@@ -74,7 +83,6 @@ const Login = ({ navigation }) => {
 };
 
 export default Login;
-
 
 
 
