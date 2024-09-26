@@ -123,6 +123,12 @@ const estilosCup = StyleSheet.create({
         paddingEnd: 20,
         fontSize: 30,
         fontWeight: 'bold',
+      },
+      lineatitulo: {
+        borderBottomColor: '#A9A9A9',
+        borderBottomWidth: 2  ,
+        marginHorizontal: 20,
+        marginTop: 10,
       }
 
 });

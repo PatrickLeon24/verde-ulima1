@@ -89,12 +89,13 @@ const estilosPedi = StyleSheet.create({
     boxEst: {
       backgroundColor: '#D9D9D9', //color
       paddingVertical: 20,
-      paddingHorizontal: 40,
+      marginHorizontal: 10,
+      paddingHorizontal: 18,
       borderRadius: 1,
     },
     textoEst: {
       color: '#000',
-      fontSize: 32,
+      fontSize: 24,
       //fontWeight: 'bold',
     },
     
@@ -106,13 +107,13 @@ const estilosPedi = StyleSheet.create({
         left: -30,
     },  
       labelx: {
-        fontSize: 12,
+        fontSize: 11,
         //textAlign: 'center',
         paddingTop: 10,
         
       },
       labellast: {
-        fontSize: 12,
+        fontSize: 11,
         left: 20,
         paddingTop: 10,
         justifyContent: 'flex-end'

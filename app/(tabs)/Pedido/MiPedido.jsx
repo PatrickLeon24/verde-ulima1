@@ -22,8 +22,6 @@ const PantallaPedido = ({navigation}) => {
         <View style={styles.boxEst}>
           <Text style={styles.textoEst}>Estado de mi Pedido</Text>
         </View>
-      
-      
         
       <View style={styles.contPed}>
         

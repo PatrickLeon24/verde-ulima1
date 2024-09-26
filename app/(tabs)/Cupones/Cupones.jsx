@@ -25,7 +25,9 @@ const PantallaPuntos = ({navigation}) => {
       <View>
         <Text style={styles.homero}>
             Lista de Cupones
+            
         </Text>
+        <View style={styles.lineatitulo}/>  
       </View>
      
       
