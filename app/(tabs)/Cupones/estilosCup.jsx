@@ -100,10 +100,12 @@ const estilosCup = StyleSheet.create({
       planNombre: {
         fontSize: 18,
         fontWeight: 'bold',
+        paddingBottom: 1,
       },
       planDescripcion: {
         fontSize: 14,
         color: '#999',
+        paddingBottom:15,
       },
       infoContainer: {
         flexDirection: 'row',
@@ -111,8 +113,15 @@ const estilosCup = StyleSheet.create({
       },
       planTime: {
         fontSize: 12,
-        color: '#999',
+        //color: '#999',
         marginLeft: 5,
+        backgroundColor: 'green',
+        color: 'white',
+        paddingVertical: 8, 
+        paddingHorizontal: 10,
+        marginTop: 60,
+        borderRadius: 20,
+        fontWeight: 'bold',
       },    
         listaContenido: {
             paddingVertical: 10, // Añadir espacio vertical entre los elementos
@@ -129,8 +138,15 @@ const estilosCup = StyleSheet.create({
         borderBottomWidth: 2  ,
         marginHorizontal: 20,
         marginTop: 10,
+      },
+      pepe: {
+        //backgroundColor: "#008000",
+        paddingTop: 1,
+        color: 'green',
+        fontWeight: 'bold',
+        
+        
       }
-
 });
 
 export default estilosCup;

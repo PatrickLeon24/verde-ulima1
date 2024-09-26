@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from './estilosCup';
 
 
-const CuponItem = ({ nombre, imagen, descripcion, onPress }) => {
+const CuponItem = ({ nombre, precio, imagen, descripcion, onPress }) => {
     return(
     <TouchableOpacity onPress={onPress} style={styles.planContainer}>
     {/*<View style={styles.iconContainer}>*/}
@@ -18,17 +18,18 @@ const CuponItem = ({ nombre, imagen, descripcion, onPress }) => {
         <Text style={styles.planNombre}>
             {nombre}
         </Text>
-        <Text style={styles.planDescripcion}>
-            Ver más
+        <Text style={styles.planDescripcion} numberOfLines={1}>
+            {descripcion}
+        </Text>
+        <Text style={styles.pepe}>
+            {precio} puntos
         </Text>
     </View>
     <View style={styles.infoContainer}>
-      <Ionicons name="add-circle-outline" size={20} color="#999" />
         <Text style={styles.planTime}>
-            Today
+            Canjear
         </Text>
     </View>
-    <Ionicons name="chevron-forward" size={20} color="#000" />
   </TouchableOpacity>
     );
 };

@@ -2,9 +2,10 @@
     {
       "id": 1,
       "nombre": "Burguer King",
-      "descripcion": "Descripción del cupon A",
+      "descripcion": "WAAAAAA",
       "local": "Miraflores",
       "indic":"Acercate a la tienda más cercana",
+      "precio": "100",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ--1MJsy7_DWpEDHBVdc8L7Vn-neqF-M_MyA&s"
     },
     {
@@ -13,6 +14,7 @@
       "descripcion": "Descripción del cupon B",
       "local": "San borja",
       "indic":"Acercate a la tienda más cercana",
+      "precio": "200",
       "imagen": "https://1000marcas.net/wp-content/uploads/2020/01/KFC-logo.png"
     },
     {
@@ -21,6 +23,7 @@
       "descripcion": "Descripción del cupon B",
       "local": "Surco",
       "indic":"Acercate a la tienda más cercana",
+      "precio": "300",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS035p3ZInM-nb2P8dygx2YMSFY_5XEk69msQ&s"
     },
     {
@@ -29,14 +32,16 @@
       "descripcion": "Descripción del cupon B",
       "local": "Surco",
       "indic":"Acercate a la tienda más cercana",
+      "precio": "1000",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPUPuEjfpPoD_l48bGboU0qbV4Nomd2ucEnA&s"
     },
     {
       "id": 5,
       "nombre": "Milagros Spa",
-      "descripcion": "Descripción del cupon B",
-      "local": "Surco",
+      "descripcion": "x",
+      "local": "Tigres",
       "indic":"Acercate a la tienda más cercana",
+      "precio": "50",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJQ_A77D3grwtHTjTAVo33GotAv0VGbLooQ&s"
     }
 ]

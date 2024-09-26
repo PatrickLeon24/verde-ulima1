@@ -41,6 +41,7 @@ const PantallaPuntos = ({navigation}) => {
             descripcion={item.descripcion}
             local={item.local}
             indic={item.indic}
+            precio={item.precio}
             imagen={item.imagen}
             onPress={() =>  navigation.navigate('VerCupon', { item })} // Navegar al plan específico
           />
