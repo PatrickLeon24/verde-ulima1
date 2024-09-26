@@ -95,7 +95,7 @@ const estilosPedi = StyleSheet.create({
     },
     textoEst: {
       color: '#000',
-      fontSize: 24,
+      fontSize: 32,
       //fontWeight: 'bold',
     },
     
