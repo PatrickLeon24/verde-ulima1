@@ -27,6 +27,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         {/*TITULO*/}
         <Text style={styles.planTitle}>{item.nombre}</Text>
         <View style={styles.lineatitulo}/>  
+        
         {/*PRECIO*/}
         <Text style={styles.planprecio}>
           {item.precio} puntos

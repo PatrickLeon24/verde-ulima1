@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
-const PlanItem = ({ nombre, imagen, descripcion, onPress }) => {
+const PlanItem = ({ nombre, imagen, precio, descripcion, onPress }) => {
 
   const router = useRouter();
   return (
@@ -17,13 +17,14 @@ const PlanItem = ({ nombre, imagen, descripcion, onPress }) => {
         />
       <View style={styles.textContainer}>
         <Text style={styles.planNombre}>{nombre}</Text>
-        <Text style={styles.planDescripcion}>Ver más</Text>
+        <Text style={styles.planprecio}>S/. {precio}</Text>
+        <Text style={styles.planDescripcion} numberOfLines={2}>{descripcion}</Text>
       </View>
       <View style={styles.infoContainer}>
-        <Ionicons name="add-circle-outline" size={20} color="#999" />
-        <Text style={styles.planTime}>Today</Text>
+        {/*<Ionicons name="add-circle-outline" size={20} color="#999" />*/}
+        <Text style={styles.planTime}>Mas información</Text>
       </View>
-      <Ionicons name="chevron-forward" size={20} color="#000" />
+      {/*<Ionicons name="chevron-forward" size={20} color="#000" />*/}
     </TouchableOpacity>
   );
 };
@@ -42,6 +43,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 2,
+  },
+  planprecio: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   //iconContainer: {
   //  width: 100,
@@ -75,11 +80,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  //planTime: {
+  //  fontSize: 12,
+  //  color: '#999',
+  //  marginLeft: 5,
+  //},
   planTime: {
     fontSize: 12,
-    color: '#999',
+    //color: '#999',
     marginLeft: 5,
-  },
+    backgroundColor: 'blue',
+    color: 'white',
+    paddingVertical: 8, 
+    paddingHorizontal: 10,
+    marginTop: 60,
+    borderRadius: 20,
+    fontWeight: 'bold',
+  },  
 });
 
 export default PlanItem;

@@ -3,6 +3,9 @@
       "id": 1,
       "nombre": "Plan A",
       "descripcion": "Descripción del Plan A",
+      "aserrin": "10",
+      "baldes": "2",
+      "duracion": "3",
       "precio":"10",
       "imagen": "https://irp.cdn-website.com/777d988b/dms3rep/multi/recoleccion-de-basura-programada-seredecom.jpg"
     },
@@ -10,49 +13,50 @@
       "id": 2,
       "nombre": "Plan B",
       "descripcion": "Descripción del Plan B",
-      "precio":"10",
+      "aserrin": "10",
+      "baldes": "22",
+      "duracion": "3",
+      "precio":"150",
       "imagen": "https://irp.cdn-website.com/777d988b/dms3rep/multi/recoleccion-de-basura-programada-seredecom.jpg"
     },
     {
       "id": 3,
       "nombre": "Plan C",
       "descripcion": "Descripción del Plan C",
-      "precio":"10",
+      "aserrin": "10",
+      "baldes": "6",
+      "duracion": "3",
+      "precio":"110",
       "imagen": "https://irp.cdn-website.com/777d988b/dms3rep/multi/recoleccion-de-basura-programada-seredecom.jpg"
     },
     {
         "id": 4,
         "nombre": "Plan C",
         "descripcion": "Descripción del Plan C",
-        "precio":"10",
+        "aserrin": "10",
+      "baldes": "4",
+      "duracion": "3",
+        "precio":"20",
         "imagen": "https://irp.cdn-website.com/777d988b/dms3rep/multi/recoleccion-de-basura-programada-seredecom.jpg"
       },
       {
         "id": 5,
         "nombre": "Plan C",
         "descripcion": "Descripción del Plan C",
-        "precio":"10",
+        "aserrin": "10",
+        "baldes": "7",
+        "duracion": "3",
+        "precio":"80",
         "imagen": "https://irp.cdn-website.com/777d988b/dms3rep/multi/recoleccion-de-basura-programada-seredecom.jpg"
       },
       {
         "id": 6,
         "nombre": "Plan C",
         "descripcion": "Descripción del Plan C",
-        "precio":"10",
-        "imagen": "https://irp.cdn-website.com/777d988b/dms3rep/multi/recoleccion-de-basura-programada-seredecom.jpg"
-      },
-      {
-        "id": 7,
-        "nombre": "Plan C",
-        "descripcion": "Descripción del Plan C",
-        "precio":"10",
-        "imagen": "https://irp.cdn-website.com/777d988b/dms3rep/multi/recoleccion-de-basura-programada-seredecom.jpg"
-      },
-      {
-        "id": 8,
-        "nombre": "Plan C",
-        "descripcion": "Descripción del Plan C",
-        "precio":"10",
+        "aserrin": "20",
+        "baldes": "4",
+        "duracion": "2",
+        "precio":"100",
         "imagen": "https://irp.cdn-website.com/777d988b/dms3rep/multi/recoleccion-de-basura-programada-seredecom.jpg"
       }
     

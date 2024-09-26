@@ -18,18 +18,27 @@ const PlanDetailsScreen = ({ navigation, route }) => {
       </View>
 
       <Image
-        source={planta}
+        source={{uri: item.imagen}}
         style={styles.image}
       />
 
       <View style={styles.detailsContainer}>
-        <Text style={styles.planTitle}>Nombre de Plan</Text>
-        <Text style={styles.planDescription}>Descripción: {item.descripcion}</Text>
-        <Text style={styles.planDetails}>
-          {'<X kg de Aserrín>'} {'<X Baldes>'}
+        <Text style={styles.planTitle}>{item.nombre}</Text>
+        <View style={styles.lineatitulo}/>  
+        {/*DESCRIPCIÓN*/}
+        <Text style={styles.planDescriptiontitu}>
+          Descripción del Cupón
         </Text>
-        <Text style={styles.planDuration}>Duración: X días</Text>
-        <Text style={styles.planDescription}>Nombre. {item.nombre}</Text>
+        <Text style={styles.planDescription}>
+          {item.descripcion}
+        </Text>
+        <Text style={styles.planDetails}>
+          Cantidad de Aserrin: {item.aserrin}Kg de Aserrin 
+        </Text>
+        <Text style={styles.planDetails}> 
+          Cantidad de Baldes: {item.baldes} Baldes
+        </Text>
+        <Text style={styles.planDuration}>Duración: {item.duracion} meses</Text>
         <Text style={styles.planPrice}>S/. {item.precio}</Text>
 
         <TouchableOpacity
@@ -71,12 +80,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 8,
   },
+  planDescriptiontitu: {
+    paddingTop: 10,
+    fontSize: 24,
+    marginBottom: 5,
+    fontWeight: 'bold',
+    color: 'gray',
+  },
   planDescription: {
     fontSize: 16,
     marginBottom: 16,
   },
   planPrice: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
   },
@@ -107,6 +123,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  lineatitulo: {
+    borderBottomColor: '#A9A9A9',
+    borderBottomWidth: 2  ,
+    marginTop: 1,
+    marginBottom: 5,
   },
 });
 

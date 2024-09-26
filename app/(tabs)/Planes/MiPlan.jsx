@@ -45,7 +45,11 @@ const PantallaPlan = ({navigation}) => {
           <PlanItem
             nombre={item.nombre}
             descripcion={item.descripcion}
+            precio={item.precio}
             imagen={item.imagen}
+            aserrin={item.aserrin}
+            baldes={item.baldes}
+            duracion={item.duracion}
             onPress={() => navigation.navigate('VerPlan', { item })} // Navegar al plan específico
           />
         )}
