@@ -33,10 +33,10 @@
     },
     {
       "id": 5,
-      "nombre": "PIZZA HUT",
+      "nombre": "Milagros Spa",
       "descripcion": "Descripción del cupon B",
       "local": "Surco",
       "indic":"Acercate a la tienda más cercana",
-      "imagen": "https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png"
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJQ_A77D3grwtHTjTAVo33GotAv0VGbLooQ&s"
     }
 ]
