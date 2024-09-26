@@ -18,38 +18,22 @@ const Login = ({ navigation }) => {
     try {
       const jsonUserData = JSON.stringify(user);
       await AsyncStorage.setItem('userData', jsonUserData);
-      console.log('Datos de usuario guardados:', jsonUserData); // Verifica los datos guardados
     } catch (error) {
       console.error('Error al guardar los datos del usuario:', error);
     }
   };
-  
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/back/prueba', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-      console.log('Datos de respuesta del servidor:', data);
-      if (response.ok) {
-        // Si las credenciales son correctas, guarda los datos del usuario y navega al menú
-        storeUserData(data);
-        navigation.navigate('Menu');
-      } else {
-        // Muestra el mensaje de error en el modal
-        setModalMessage(data.message || 'Error en el inicio de sesión');
-        setModalVisible(true);
-      }
-    } catch (error) {
-      console.error('Error en la solicitud:', error);
-      setModalMessage('Error de conexión. Intente nuevamente.');
+  const handleLogin = () => {
+    const { valid, message, user } = validateCredentials(email, password, users);
+    
+    if (!valid) {
+      setModalMessage(message);
       setModalVisible(true);
+    } else {
+      // Guarda los datos del usuario en AsyncStorage
+      storeUserData(user);
+      // Navega al menú
+      navigation.navigate('Menu');
     }
   };
 
