@@ -24,15 +24,29 @@ const PlanDetailsScreen = ({ navigation, route }) => {
       />
 
       <View style={styles.detailsContainer}>
+        {/*TITULO*/}
         <Text style={styles.planTitle}>{item.nombre}</Text>
+        <View style={styles.lineatitulo}/>  
+        {/*PRECIO*/}
+        <Text style={styles.planprecio}>
+          {item.precio} puntos
+        </Text>
+        {/*DESCRIPCIÓN*/}
         <Text style={styles.planDescriptiontitu}>
           Descripción del Cupón
         </Text>
         <Text style={styles.planDescription}>
           {item.descripcion}
         </Text>
-        <Text style={styles.planDuration}>Local: {item.local}</Text>
-        <Text style={styles.planPrice}>Indicaciones: {item.indic}</Text>
+
+        {/*LOCAL*/}
+        <Text style={styles.planDurationtitu}>
+          Local: 
+        </Text>
+        <Text style={styles.planDuration}>
+          {item.local}
+        </Text>
+        {/*<Text style={styles.planPrice}>Indicaciones: {item.indic}</Text>*/}
 
         <TouchableOpacity
           style={styles.button}

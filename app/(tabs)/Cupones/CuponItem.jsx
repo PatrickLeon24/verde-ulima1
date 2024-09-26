@@ -18,12 +18,13 @@ const CuponItem = ({ nombre, precio, imagen, descripcion, onPress }) => {
         <Text style={styles.planNombre}>
             {nombre}
         </Text>
-        <Text style={styles.planDescripcion} numberOfLines={1}>
-            {descripcion}
-        </Text>
         <Text style={styles.pepe}>
             {precio} puntos
         </Text>
+        <Text style={styles.planDescripcion} numberOfLines={2}>
+            {descripcion}
+        </Text>
+        
     </View>
     <View style={styles.infoContainer}>
         <Text style={styles.planTime}>

@@ -77,7 +77,7 @@ const estilosCup = StyleSheet.create({
         padding: 10,
         marginVertical: 8,
         marginHorizontal: 16,
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#F9F9F9',
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },

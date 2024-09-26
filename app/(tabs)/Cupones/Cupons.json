@@ -4,25 +4,25 @@
       "nombre": "Burguer King",
       "descripcion": "WAAAAAA",
       "local": "Miraflores",
-      "indic":"Acercate a la tienda más cercana",
+      "indic":"",
       "precio": "100",
-      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ--1MJsy7_DWpEDHBVdc8L7Vn-neqF-M_MyA&s"
+      "imagen": "https://vidatos.com/wp-content/uploads/burger-king.webp"
     },
     {
       "id": 2,
       "nombre": "KFC",
-      "descripcion": "Descripción del cupon B",
+      "descripcion": "!Aprovecha esta megra promo! Llévate este combo a solo 200 puntos. Válido para consumir en salón",
       "local": "San borja",
-      "indic":"Acercate a la tienda más cercana",
+      "indic":"",
       "precio": "200",
-      "imagen": "https://1000marcas.net/wp-content/uploads/2020/01/KFC-logo.png"
+      "imagen": "https://deliveryenperu.com/wp-content/uploads/2021/11/KFC-Logo.png"
     },
     {
       "id": 3,
       "nombre": "Bembos",
       "descripcion": "Descripción del cupon B",
       "local": "Surco",
-      "indic":"Acercate a la tienda más cercana",
+      "indic":"",
       "precio": "300",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS035p3ZInM-nb2P8dygx2YMSFY_5XEk69msQ&s"
     },
@@ -30,8 +30,8 @@
       "id": 4,
       "nombre": "Mostaza",
       "descripcion": "Descripción del cupon B",
-      "local": "Surco",
-      "indic":"Acercate a la tienda más cercana",
+      "local": "Tigre",
+      "indic":"",
       "precio": "1000",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPUPuEjfpPoD_l48bGboU0qbV4Nomd2ucEnA&s"
     },
@@ -39,9 +39,18 @@
       "id": 5,
       "nombre": "Milagros Spa",
       "descripcion": "x",
-      "local": "Tigres",
-      "indic":"Acercate a la tienda más cercana",
+      "local": "San Juan de Lurigancho",
+      "indic":"",
       "precio": "50",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJQ_A77D3grwtHTjTAVo33GotAv0VGbLooQ&s"
+    },
+    {
+      "id": 6,
+      "nombre": "Formula Kart",
+      "descripcion": "x",
+      "local": "Surco",
+      "indic":"",
+      "precio": "800",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrnpRamaDqZn8C-VFipXal8cQPw6X-0h-W-A&s"
     }
 ]

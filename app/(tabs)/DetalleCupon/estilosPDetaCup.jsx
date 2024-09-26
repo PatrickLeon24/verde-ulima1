@@ -20,28 +20,45 @@ const estilosPDetaCup = StyleSheet.create({
       padding: 16,
     },
     planTitle: {
-      fontSize: 20,
+      fontSize: 24,
       fontWeight: 'bold',
-      marginBottom: 8,
+      marginBottom: 4,
+    },
+    lineatitulo: {
+      borderBottomColor: '#A9A9A9',
+      borderBottomWidth: 2  ,
+      marginBottom: 10,
+      },
+    planprecio: {
+      fontSize: 22,
+      color: 'green',
+      fontWeight: 'bold',
     },
     planDetails: {
+      
       fontSize: 16,
       marginBottom: 8,
+    },
+    planDurationtitu: {
+        fontSize: 18,
+        marginBottom: 5,
+        fontWeight: 'bold',
     },
     planDuration: {
       fontSize: 16,
       marginBottom: 8,
     },
+    planDescriptiontitu: {
+      paddingTop: 10,
+      fontSize: 24,
+      marginBottom: 5,
+      fontWeight: 'bold',
+      color: 'gray',
+    },
     planDescription: {
       fontSize: 16,
       marginBottom: 16,
     },
-    planDescriptiontitu: {
-        fontSize: 24,
-        marginBottom: 5,
-        fontWeight: 'bold',
-        color: 'gray',
-      },
     planPrice: {
       fontSize: 18,
       fontWeight: 'bold',
@@ -75,6 +92,7 @@ const estilosPDetaCup = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
     },
+    
   });
 
 
