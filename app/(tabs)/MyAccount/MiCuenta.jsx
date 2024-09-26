@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import UserSession from '../Singleton/Singleton';
 
 const AccountScreen = ({navigation }) => {
-  const userSession = UserSession.getInstance();
-  const { nombres, apellidos, direccion, DNI, email} = userSession.getUser();
+  const [userData, setUserData] = useState(null); // Estado para almacenar los datos del usuario
 
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const jsonUserData = await AsyncStorage.getItem('userData');
+        if (jsonUserData !== null) {
+          setUserData(JSON.parse(jsonUserData));
+        }
+      } catch (error) {
+        console.error('Error al recuperar los datos del usuario:', error);
+      }
+    };
+
+    getUserData(); // Recupera los datos del usuario al montar el componente
+  }, []);
+
+  // Verificar si los datos del usuario han sido cargados
+  if (!userData) {
+    return <Text>Cargando...</Text>; // Mostrar un mensaje de carga
+  }
+
+  const { nombres, apellidos, direccion, DNI, email, password } = userData;
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}

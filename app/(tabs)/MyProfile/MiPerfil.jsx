@@ -1,18 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import UserSession from '../Singleton/Singleton';
 
-const EditProfileScreen = ({navigation }) => {
-  const userSession = UserSession.getInstance();
-  const { nombres, apellidos, DNI, email, direccion } = userSession.getUser(); 
+const EditProfileScreen = ({ navigation }) => {
+  const [userData, setUserData] = useState(null);
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellidos] = useState('');
+  const [dni, setDni] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [direccio, setDireccion] = useState('');
 
-  // Inicializa los estados con los valores recibidos
-  const [nombre, setNombre] = useState(nombres);
-  const [apellido, setApellidos] = useState(apellidos);
-  const [dni, setDni] = useState(DNI);
-  const [correo, setCorreo] = useState(email);
-  const [direccio, setDireccion] = useState(direccion);
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const jsonUserData = await AsyncStorage.getItem('userData');
+        if (jsonUserData !== null) {
+          const data = JSON.parse(jsonUserData);
+          setUserData(data);
+          setNombre(data.nombres);
+          setApellidos(data.apellidos);
+          setDni(data.DNI);
+          setCorreo(data.email);
+          setDireccion(data.direccion);
+        }
+      } catch (error) {
+        console.error('Error al recuperar los datos del usuario:', error);
+      }
+    };
+
+    getUserData(); // Recupera los datos del usuario al montar el componente
+  }, []);
+
+  // Verificar si los datos del usuario han sido cargados
+  if (!userData) {
+    return <Text>Cargando...</Text>; // Mostrar un mensaje de carga
+  }
 
   return (
     <SafeAreaView style={styles.container}>
