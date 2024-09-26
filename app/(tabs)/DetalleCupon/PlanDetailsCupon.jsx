@@ -18,7 +18,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
       </View>
 
       <Image
-        source={kfc}
+        source={{uri: item.imagen}}
         style={styles.image}
       />
 
