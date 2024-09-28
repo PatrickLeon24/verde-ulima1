@@ -26,7 +26,7 @@ const AccountScreen = ({navigation }) => {
     return <Text>Cargando...</Text>; 
   }
 
-  const { nombres, apellidos, direccion, DNI, email, password } = userData;
+  const { nombres, apellidos, direccion, DNI, email } = userData;
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
