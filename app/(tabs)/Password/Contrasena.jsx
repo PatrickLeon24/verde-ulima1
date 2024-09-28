@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView, Modal, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -7,6 +7,8 @@ const ChangePasswordScreen = ({navigation}) => {
   const [userData, setUserData] = useState(null);
   const [contrasena, setContrasena] = useState('');
   const [confirmContrasena, setConfirmContrasena] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -24,13 +26,25 @@ const ChangePasswordScreen = ({navigation}) => {
 
     getUserData();
   }, []);
-
-
   
   if (!userData) {
     return <Text>Cargando...</Text>; 
   }
 
+  const handleSubmit = () => {
+    if (!contrasena || !confirmContrasena) {
+      setModalMessage('Por favor, complete todos los campos.');
+      setModalVisible(true); // Mostrar el modal si hay campos vacíos
+    } else {
+      // Mostrar mensaje de guardado y luego redirigir al menú
+      setModalMessage('Los cambios han sido guardados');
+      setModalVisible(true);
+      setTimeout(() => {
+        setModalVisible(false);
+        navigation.navigate('Menu'); // Redirigir al menú después de 2 segundos
+      }, 2000);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
@@ -62,9 +76,23 @@ const ChangePasswordScreen = ({navigation}) => {
       </View>
 
       {/* Botón para guardar contraseña */}
-      <TouchableOpacity style={styles.saveButton} onPress={() => alert('Contraseña guardada')}>
+      <TouchableOpacity style={styles.saveButton} onPress={handleSubmit}>
         <Text style={styles.saveButtonText}>Guardar Contraseña</Text>
       </TouchableOpacity>
+
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>{modalMessage}</Text>
+            <Button title="Cerrar" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -129,6 +157,32 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)'
+  },
+  modalContent: {
+    width: '80%',
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center'
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 15
+  },
+  modalButton: {
+    padding: 10,
+    backgroundColor: '#007BFF',
+    borderRadius: 5,
+  },
+  modalButtonText: {
+    color: 'white',
+    fontSize: 16,
+  }
 });
 
 export default ChangePasswordScreen;

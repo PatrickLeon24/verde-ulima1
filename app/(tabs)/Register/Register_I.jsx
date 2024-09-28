@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Modal, Button, SafeAreaView } from 'react-native';
-import { useRouter } from 'expo-router';
 import styles from './Style_RegisterI'; // Importa los estilos desde el archivo separado
 
 const RegisterI = ({navigation}) => {
-  const router = useRouter();
 
   const [nombres, setNombres] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [dni, setDni] = useState('');
   const [direccion, setDireccion] = useState('');
-  const [correo, setCorreo] = useState('');
   const [Genero_seleccionado, setGenero_seleccionado] = useState('');
+  const [celular, setCelular] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleSubmit = () => {
-    if (!nombres || !apellidos || !dni || !direccion || !correo || !Genero_seleccionado) {
+    if (!nombres || !apellidos || !dni || !celular || !direccion || !Genero_seleccionado) {
       setModalVisible(true); // Mostrar el modal si hay campos vacíos
     } else {
       navigation.navigate('Register_II');
@@ -54,16 +52,15 @@ const RegisterI = ({navigation}) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Ingrese su dirección"
-        value={direccion}
-        onChangeText={setDireccion}
+        placeholder="Ingrese su numero de celular"
+        value={celular}
+        onChangeText={setCelular}
       />
       <TextInput
         style={styles.input}
-        placeholder="Ingrese su correo"
-        keyboardType="email-address"
-        value={correo}
-        onChangeText={setCorreo}
+        placeholder="Ingrese su dirección"
+        value={direccion}
+        onChangeText={setDireccion}
       />
 
       {/* Selección de género */}
