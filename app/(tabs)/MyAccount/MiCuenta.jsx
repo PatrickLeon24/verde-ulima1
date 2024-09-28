@@ -21,6 +21,15 @@ const AccountScreen = ({navigation }) => {
     getUserData(); 
   }, []);
 
+    // Función para manejar el cierre de sesión
+    const handleLogout = async () => {
+      try {
+        await AsyncStorage.clear(); // Limpiar todos los datos almacenados
+        navigation.replace('Login'); // Redirigir al inicio de sesión y reemplazar la navegación
+      } catch (error) {
+        console.error('Error al cerrar sesión:', error);
+      }
+    };
   
   if (!userData) {
     return <Text>Cargando...</Text>; 
@@ -60,7 +69,7 @@ const AccountScreen = ({navigation }) => {
         <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>
           <Text style={styles.optionText}>Cambiar Contraseña</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
+        <TouchableOpacity style={styles.option} onPress={handleLogout}>
           <Text style={[styles.optionText, { color: 'red' }]}>Cerrar Sesión</Text>
         </TouchableOpacity>
       </View>
