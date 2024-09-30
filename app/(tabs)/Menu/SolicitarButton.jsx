@@ -1,14 +1,41 @@
-import React from 'react';
-import { TouchableOpacity, Image, Text } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, View,TouchableOpacity, Image, Text, Modal, Button } from 'react-native';
 import styles from './Style_Menu'; 
 
-const SolicitarButton = ({ navigation }) => {
+const SolicitarButton = ( ) => {
+
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Menu2')}>
+    <SafeAreaView>
+    <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
       <Image source={require('../../../assets/images/images.jpg')} style={styles.image2} />
       <Text style={styles.buttonText1}></Text>
       <Text style={styles.buttonText}>SOLICITAR RECOJO</Text>
     </TouchableOpacity>
+
+    <Modal
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>Su solicitud de recojo a sido enviada mentira</Text>
+            <Button
+              title="Cerrar"
+              onPress={() => {
+                setModalVisible(false); 
+              }}
+            />
+          </View>
+        </View>
+      </Modal>
+
+    </SafeAreaView>
+    
+
+    
   );
 };
 
