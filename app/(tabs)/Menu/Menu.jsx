@@ -47,7 +47,7 @@ const PantallaConBarraVerde = ({ navigation }) => {
       <View style={styles.botonContainer}>
         <CuponButton navigation={navigation} />
         <PlanButton navigation={navigation} />
-        <SolicitarButton navigation={navigation} />
+        <SolicitarButton />
         <ContactButton />
       </View>
     </SafeAreaView>
