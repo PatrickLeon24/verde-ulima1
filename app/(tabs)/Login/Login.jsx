@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './Style_Login';
-import users from './Usuario.json';
 import logo from '../../../assets/images/logo.jpg';
 import google from '../../../assets/images/google.jpg';
 import ErrorModal from './ErrorModal';
