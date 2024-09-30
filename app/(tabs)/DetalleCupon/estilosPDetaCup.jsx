@@ -122,8 +122,14 @@ const estilosPDetaCup = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: 'rgba(0,0,0,0.5)'
     },
-    modalContent: {
+    modalContentSI: {
       width: '80%',
+      padding: 20,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      alignItems: 'center'
+    },
+    modalContentNO: {
       padding: 20,
       backgroundColor: 'white',
       borderRadius: 10,
@@ -133,6 +139,24 @@ const estilosPDetaCup = StyleSheet.create({
       fontSize: 16,
       marginBottom: 15
     },
+    modalbotonSI: {
+      backgroundColor: 'green',
+      padding: 10,
+      paddingHorizontal: 20,
+      borderRadius: 15,
+      color: 'white',
+      fontSize: 20,
+    },
+    modalbotonNO: {
+      backgroundColor: 'red',
+      padding: 10,
+      paddingHorizontal: 20,
+      borderRadius: 15,
+      color: 'white',
+      fontSize: 20,
+    }
+
+
     
   });
 

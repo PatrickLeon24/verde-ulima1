@@ -112,9 +112,17 @@ const Style_Menu = StyleSheet.create({
       alignItems: 'center'
     },
     modalText: {
-      fontSize: 16,
+      fontSize: 20,
       marginBottom: 15
     },
+    modalbotn: {
+      backgroundColor: '#34A853',
+      borderRadius: 15,
+      padding: 10,
+      paddingHorizontal: 15,
+      color: 'white',
+      fontSize: 18,
+    }
   });
 
 export default Style_Menu;

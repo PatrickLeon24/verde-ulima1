@@ -10,6 +10,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
   
   const { item } = route.params;
   const [modalVisible, setModalVisible] = React.useState(false);
+  const [Puntos, SetPuntos] = useState(400);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -59,24 +60,32 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         <Modal
         
         transparent={true}
-        visible={modalVisible}
+        visible={modalVisible && Puntos > item.precio}
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalText}>Felicidades su cupón a sido correctamente canjeado</Text>
+          <View style={styles.modalContentSI}>
+            <Text style={styles.modalText}>Felicidades su cupón de {item.nombre} a sido correctamente canjeado</Text>
             <Image
                source={{uri: 'https://cdn.pixabay.com/photo/2013/07/12/14/45/qr-code-148732_640.png'}}
                style= {styles.ImagenModal}
             />
             {/* Botón dentro del modal que navega a la pantalla de detalles */}
-            <Button
-              title="Cerrar"
-              onPress={() => {
-                setModalVisible(false); // Cierra el modal antes de navegar
-                navigation.navigate('Menu');
-              }}
-            />
+            <Text style={styles.modalbotonSI} onPress={() => {setModalVisible(false); navigation.navigate('Menu');}}>Cerrar</Text>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        
+        transparent={true}
+        visible={modalVisible && Puntos < item.precio}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContentNO}>
+            <Text style={styles.modalText}>Uhhh wacho, parece que no tenes los puntos necesarios jeje</Text>
+            <Text style={styles.modalbotonNO} onPress={() => {setModalVisible(false); navigation.navigate('Cupones');}}>Cerrar</Text>
           </View>
         </View>
       </Modal>
