@@ -92,6 +92,47 @@ const estilosPDetaCup = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
     },
+    modalView: {
+      margin: 20,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    ImagenModal: {
+      marginVertical: 12,
+      width: 250,
+      height: 250,
+      borderRadius: 10,
+      //backgroundColor: '#e0e0e0',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    modalOverlay: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0,0,0,0.5)'
+    },
+    modalContent: {
+      width: '80%',
+      padding: 20,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      alignItems: 'center'
+    },
+    modalText: {
+      fontSize: 16,
+      marginBottom: 15
+    },
     
   });
 
