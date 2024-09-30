@@ -27,7 +27,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         <View style={styles.lineatitulo}/>  
         {/*DESCRIPCIÓN*/}
         <Text style={styles.planDescriptiontitu}>
-          Descripción del Cupón
+          Descripción del Plan
         </Text>
         <Text style={styles.planDescription}>
           {item.descripcion}

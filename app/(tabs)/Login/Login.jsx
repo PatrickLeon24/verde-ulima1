@@ -24,7 +24,7 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://192.168.18.12:8000/back/prueba', {
+      const response = await fetch('http://10.48.201.68:8000/back/prueba', {
         method: 'POST', // Asegúrate de que sea POST
         headers: {
           'Content-Type': 'application/json',
