@@ -99,6 +99,30 @@ const Style_Menu = StyleSheet.create({
       fontSize: 16,
       color: 'black',
     },
+    modalOverlay: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0,0,0,0.5)'
+    },
+    modalContent: {
+      padding: 20,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      alignItems: 'center'
+    },
+    modalText: {
+      fontSize: 20,
+      marginBottom: 15
+    },
+    modalbotn: {
+      backgroundColor: '#34A853',
+      borderRadius: 15,
+      padding: 10,
+      paddingHorizontal: 15,
+      color: 'white',
+      fontSize: 18,
+    }
   });
 
 export default Style_Menu;
