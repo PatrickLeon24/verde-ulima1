@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'r
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
-const AccountScreen = ({navigation }) => {
+const AccountScreen = ({ navigation }) => {
   const [userData, setUserData] = useState(null); 
 
   useEffect(() => {
@@ -21,15 +21,16 @@ const AccountScreen = ({navigation }) => {
     getUserData(); 
   }, []);
 
-    // Función para manejar el cierre de sesión
-    const handleLogout = async () => {
-      try {
-        await AsyncStorage.clear(); // Limpiar todos los datos almacenados
-        navigation.replace('Login'); // Redirigir al inicio de sesión y reemplazar la navegación
-      } catch (error) {
-        console.error('Error al cerrar sesión:', error);
-      }
-    }; 
+  // Función para manejar el cierre de sesión
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.clear(); // Limpiar todos los datos almacenados
+      navigation.replace('Login'); // Redirigir al inicio de sesión y reemplazar la navegación
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  };
+
   if (!userData) {
     return <Text>Cargando...</Text>; 
   }
