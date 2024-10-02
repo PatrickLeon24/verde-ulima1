@@ -17,7 +17,7 @@ const PantallaPlan = ({ navigation }) => {
   useEffect(() => {
     const fetchPlanes = async () => {
       try {
-        const response = await fetch('http://10.48.201.68:8000/back/planesRecojo');
+        const response = await fetch('http://192.168.18.12:8000/back/planesRecojo');
         if (!response.ok) {
           throw new Error('Error en la carga de los datos');
         }
