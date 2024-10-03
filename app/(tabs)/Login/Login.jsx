@@ -5,7 +5,6 @@ import styles from './Style_Login';
 import logo from '../../../assets/images/logo.jpg';
 import google from '../../../assets/images/google.jpg';
 import ErrorModal from './ErrorModal';
-import { validateCredentials } from './Validacion';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
