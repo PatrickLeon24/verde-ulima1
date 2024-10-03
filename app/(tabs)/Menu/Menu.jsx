@@ -16,24 +16,28 @@ const PantallaConBarraVerde = ({ navigation }) => {
         const jsonUserData = await AsyncStorage.getItem('userData');
         if (jsonUserData !== null) {
           setUserData(JSON.parse(jsonUserData));
+        } else {
+          setUserData(null); // En caso de que no haya datos, reiniciar el estado
         }
       } catch (error) {
         console.error('Error al recuperar los datos del usuario:', error);
       }
     };
 
-    getUserData(); 
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      getUserData(); // Llamar a getUserData cuando la pantalla gana foco
+    });
 
-  
+    getUserData(); // También llamar al cargar el componente
+
+    return unsubscribe; // Limpia el evento al desmontar el componente
+  }, [navigation]);
+
   if (!userData) {
     return <Text>Cargando...</Text>;
   }
 
   const { nombres, apellidos } = userData; 
-  const primerNombre = nombres.split(' ')[0];
-  const primerApellido = apellidos.split(' ')[0];
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.barraSuperior}>
@@ -41,7 +45,7 @@ const PantallaConBarraVerde = ({ navigation }) => {
           onPress={() => navigation.navigate('Micuenta')}>
           <Image source={require('../../../assets/images/SAzRztbw_400x400.jpg')} style={styles.image} />
         </TouchableOpacity>
-        <Text style={styles.textoBarra}>Hola, {primerNombre} {primerApellido}</Text>
+        <Text style={styles.textoBarra}>Hola, {nombres} {apellidos}</Text>
       </View>
 
       <View style={styles.botonContainer}>

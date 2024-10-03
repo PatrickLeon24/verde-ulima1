@@ -8,7 +8,6 @@ import Menu from './app/(tabs)/Menu/Menu'
 import MiCuenta from './app/(tabs)/MyAccount/MiCuenta'
 import Cupones from './app/(tabs)/Cupones/Cupones'
 import VerPlanes from './app/(tabs)/Planes/VerPlanes'
-import Menu2 from './app/(tabs)/Menu/Menu2'
 import MiPerfil from './app/(tabs)/MyProfile/MiPerfil'
 import Contrasena from './app/(tabs)/Password/Contrasena'
 import MiPedido from './app/(tabs)/Pedido/MiPedido'
@@ -59,13 +58,6 @@ const App = () => {
         <Stack.Screen
           name="VerPlanes"
           component={VerPlanes}
-          
-        />
-        
-
-        <Stack.Screen
-          name="Menu2"
-          component={Menu2}
           
         />
         <Stack.Screen

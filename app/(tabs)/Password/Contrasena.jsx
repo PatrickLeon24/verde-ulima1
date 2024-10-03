@@ -16,8 +16,8 @@ const ChangePasswordScreen = ({navigation}) => {
         if (jsonUserData !== null) {
           const data = JSON.parse(jsonUserData);
           setUserData(data);
-          setContrasena(data.password);
-          setConfirmContrasena(data.password);
+          setContrasena(data.contrasena);
+          setConfirmContrasena(data.contrasena);
         }
       } catch (error) {
         console.error('Error al recuperar los datos del usuario:', error);
@@ -186,5 +186,4 @@ const styles = StyleSheet.create({
 });
 
 export default ChangePasswordScreen;
-
 

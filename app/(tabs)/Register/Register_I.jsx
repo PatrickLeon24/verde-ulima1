@@ -16,7 +16,15 @@ const RegisterI = ({navigation}) => {
     if (!nombres || !apellidos || !dni || !celular || !direccion || !Genero_seleccionado) {
       setModalVisible(true); // Mostrar el modal si hay campos vacíos
     } else {
-      navigation.navigate('Register_II');
+      // Pasar los datos a la segunda parte del registro
+      navigation.navigate('Register_II', {
+        nombre : nombres,
+        apellido : apellidos,
+        DNI : dni,
+        numero_contacto : celular,
+        direccion,
+        genero: Genero_seleccionado,
+      });
     }
   };
 
@@ -111,4 +119,3 @@ const RegisterI = ({navigation}) => {
 };
 
 export default RegisterI;
-

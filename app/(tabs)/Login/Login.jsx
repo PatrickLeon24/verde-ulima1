@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './Style_Login';
-import users from './Usuario.json';
 import logo from '../../../assets/images/logo.jpg';
 import google from '../../../assets/images/google.jpg';
 import ErrorModal from './ErrorModal';
-import { validateCredentials } from './Validacion';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -23,15 +21,33 @@ const Login = ({ navigation }) => {
     }
   };
 
-  const handleLogin = () => {
-    const { valid, message, user } = validateCredentials(email, password, users);
-    
-    if (!valid) {
-      setModalMessage(message);
-      setModalVisible(true);
-    } else {
-      storeUserData(user);
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/back/iniciar_sesion', {
+        method: 'POST', // Asegúrate de que sea POST
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, contrasena: password }), // Aquí envías los datos
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setModalMessage(errorData.message || 'Error en el inicio de sesión');
+        setModalVisible(true);
+        return;
+      }
+
+      const data = await response.json();
+      
+      // Si las credenciales son correctas, guarda los datos del usuario y navega al menú
+      storeUserData(data);
       navigation.navigate('Menu');
+
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+      setModalMessage('Error de conexión. Intente nuevamente.');
+      setModalVisible(true);
     }
   };
 
@@ -81,7 +97,5 @@ const Login = ({ navigation }) => {
 };
 
 export default Login;
-
-
 
 

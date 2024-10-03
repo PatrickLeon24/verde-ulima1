@@ -27,7 +27,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         <View style={styles.lineatitulo}/>  
         {/*DESCRIPCIÓN*/}
         <Text style={styles.planDescriptiontitu}>
-          Descripción del Cupón
+          Descripción del Plan
         </Text>
         <Text style={styles.planDescription}>
           {item.descripcion}
@@ -38,7 +38,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         <Text style={styles.planDetails}> 
           Cantidad de Baldes: {item.baldes} Baldes
         </Text>
-        <Text style={styles.planDuration}>Duración: {item.duracion} meses</Text>
+        <Text style={styles.planDuration}>Duración: {item.duracion} dias</Text>
         <Text style={styles.planPrice}>S/. {item.precio}</Text>
 
         <TouchableOpacity
