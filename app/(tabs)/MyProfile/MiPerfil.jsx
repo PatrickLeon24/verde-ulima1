@@ -9,9 +9,11 @@ const EditProfileScreen = ({ navigation }) => {
   const [apellido, setApellidos] = useState('');
   const [dni, setDni] = useState('');
   const [correo, setCorreo] = useState('');
-  const [direccio, setDireccion] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [telefono, setTelefono] = useState(''); // Nuevo estado para teléfono
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -24,6 +26,7 @@ const EditProfileScreen = ({ navigation }) => {
           setDni(data.DNI);
           setCorreo(data.email);
           setDireccion(data.direccion);
+          setTelefono(data.telefono); // Recuperar el teléfono si está disponible
         }
       } catch (error) {
         console.error('Error al recuperar los datos del usuario:', error);
@@ -38,7 +41,7 @@ const EditProfileScreen = ({ navigation }) => {
   }
 
   const handleSubmit = () => {
-    if (!nombre || !apellido || !dni || !correo || !direccio) {
+    if (!nombre || !apellido || !dni || !correo || !direccion || !telefono) {
       setModalMessage('Por favor, complete todos los campos.');
       setModalVisible(true); // Mostrar el modal si hay campos vacíos
     } else {
@@ -51,6 +54,7 @@ const EditProfileScreen = ({ navigation }) => {
       }, 2000);
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
@@ -102,10 +106,21 @@ const EditProfileScreen = ({ navigation }) => {
         <Text style={styles.label}>Ingrese su dirección</Text>
         <TextInput
           style={styles.input}
-          value={direccio}
+          value={direccion}
           onChangeText={setDireccion}
           placeholder="Dirección"
           placeholderTextColor="#bbb"
+        />
+
+        {/* Nuevo campo para número de teléfono */}
+        <Text style={styles.label}>Ingrese su número de teléfono</Text>
+        <TextInput
+          style={styles.input}
+          value={telefono}
+          onChangeText={setTelefono}
+          placeholder="Número de teléfono"
+          placeholderTextColor="#bbb"
+          keyboardType="phone-pad" // Configurar el teclado numérico para este campo
         />
       </View>
 
@@ -116,7 +131,7 @@ const EditProfileScreen = ({ navigation }) => {
         <Text style={styles.saveButtonText}>Guardar cambios</Text>
       </TouchableOpacity>
 
-            {/* Modal de error */}
+      {/* Modal de error */}
       <Modal
         transparent={true}
         animationType="slide"
