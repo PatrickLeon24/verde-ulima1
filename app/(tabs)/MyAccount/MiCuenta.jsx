@@ -64,12 +64,26 @@ const AccountScreen = ({ navigation }) => {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Información Personal</Text>
         <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil')}>
+          <Image
+            source={require('../../../assets/images/EditarPerfil.png')}
+            style={styles.optionIcon}
+          />
           <Text style={styles.optionText}>Editar Perfil</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>
+          <Image
+            source={require('../../../assets/images/CambiarContrasena.png')}
+            style={styles.optionIcon}
+          />
           <Text style={styles.optionText}>Cambiar Contraseña</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.option} onPress={handleLogout}>
+          <Image
+            source={require('../../../assets/images/CerrarSesion.png')}
+            style={styles.optionIcon}
+          />
           <Text style={[styles.optionText, { color: 'red' }]}>Cerrar Sesión</Text>
         </TouchableOpacity>
       </View>
@@ -139,7 +153,9 @@ const styles = StyleSheet.create({
   },
   section: {
     marginVertical: 16,
-    alignItems: 'center',
+    alignItems: 'center', // Centramos los textos dentro de cada sección
+    justifyContent: 'center',
+    width: '100%', // Asegurar que ocupe todo el ancho
   },
   sectionTitle: {
     fontSize: 16,
@@ -148,14 +164,22 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   option: {
-    width: '100%',
+    width: '90%', // Ancho de las opciones para que ocupen el 90% del ancho de la pantalla
+    flexDirection: 'row', // Coloca la imagen y el texto en fila
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
-    alignItems: 'center',
+    alignItems: 'center', // Alinea verticalmente la imagen y el texto
+    justifyContent: 'center', // Centramos tanto la imagen como el texto
+  },
+  optionIcon: {
+    width: 24, // Tamaño del ícono
+    height: 24, // Tamaño del ícono
+    marginRight: 12, // Espacio entre el ícono y el texto
   },
   optionText: {
     fontSize: 16,
+    textAlign: 'center', // Asegura que el texto esté centrado
   },
 });
 

@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, Modal, Button, SafeAreaView } 
 import styles from './Style_RegisterI'; // Importa los estilos desde el archivo separado
 
 const RegisterI = ({navigation}) => {
-
   const [nombres, setNombres] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [dni, setDni] = useState('');
@@ -11,34 +10,61 @@ const RegisterI = ({navigation}) => {
   const [Genero_seleccionado, setGenero_seleccionado] = useState('');
   const [celular, setCelular] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const validarDNI = (dni) => {
+    // Ejemplo de validación simple: el DNI debe tener 8 dígitos
+    const dniPattern = /^\d{8}$/;
+    return dniPattern.test(dni);
+  };
+
+  const validarCelular = (celular) => {
+    // Ejemplo de validación simple: el celular debe tener 9 dígitos
+    const celularPattern = /^\d{9}$/;
+    return celularPattern.test(celular);
+  };
 
   const handleSubmit = () => {
+    // Validar campos vacíos
     if (!nombres || !apellidos || !dni || !celular || !direccion || !Genero_seleccionado) {
-      setModalVisible(true); // Mostrar el modal si hay campos vacíos
-    } else {
-      // Pasar los datos a la segunda parte del registro
-      navigation.navigate('Register_II', {
-        nombre : nombres,
-        apellido : apellidos,
-        DNI : dni,
-        numero_contacto : celular,
-        direccion,
-        genero: Genero_seleccionado,
-      });
+      setErrorMessage('Por favor, complete todos los campos.');
+      setModalVisible(true);
+      return;
     }
+
+    // Validar DNI
+    if (!validarDNI(dni)) {
+      setErrorMessage('El DNI debe tener 8 dígitos.');
+      setModalVisible(true);
+      return;
+    }
+
+    // Validar número de celular
+    if (!validarCelular(celular)) {
+      setErrorMessage('El número de celular debe tener 9 dígitos.');
+      setModalVisible(true);
+      return;
+    }
+
+    // Si todas las validaciones pasan, navegar a la segunda parte del registro
+    navigation.navigate('Register_II', {
+      nombre : nombres,
+      apellido : apellidos,
+      DNI : dni,
+      numero_contacto : celular,
+      direccion,
+      genero: Genero_seleccionado,
+    });
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Título */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Registro de cuenta</Text>
       </View>
 
-      {/* Subtítulo para datos personales */}
       <Text style={styles.subTitle}>Ingrese sus datos personales</Text>
 
-      {/* Campos de texto */}
       <TextInput
         style={styles.input}
         placeholder="Ingrese sus nombres"
@@ -60,7 +86,8 @@ const RegisterI = ({navigation}) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Ingrese su numero de celular"
+        placeholder="Ingrese su número de celular"
+        keyboardType="numeric"
         value={celular}
         onChangeText={setCelular}
       />
@@ -71,31 +98,23 @@ const RegisterI = ({navigation}) => {
         onChangeText={setDireccion}
       />
 
-      {/* Selección de género */}
       <Text style={styles.genderText}>Seleccione su género</Text>
       <View style={styles.genderContainer}>
         <TouchableOpacity
-          style={[
-            styles.genderButton,
-            Genero_seleccionado === 'Hombre' ? styles.genderButtonSelected : null,
-          ]}
+          style={[styles.genderButton, Genero_seleccionado === 'Hombre' ? styles.genderButtonSelected : null]}
           onPress={() => setGenero_seleccionado('Hombre')}
         >
           <Text style={styles.genderButtonText}>Hombre</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[
-            styles.genderButton,
-            Genero_seleccionado === 'Mujer' ? styles.genderButtonSelected : null,
-          ]}
+          style={[styles.genderButton, Genero_seleccionado === 'Mujer' ? styles.genderButtonSelected : null]}
           onPress={() => setGenero_seleccionado('Mujer')}
         >
           <Text style={styles.genderButtonText}>Mujer</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Botón Siguiente */}
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Siguiente</Text>
       </TouchableOpacity>
@@ -109,7 +128,7 @@ const RegisterI = ({navigation}) => {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalText}>Por favor, complete todos los campos.</Text>
+            <Text style={styles.modalText}>{errorMessage}</Text>
             <Button title="Cerrar" onPress={() => setModalVisible(false)} />
           </View>
         </View>
