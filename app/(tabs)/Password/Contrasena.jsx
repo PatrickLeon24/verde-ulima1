@@ -5,10 +5,66 @@ import { Ionicons } from '@expo/vector-icons';
 
 const ChangePasswordScreen = ({navigation}) => {
   const [userData, setUserData] = useState(null);
-  const [contrasena, setContrasena] = useState('');
-  const [confirmContrasena, setConfirmContrasena] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
+  // Función para cambiar la contraseña
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmNewPassword) {
+      setModalMessage('Las contraseñas no coinciden.');
+      setModalVisible(true);
+      return;
+    }
+  
+    console.log('Datos enviados:', {
+      email: userData.email,
+      contrasena_actual: currentPassword,
+      nueva_contrasena: newPassword,
+    });
+  
+    try {
+      const response = await fetch('http://127.0.0.1:8000/back/guardar_cambio_contrasena', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userData.email,
+          contrasena_actual: currentPassword,
+          nueva_contrasena: newPassword,
+        }),
+      });
+  
+      console.log('Respuesta del servidor:', response);
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.log('Error del servidor:', errorData);
+        setModalMessage(errorData.error || 'Error al cambiar la contraseña');
+        setModalVisible(true);
+        return;
+      }
+  
+      const data = await response.json();
+      setModalMessage(data.mensaje);  // Mensaje de éxito
+      setModalVisible(true);
+  
+      // Limpiar los campos de contraseña después del éxito
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmNewPassword('');
+  
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+      setModalMessage('Error de conexión. Intente nuevamente.');
+      setModalVisible(true);
+    }
+  };
+
+  // Cargar los datos del usuario de AsyncStorage
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -16,8 +72,6 @@ const ChangePasswordScreen = ({navigation}) => {
         if (jsonUserData !== null) {
           const data = JSON.parse(jsonUserData);
           setUserData(data);
-          setContrasena(data.contrasena);
-          setConfirmContrasena(data.contrasena);
         }
       } catch (error) {
         console.error('Error al recuperar los datos del usuario:', error);
@@ -26,25 +80,11 @@ const ChangePasswordScreen = ({navigation}) => {
 
     getUserData();
   }, []);
-  
+
   if (!userData) {
     return <Text>Cargando...</Text>; 
   }
 
-  const handleSubmit = () => {
-    if (!contrasena || !confirmContrasena) {
-      setModalMessage('Por favor, complete todos los campos.');
-      setModalVisible(true); // Mostrar el modal si hay campos vacíos
-    } else {
-      // Mostrar mensaje de guardado y luego redirigir al menú
-      setModalMessage('Los cambios han sido guardados');
-      setModalVisible(true);
-      setTimeout(() => {
-        setModalVisible(false);
-        navigation.navigate('Menu'); // Redirigir al menú después de 2 segundos
-      }, 2000);
-    }
-  };
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
@@ -52,31 +92,39 @@ const ChangePasswordScreen = ({navigation}) => {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.textoBarra}>Contraseña</Text>
+        <Text style={styles.textoBarra}>Cambiar Contraseña</Text>
       </View>
 
       {/* Formulario de Contraseña */}
       <View style={styles.formContainer}>
+        <Text style={styles.label}>Contraseña Actual</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Ingrese su contraseña actual"
+          secureTextEntry
+          value={currentPassword}
+          onChangeText={setCurrentPassword}
+        />
         <Text style={styles.label}>Nueva Contraseña</Text>
         <TextInput
           style={styles.input}
-          placeholder="Ingrese su contraseña"
+          placeholder="Ingrese su nueva contraseña"
           secureTextEntry
-          value={contrasena}
-          onChangeText={setContrasena}
+          value={newPassword}
+          onChangeText={setNewPassword}
         />
-        <Text style={styles.label}>Confirmar Contraseña</Text>
+        <Text style={styles.label}>Confirmar Nueva Contraseña</Text>
         <TextInput
           style={styles.input}
-          placeholder="Confirme su contraseña"
+          placeholder="Confirme su nueva contraseña"
           secureTextEntry
-          value={confirmContrasena}
-          onChangeText={setConfirmContrasena}
+          value={confirmNewPassword}
+          onChangeText={setConfirmNewPassword}
         />
       </View>
 
       {/* Botón para guardar contraseña */}
-      <TouchableOpacity style={styles.saveButton} onPress={handleSubmit}>
+      <TouchableOpacity style={styles.saveButton} onPress={handleChangePassword}>
         <Text style={styles.saveButtonText}>Guardar Contraseña</Text>
       </TouchableOpacity>
 
@@ -174,16 +222,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 15
   },
-  modalButton: {
-    padding: 10,
-    backgroundColor: '#007BFF',
-    borderRadius: 5,
-  },
-  modalButtonText: {
-    color: 'white',
-    fontSize: 16,
-  }
 });
 
 export default ChangePasswordScreen;
-
