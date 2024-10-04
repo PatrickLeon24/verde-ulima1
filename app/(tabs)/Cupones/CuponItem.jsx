@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import styles from './estilosCup';
 
 
-const CuponItem = ({ nombre, precio, imagen, descripcion, onPress }) => {
+const CuponItem = ({ local, costo_puntos, imagen, descripcion, onPress }) => {
     return(
     <TouchableOpacity onPress={onPress} style={styles.planContainer}>
     {/*<View style={styles.iconContainer}>*/}
@@ -16,10 +15,10 @@ const CuponItem = ({ nombre, precio, imagen, descripcion, onPress }) => {
    {/*</View>*/}
     <View style={styles.textContainer}>
         <Text style={styles.planNombre}>
-            {nombre}
+            {local}
         </Text>
         <Text style={styles.pepe}>
-            {precio} puntos
+            {costo_puntos} puntos
         </Text>
         <Text style={styles.planDescripcion} numberOfLines={2}>
             {descripcion}

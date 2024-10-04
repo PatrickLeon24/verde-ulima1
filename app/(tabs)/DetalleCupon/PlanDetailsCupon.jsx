@@ -28,12 +28,12 @@ const PlanDetailsScreen = ({ navigation, route }) => {
 
       <View style={styles.detailsContainer}>
         {/*TITULO*/}
-        <Text style={styles.planTitle}>{item.nombre}</Text>
+        <Text style={styles.planTitle}>{item.local}</Text>
         <View style={styles.lineatitulo}/>  
 
         {/*PRECIO*/}
         <Text style={styles.planprecio}>
-          {item.precio} puntos
+          {item.costo_puntos} puntos
         </Text>
         
         {/*DESCRIPCIÓN*/}
@@ -42,14 +42,6 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         </Text>
         <Text style={styles.planDescription}>
           {item.descripcion}
-        </Text>
-
-        {/*LOCAL*/}
-        <Text style={styles.planDurationtitu}>
-          Local: 
-        </Text>
-        <Text style={styles.planDuration}>
-          {item.local}
         </Text>
         {/*<Text style={styles.planPrice}>Indicaciones: {item.indic}</Text>*/}
         
@@ -60,7 +52,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         <Modal
         
         transparent={true}
-        visible={modalVisible && Puntos > item.precio}
+        visible={modalVisible && Puntos > item.costo_puntos}
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalOverlay}>
@@ -79,7 +71,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
       <Modal
         
         transparent={true}
-        visible={modalVisible && Puntos < item.precio}
+        visible={modalVisible && Puntos < item.costo_puntos}
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalOverlay}>

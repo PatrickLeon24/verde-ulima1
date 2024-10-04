@@ -1,14 +1,41 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/Ionicons'
-import { useRouter } from 'expo-router';
 import styles from './estilosCup';
 import CuponItem from './CuponItem'; 
-import CuponInfo from '../Cupones/Cupons.json';
-const PantallaPuntos = ({navigation}) => {
-  const router = useRouter();
+//import CuponInfo from '../Cupones/Cupons.json';
 
+
+const PantallaPuntos = ({navigation}) => {
+  const [cuponesData, setCuponesData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPlanes = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/back/cupones');
+        if (!response.ok) {
+          throw new Error('Error en la carga de los datos');
+        }
+        const data = await response.json();
+        setCuponesData(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlanes();
+  }, []);
+
+  if (loading) {
+    return (
+      <View /*style={styles.loadingContainer}*/>
+        <Text>Cargando planes...</Text>
+      </View>
+    );
+  }
 
 
   return (
@@ -33,15 +60,13 @@ const PantallaPuntos = ({navigation}) => {
 
       {/* - - - - - Lista de Cupones - - - - - */}
       <FlatList
-        data={CuponInfo}
+        data={cuponesData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <CuponItem
-            nombre={item.nombre}
-            descripcion={item.descripcion}
             local={item.local}
-            indic={item.indic}
-            precio={item.precio}
+            descripcion={item.descripcion}
+            costo_puntos={item.costo_puntos}
             imagen={item.imagen}
             onPress={() =>  navigation.navigate('VerCupon', { item })} // Navegar al plan específico
           />
