@@ -6,11 +6,11 @@ import { Ionicons } from '@expo/vector-icons';
 const EditProfileScreen = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
   const [nombre, setNombre] = useState('');
-  const [apellido, setApellidos] = useState('');
+  const [apellido, setApellido] = useState('');
   const [dni, setDni] = useState('');
   const [correo, setCorreo] = useState('');
   const [direccion, setDireccion] = useState('');
-  const [numero_contacto, setNumero_contacto] = useState(''); // Nuevo estado para teléfono
+  const [numeroContacto, setNumeroContacto] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
@@ -22,11 +22,11 @@ const EditProfileScreen = ({ navigation }) => {
           const data = JSON.parse(jsonUserData);
           setUserData(data);
           setNombre(data.nombres);
-          setApellidos(data.apellidos);
+          setApellido(data.apellidos);
           setDni(data.DNI);
           setCorreo(data.email);
           setDireccion(data.direccion);
-          setNumero_contacto(data.numero_contacto); // Recuperar el teléfono si está disponible
+          setNumeroContacto(data.numero_contacto);
         }
       } catch (error) {
         console.error('Error al recuperar los datos del usuario:', error);
@@ -40,32 +40,65 @@ const EditProfileScreen = ({ navigation }) => {
     return <Text>Cargando...</Text>;
   }
 
-  const handleSubmit = () => {
-    if (!nombre || !apellido || !dni || !correo || !direccion || !numero_contacto) {
+  const handleSubmit = async () => {
+    if (!nombre || !apellido || !dni || !correo || !direccion || !numeroContacto) {
       setModalMessage('Por favor, complete todos los campos.');
-      setModalVisible(true); // Mostrar el modal si hay campos vacíos
-    } else {
-      // Mostrar mensaje de guardado y luego redirigir al menú
-      setModalMessage('Los cambios han sido guardados');
       setModalVisible(true);
+      return;
+    }
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/back/guardar_perfil', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: userData.id,
+          email: userData.email,
+          nombres: nombre,
+          apellidos: apellido,
+          DNI: dni,
+          direccion: direccion,
+          numero_contacto: numeroContacto,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setModalMessage(errorData.error || 'Error al guardar los cambios.');
+        setModalVisible(true);
+        return;
+      }
+
+      const data = await response.json();
+      setModalMessage(data.mensaje || 'Los cambios han sido guardados.');
+      setModalVisible(true);
+
+      // Actualizar AsyncStorage después de los cambios
+      const updatedUserData = { ...userData, nombres: nombre, apellidos: apellido, DNI: dni, direccion: direccion, numero_contacto: numeroContacto };
+      await AsyncStorage.setItem('userData', JSON.stringify(updatedUserData));
+
       setTimeout(() => {
         setModalVisible(false);
-        navigation.navigate('Menu'); // Redirigir al menú después de 2 segundos
+        navigation.navigate('Menu');
       }, 2000);
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+      setModalMessage('Error de conexión. Intente nuevamente.');
+      setModalVisible(true);
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Barra Superior */}
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.textoBarra}>Mi Perfil</Text>
+        <Text style={styles.textoBarra}>Editar Perfil</Text>
       </View>
 
-      {/* Formulario de Edición de Perfil */}
       <View style={styles.formContainer}>
         <Text style={styles.label}>Ingrese sus nombres</Text>
         <TextInput
@@ -75,16 +108,14 @@ const EditProfileScreen = ({ navigation }) => {
           placeholder="Nombres"
           placeholderTextColor="#bbb"
         />
-
         <Text style={styles.label}>Ingrese sus apellidos</Text>
         <TextInput
           style={styles.input}
           value={apellido}
-          onChangeText={setApellidos}
+          onChangeText={setApellido}
           placeholder="Apellidos"
           placeholderTextColor="#bbb"
         />
-
         <Text style={styles.label}>Ingrese su DNI</Text>
         <TextInput
           style={styles.input}
@@ -93,7 +124,6 @@ const EditProfileScreen = ({ navigation }) => {
           placeholder="DNI"
           placeholderTextColor="#bbb"
         />
-
         <Text style={styles.label}>Ingrese su correo</Text>
         <TextInput
           style={styles.input}
@@ -102,7 +132,6 @@ const EditProfileScreen = ({ navigation }) => {
           placeholder="Correo electrónico"
           placeholderTextColor="#bbb"
         />
-
         <Text style={styles.label}>Ingrese su dirección</Text>
         <TextInput
           style={styles.input}
@@ -111,27 +140,21 @@ const EditProfileScreen = ({ navigation }) => {
           placeholder="Dirección"
           placeholderTextColor="#bbb"
         />
-
-        {/* Nuevo campo para número de teléfono */}
         <Text style={styles.label}>Ingrese su número de teléfono</Text>
         <TextInput
           style={styles.input}
-          value={numero_contacto}
-          onChangeText={setNumero_contacto}
+          value={numeroContacto}
+          onChangeText={setNumeroContacto}
           placeholder="Número de teléfono"
           placeholderTextColor="#bbb"
-          keyboardType="phone-pad" // Configurar el teclado numérico para este campo
+          keyboardType="phone-pad"
         />
       </View>
 
-      {/* Botón para guardar cambios */}
-      <TouchableOpacity 
-        style={styles.saveButton} 
-        onPress={handleSubmit}>
+      <TouchableOpacity style={styles.saveButton} onPress={handleSubmit}>
         <Text style={styles.saveButtonText}>Guardar cambios</Text>
       </TouchableOpacity>
 
-      {/* Modal de error */}
       <Modal
         transparent={true}
         animationType="slide"
@@ -152,7 +175,7 @@ const EditProfileScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#f9f9f9',
     paddingVertical: 40,
   },
   barraSuperior: {
@@ -180,7 +203,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     marginBottom: 8,
-    fontWeight: '600', // Negrita para mejorar la visibilidad
+    fontWeight: '600',
   },
   input: {
     width: '90%',
@@ -191,9 +214,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 10,
     marginBottom: 25,
-    backgroundColor: '#f9f9f9', // Fondo claro para los campos
+    backgroundColor: '#f9f9f9',
     fontSize: 16,
-    color: '#333', // Color de texto oscuro
+    color: '#333',
   },
   saveButton: {
     backgroundColor: '#000',
@@ -213,28 +236,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   modalContent: {
     width: '80%',
     padding: 20,
     backgroundColor: 'white',
     borderRadius: 10,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   modalText: {
     fontSize: 16,
-    marginBottom: 15
+    marginBottom: 15,
   },
-  modalButton: {
-    padding: 10,
-    backgroundColor: '#007BFF',
-    borderRadius: 5,
-  },
-  modalButtonText: {
-    color: 'white',
-    fontSize: 16,
-  }
 });
 
 export default EditProfileScreen;
