@@ -38,11 +38,8 @@ const ChangePasswordScreen = ({navigation}) => {
         }),
       });
   
-      console.log('Respuesta del servidor:', response);
-  
       if (!response.ok) {
         const errorData = await response.json();
-        console.log('Error del servidor:', errorData);
         setModalMessage(errorData.error || 'Error al cambiar la contraseña');
         setModalVisible(true);
         return;

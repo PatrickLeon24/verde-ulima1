@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { SafeAreaView, Modal, Button, Image, View, Text, TextInput, TouchableOpacity, Alert, ScrollView, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import visa from '../../../assets/visa.png';
 import master from '../../../assets/master.png';
@@ -7,7 +8,8 @@ import americanex from '../../../assets/americanex.png';
 import dinner from '../../../assets/dinner.png';
 import yape from '../../../assets/yape.png';
 
-const PaymentScreen = ({ navigation }) => {
+const PaymentScreen = () => {
+  const navigation = useNavigation();
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -98,11 +100,40 @@ const PaymentScreen = ({ navigation }) => {
     return true;
   };
 
-  const handlePay = () => {
+  const handlePay = async () => {
     if (validateFields()) {
-      
-      setModalMessage('Tu pago ha sido procesado exitosamente');
-      setModalVisible(true);
+      const paymentData = {
+        estado: 'Completado',
+        metodo_pago: cardNumber ? 'Tarjeta' : 'Yape', // Metodo de pago
+        fecha_pago: new Date().toISOString().split('T')[0], // Obtener fecha en formato YYYY-MM-DD
+      };
+  
+      try {
+        const response = await fetch('http://192.168.18.12:8000/back/crear_pago', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(paymentData),
+        });
+  
+        const result = await response.json();
+  
+        if (response.ok) {
+          setModalMessage('Tu pago ha sido procesado exitosamente');
+          setModalVisible(true);
+
+          setTimeout(() => {
+            navigation.navigate('Menu'); // Redirige al Menu
+          }, 2000); // Espera 2 segundos
+        } else {
+          setModalMessage(result.error || 'Error al procesar el pago');
+          setModalVisible(true);
+        }
+      } catch (error) {
+        setModalMessage('Error de conexión. Intenta nuevamente.');
+        setModalVisible(true);
+      }
     }
   };
 

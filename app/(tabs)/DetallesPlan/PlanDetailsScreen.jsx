@@ -1,7 +1,5 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
-import planta from '../../../assets/planta.png';
-
 import { Ionicons } from '@expo/vector-icons';
 
 const PlanDetailsScreen = ({ navigation, route }) => {
@@ -10,42 +8,46 @@ const PlanDetailsScreen = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.barraSuperior}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
+      {/* Barra superior */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.textoBarra}>Detalles del plan</Text>
+        <Text style={styles.headerText}>Detalles del plan</Text>
       </View>
 
+      {/* Imagen del plan */}
       <Image
-        source={{uri: item.imagen}}
+        source={{ uri: item.imagen }}
         style={styles.image}
       />
 
       <View style={styles.detailsContainer}>
+        {/* Título del plan */}
         <Text style={styles.planTitle}>{item.nombre}</Text>
-        <View style={styles.lineatitulo}/>  
-        {/*DESCRIPCIÓN*/}
-        <Text style={styles.planDescriptiontitu}>
-          Descripción del Plan
-        </Text>
-        <Text style={styles.planDescription}>
-          {item.descripcion}
-        </Text>
-        <Text style={styles.planDetails}>
-          Cantidad de Aserrin: {item.aserrin}Kg de Aserrin 
-        </Text>
-        <Text style={styles.planDetails}> 
-          Cantidad de Baldes: {item.baldes} Baldes
-        </Text>
-        <Text style={styles.planDuration}>Duración: {item.duracion} dias</Text>
+        <View style={styles.titleUnderline} />
+
+        {/* Descripción del plan */}
+        <Text style={styles.sectionTitle}>Descripción del Plan</Text>
+        <Text style={styles.planDescription}>{item.descripcion}</Text>
+
+        {/* Detalles del plan */}
+        <Text style={styles.planDetails}>Cantidad de aserrín: {item.aserrin} kg</Text>
+        <Text style={styles.planDetails}>Cantidad de baldes: {item.baldes}</Text>
+        <Text style={styles.planDetails}>Cantidad de recojos: {item.frecuencia_recojo}</Text>
+        <Text style={styles.planDetails}>Cantidad de compostaje: {item.cantidad_compostaje} kg</Text>
+        <Text style={styles.planDetailsHighlight}>Puntos: {item.puntos_plan}</Text>
+        <Text style={styles.planDetails}>Duración: {item.duracion} días</Text>
+
+        {/* Precio del plan */}
         <Text style={styles.planPrice}>S/. {item.precio}</Text>
 
+        {/* Botón de pago */}
         <TouchableOpacity
-          style={styles.button}
+          style={styles.payButton}
           onPress={() => navigation.navigate('Pago')}
         >
-          <Text style={styles.buttonText}>Pagar Plan</Text>
+          <Text style={styles.payButtonText}>Pagar Plan</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -55,80 +57,100 @@ const PlanDetailsScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingVertical: 40
+    backgroundColor: '#f8f8f8',
+    paddingVertical: 40,
   },
-  image: {
-    width: '100%',
-    height: 237,
-    marginBottom: 16,
-    resizeMode: 'contain',
-  },
-  detailsContainer: {
-    padding: 16,
-  },
-  planTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  planDetails: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  planDuration: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  planDescriptiontitu: {
-    paddingTop: 10,
-    fontSize: 24,
-    marginBottom: 5,
-    fontWeight: 'bold',
-    color: 'gray',
-  },
-  planDescription: {
-    fontSize: 16,
-    marginBottom: 16,
-  },
-  planPrice: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  button: {
-    backgroundColor: '#00cc99',
-    paddingVertical: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 16,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  barraSuperior: {
+  header: {
     height: 60,
     backgroundColor: '#34A853',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
-
+    borderBottomWidth: 1,
+    borderBottomColor: '#e6e6e6',
   },
-  botonRetroceso: {
+  backButton: {
     marginRight: 30,
   },
-  textoBarra: {
+  headerText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
   },
-  lineatitulo: {
-    borderBottomColor: '#A9A9A9',
-    borderBottomWidth: 2  ,
-    marginTop: 1,
-    marginBottom: 5,
+  image: {
+    width: '100%',
+    height: 200,
+    marginBottom: 16,
+    resizeMode: 'cover',
+  },
+  detailsContainer: {
+    padding: 16,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 5,
+    marginHorizontal: 16,
+    marginTop: -30,
+  },
+  planTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  titleUnderline: {
+    borderBottomColor: '#34A853',
+    borderBottomWidth: 2,
+    marginBottom: 16,
+    alignSelf: 'center',
+    width: '50%',
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#777',
+    marginBottom: 10,
+  },
+  planDescription: {
+    fontSize: 16,
+    color: '#555',
+    marginBottom: 16,
+    lineHeight: 22,
+    textAlign: 'justify',
+  },
+  planDetails: {
+    fontSize: 16,
+    color: '#555',
+    marginBottom: 8,
+  },
+  planDetailsHighlight: {
+    fontSize: 16,
+    color: '#34A853',
+    marginBottom: 8,
+    fontWeight: 'bold',
+  },
+  planPrice: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#000',
+    marginVertical: 16,
+    textAlign: 'center',
+  },
+  payButton: {
+    backgroundColor: '#34A853',
+    paddingVertical: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  payButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
