@@ -54,8 +54,8 @@ const EditProfileScreen = ({ navigation }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          usuario_id: userData.id,
-          email: userData.email,
+          id: userData.usuario_id,
+          email: correo,
           nombres: nombre,
           apellidos: apellido,
           DNI: dni,
@@ -76,7 +76,7 @@ const EditProfileScreen = ({ navigation }) => {
       setModalVisible(true);
 
       // Actualizar AsyncStorage después de los cambios
-      const updatedUserData = { ...userData, nombres: nombre, apellidos: apellido, DNI: dni, direccion: direccion, numero_contacto: numeroContacto };
+      const updatedUserData = { ...userData, nombres: nombre, apellidos: apellido, DNI: dni, direccion: direccion, numero_contacto: numeroContacto, email : correo };
       await AsyncStorage.setItem('userData', JSON.stringify(updatedUserData));
 
       setTimeout(() => {

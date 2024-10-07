@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { SafeAreaView, Modal, Button, Image, View, Text, TextInput, TouchableOpacity, Alert, ScrollView, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import { useNavigation, useRoute} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import visa from '../../../assets/visa.png';
 import master from '../../../assets/master.png';

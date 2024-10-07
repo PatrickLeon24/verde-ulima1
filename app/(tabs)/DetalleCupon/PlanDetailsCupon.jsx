@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Modal, Button, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native'; 
+import { View, Modal, Text, Image, TouchableOpacity, SafeAreaView } from 'react-native'; 
 import styles from './estilosPDetaCup';
 import { Ionicons } from '@expo/vector-icons';
 

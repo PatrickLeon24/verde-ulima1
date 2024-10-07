@@ -21,7 +21,7 @@ const SolicitarButton = ( ) => {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalText}>Su solicitud de recojo a sido enviada mentira</Text>
+            <Text style={styles.modalText}>Su solicitud de recojo a sido enviada</Text>
             <Text style={styles.modalbotn} onPress={() => {setModalVisible(false)}}>Cerrar</Text>
           </View>
         </View>
