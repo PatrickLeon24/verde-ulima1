@@ -54,7 +54,7 @@ const EditProfileScreen = ({ navigation }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: userData.id,
+          usuario_id: userData.id,
           email: userData.email,
           nombres: nombre,
           apellidos: apellido,

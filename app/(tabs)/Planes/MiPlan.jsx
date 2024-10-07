@@ -39,7 +39,7 @@ const PantallaPlan = ({ navigation }) => {
     const fetchPlanActual = async () => {
       if (userData) {
         try {
-          const response = await fetch(`http:///127.0.0.1:8000/back/planes/${userData.id}/`);
+          const response = await fetch(`http:///127.0.0.1:8000/back/planes/${userData.usuario_id}/`);
           if (!response.ok) {
             throw new Error('Error en la carga del plan actual del usuario');
           }
@@ -118,7 +118,7 @@ const PantallaPlan = ({ navigation }) => {
        {/* Lista de planes */}
       <FlatList
         data={planesData}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.plan_id.toString()}
         renderItem={({ item }) => (
           <PlanItem
             nombre={item.nombre}

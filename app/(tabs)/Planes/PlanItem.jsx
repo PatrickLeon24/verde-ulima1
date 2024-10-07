@@ -1,10 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
 
-const PlanItem = ({ nombre, imagen, precio, descripcion, onPress }) => {
-
-  const router = useRouter();
+const PlanItem = ({ nombre, imagen, precio, descripcion, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.planContainer}>
       {/*{<View style={styles.iconContainer}>*/} 

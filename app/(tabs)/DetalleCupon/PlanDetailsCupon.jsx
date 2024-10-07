@@ -49,7 +49,7 @@ const PlanDetailsCupon = ({ navigation, route }) => {
         {/* Modal para canje exitoso */}
         <Modal
           transparent={true}
-          visible={modalVisible && Puntos > item.costo_puntos}
+          visible={modalVisible && Puntos >= item.costo_puntos}
           onRequestClose={() => setModalVisible(false)}
         >
           <View style={styles.modalOverlay}>

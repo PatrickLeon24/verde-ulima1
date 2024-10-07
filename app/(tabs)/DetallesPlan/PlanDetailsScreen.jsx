@@ -3,9 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'r
 import { Ionicons } from '@expo/vector-icons';
 
 const PlanDetailsScreen = ({ navigation, route }) => {
-  
-  const { item } = route.params;
-
+  const {item, usuario_id} = route.params;
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior */}
@@ -45,7 +43,17 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         {/* Botón de pago */}
         <TouchableOpacity
           style={styles.payButton}
-          onPress={() => navigation.navigate('Pago')}
+          onPress={() => {
+            // Visualizar usuario_id y plan_id en la consola
+            console.log("usuario_id:", usuario_id);
+            console.log("plan_id:", item.plan_id);
+
+            // Navegar a la pantalla de pago
+            navigation.navigate('Pago', {
+              plan_id: item.plan_id,
+              usuario_id: usuario_id,
+            });
+          }}
         >
           <Text style={styles.payButtonText}>Pagar Plan</Text>
         </TouchableOpacity>

@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { SafeAreaView, Modal, Button, Image, View, Text, TextInput, TouchableOpacity, Alert, ScrollView, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import visa from '../../../assets/visa.png';
 import master from '../../../assets/master.png';
@@ -10,6 +11,8 @@ import yape from '../../../assets/yape.png';
 
 const PaymentScreen = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const {plan_id, usuario_id } = route.params;
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -102,40 +105,70 @@ const PaymentScreen = () => {
 
   const handlePay = async () => {
     if (validateFields()) {
-      const paymentData = {
-        estado: 'Completado',
-        metodo_pago: cardNumber ? 'Tarjeta' : 'Yape', // Metodo de pago
-        fecha_pago: new Date().toISOString().split('T')[0], // Obtener fecha en formato YYYY-MM-DD
-      };
-  
-      try {
-        const response = await fetch('http://192.168.18.12:8000/back/crear_pago', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(paymentData),
-        });
-  
-        const result = await response.json();
-  
-        if (response.ok) {
-          setModalMessage('Tu pago ha sido procesado exitosamente');
-          setModalVisible(true);
+        const paymentData = {
+            estado: 'Completado',
+            metodo_pago: cardNumber ? 'Tarjeta' : 'Yape',
+            fecha_pago: new Date().toISOString().split('T')[0],
+        };
 
-          setTimeout(() => {
-            navigation.navigate('Menu'); // Redirige al Menu
-          }, 2000); // Espera 2 segundos
-        } else {
-          setModalMessage(result.error || 'Error al procesar el pago');
-          setModalVisible(true);
+        try {
+            const response = await fetch('http://127.0.0.1:8000/back/crear_pago', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(paymentData),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                const pago_id = result.pago_id;
+                console.log("usuario_id:", usuario_id);
+                console.log("plan_id:", plan_id);
+                console.log("pago_id:", pago_id);
+
+                const gestorPlanData = {
+                    usuario_id: usuario_id,
+                    plan_id: plan_id,
+                    pago_id: pago_id,
+                };
+
+                const gestorPlanResponse = await fetch('http://127.0.0.1:8000/back/gestor_plan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(gestorPlanData),
+                });
+
+                const gestorPlanResult = await gestorPlanResponse.json();
+
+                if (gestorPlanResponse.ok) {
+                    setModalMessage('Tu pago ha sido procesado y registrado exitosamente.');
+                    setModalVisible(true);
+
+                    setTimeout(() => {
+                        navigation.navigate('Menu');
+                    }, 2000);
+                } else {
+                    console.error('Error al registrar el GestorPlan:', gestorPlanResult);
+                    setModalMessage(gestorPlanResult.error || 'Error al registrar el GestorPlan');
+                    setModalVisible(true);
+                }
+            } else {
+                console.error('Error al procesar el pago:', result);
+                setModalMessage(result.error || 'Error al procesar el pago');
+                setModalVisible(true);
+            }
+        } catch (error) {
+            console.error('Error de conexión:', error);
+            setModalMessage('Error de conexión. Intenta nuevamente.');
+            setModalVisible(true);
         }
-      } catch (error) {
-        setModalMessage('Error de conexión. Intenta nuevamente.');
-        setModalVisible(true);
-      }
     }
-  };
+};
+  
 
   return (
     <SafeAreaView style={styles.container}>

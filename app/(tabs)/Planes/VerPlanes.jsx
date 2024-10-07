@@ -1,30 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import PlanItem from './PlanItem';
 
 const PantallaVerPlanes = ({ navigation }) => {
+  const [userData, setUserData] = useState(null);
   const [planesData, setPlanesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPlanes = async () => {
+    const getUserData = async () => {
       try {
-        const response = await fetch('http://192.168.18.12:8000/back/planesRecojo');
-        if (!response.ok) {
-          throw new Error('Error en la carga de los datos');
+        const jsonUserData = await AsyncStorage.getItem('userData');
+        if (jsonUserData !== null) {
+          setUserData(JSON.parse(jsonUserData));
         }
-        const data = await response.json();
-        setPlanesData(data);
       } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
+        console.error('Error al recuperar los datos del usuario:', error);
       }
     };
 
-    fetchPlanes();
-  }, []);
+    getUserData(); 
+  }, []); // Este efecto solo se ejecuta una vez al montar el componente
+
+  useEffect(() => {
+    if (userData) { // Solo se ejecuta si userData no es nulo
+      const fetchPlanes = async () => {
+        try {
+          const response = await fetch('http://127.0.0.1:8000/back/planesRecojo');
+          if (!response.ok) {
+            throw new Error('Error en la carga de los datos');
+          }
+          const data = await response.json();
+          setPlanesData(data);
+        } catch (error) {
+          console.error('Error al recuperar planes:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchPlanes();
+    } else {
+      setLoading(false); // Si no hay userData, no esperes los planes
+    }
+  }, [userData]); // Este efecto depende de userData
+
+  if (!userData) {
+    return <Text>Cargando...</Text>; 
+  }
 
   if (loading) {
     return (
@@ -50,14 +75,16 @@ const PantallaVerPlanes = ({ navigation }) => {
       {/* Lista de planes */}
       <FlatList
         data={planesData}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.plan_id.toString()}
         renderItem={({ item }) => (
           <PlanItem
             nombre={item.nombre}
-            descripcion={item.descripcion}
-            precio={item.precio}
             imagen={item.imagen}
-            onPress={() => navigation.navigate('VerPlan', { item })} // Navegar al plan específico
+            precio={item.precio}
+            descripcion={item.descripcion}
+            onPress={() => navigation.navigate('VerPlan', { 
+              item, usuario_id : userData.usuario_id
+            })} // Navegar al plan específico
           />
         )}
         contentContainerStyle={styles.listaContenido}
