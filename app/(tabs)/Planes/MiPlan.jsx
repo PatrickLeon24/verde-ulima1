@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import PlanItem from './PlanItem';
-import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PantallaPlan = ({ navigation }) => {
-  const [planActual, setPlanActual] = useState(null);  // Plan actual del usuario
-  const [planesData, setPlanesData] = useState([]);    // Todos los planes
+  const [planActual, setPlanActual] = useState(null);
+  const [planesData, setPlanesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
 
-  // Obtener los datos del usuario desde AsyncStorage
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -18,7 +17,7 @@ const PantallaPlan = ({ navigation }) => {
         if (jsonUserData !== null) {
           setUserData(JSON.parse(jsonUserData));
         } else {
-          setUserData(null); // Reiniciar si no hay datos
+          setUserData(null);
         }
       } catch (error) {
         console.error('Error al recuperar los datos del usuario:', error);
@@ -26,15 +25,14 @@ const PantallaPlan = ({ navigation }) => {
     };
 
     const unsubscribe = navigation.addListener('focus', () => {
-      getUserData(); // Llamar cuando la pantalla gana foco
+      getUserData();
     });
 
-    getUserData(); // También llamar al cargar el componente
+    getUserData();
 
-    return unsubscribe; // Limpia el evento al desmontar el componente
+    return unsubscribe;
   }, [navigation]);
 
-  // Usar el ID del usuario para obtener el plan actual
   useEffect(() => {
     const fetchPlanActual = async () => {
       if (userData) {
@@ -45,18 +43,15 @@ const PantallaPlan = ({ navigation }) => {
           }
           const data = await response.json();
           setPlanActual(data);
-           // Guardar los datos del plan actual
         } catch (error) {
           console.error('Error al cargar el plan actual del usuario:', error);
         }
       }
-      
     };
 
     fetchPlanActual();
   }, [userData]);
 
-  // Obtener todos los planes disponibles
   useEffect(() => {
     const fetchPlanes = async () => {
       try {
@@ -84,9 +79,13 @@ const PantallaPlan = ({ navigation }) => {
     );
   }
 
+  // Filtrar los planes para que no se muestre el planActual
+  const planesDisponibles = planActual
+    ? planesData.filter(plan => plan.plan_id !== planActual.plan_id)
+    : planesData;
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* Barra superior verde */}
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
@@ -94,7 +93,6 @@ const PantallaPlan = ({ navigation }) => {
         <Text style={styles.textoBarra}>Mi plan</Text>
       </View>
 
-      {/* Información del plan actual */}
       {planActual ? (
         <PlanItem
           nombre={planActual.nombre}
@@ -102,9 +100,7 @@ const PantallaPlan = ({ navigation }) => {
           precio={planActual.precio}
           imagen={planActual.imagen}
           onPress={() => navigation.navigate('VerPlan', { item: planActual })}
-          
         />
-        
       ) : (
         <Text>No tienes un plan contratado actualmente.</Text>
       )}
@@ -113,11 +109,8 @@ const PantallaPlan = ({ navigation }) => {
         <Text style={styles.buttonText}>¿Quieres cambiar de plan?</Text>
       </View>
 
-      {/* Mostrar todos los planes disponibles */}
-       {/* Lista de planes */}
-       {/* Lista de planes */}
       <FlatList
-        data={planesData}
+        data={planesDisponibles}
         keyExtractor={(item) => item.plan_id.toString()}
         renderItem={({ item }) => (
           <PlanItem
@@ -125,12 +118,11 @@ const PantallaPlan = ({ navigation }) => {
             descripcion={item.descripcion}
             precio={item.precio}
             imagen={item.imagen}
-            onPress={() => navigation.navigate('VerPlan', { item })} // Navegar al plan específico
+            onPress={() => navigation.navigate('VerPlan', { item })}
           />
         )}
         contentContainerStyle={styles.listaContenido}
       />
-      
     </SafeAreaView>
   );
 };
