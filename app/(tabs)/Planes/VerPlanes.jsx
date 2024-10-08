@@ -28,7 +28,7 @@ const PantallaVerPlanes = ({ navigation }) => {
     if (userData) { // Solo se ejecuta si userData no es nulo
       const fetchPlanes = async () => {
         try {
-          const response = await fetch('http://192.168.18.12:8000/back/planesRecojo');
+          const response = await fetch('http://127.0.0.1:8000/back/planesRecojo');
           if (!response.ok) {
             throw new Error('Error en la carga de los datos');
           }

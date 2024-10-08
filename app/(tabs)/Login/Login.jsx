@@ -23,7 +23,7 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://192.168.18.12:8000/back/iniciar_sesion', {
+      const response = await fetch('http://127.0.0.1:8000/back/iniciar_sesion', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

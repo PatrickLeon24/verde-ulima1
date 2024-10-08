@@ -17,7 +17,7 @@ const RecojoActivoList = () => {
   // Función para obtener los datos de recojos activos
   const fetchAdminData = async () => {
     try {
-      const response = await fetch('http://192.168.18.12:8000/back/obtener_recojos');
+      const response = await fetch('http://127.0.0.1:8000/back/obtener_recojos');
       if (!response.ok) {
         throw new Error(`Error en la respuesta: ${response.status}`);
       }

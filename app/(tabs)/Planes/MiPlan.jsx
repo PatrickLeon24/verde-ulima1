@@ -37,7 +37,7 @@ const PantallaPlan = ({ navigation }) => {
     const fetchPlanActual = async () => {
       if (userData) {
         try {
-          const response = await fetch(`http://192.168.18.12:8000/back/planes/${userData.usuario_id}/`);
+          const response = await fetch(`http://127.0.0.1:8000/back/planes/${userData.usuario_id}/`);
           if (!response.ok) {
             throw new Error('Error en la carga del plan actual del usuario');
           }
