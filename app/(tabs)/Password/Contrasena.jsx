@@ -26,7 +26,7 @@ const ChangePasswordScreen = ({navigation}) => {
     });
   
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/guardar_cambio_contrasena', {
+      const response = await fetch('http://192.168.18.12:8000/back/guardar_cambio_contrasena', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

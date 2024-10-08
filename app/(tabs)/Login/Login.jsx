@@ -23,27 +23,35 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/iniciar_sesion', {
-        method: 'POST', // Asegúrate de que sea POST
+      const response = await fetch('http://192.168.18.12:8000/back/iniciar_sesion', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, contrasena: password }), // Aquí envías los datos
+        body: JSON.stringify({ email, contrasena: password }),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('Error del servidor:', errorData); // Log de error
         setModalMessage(errorData.message || 'Error en el inicio de sesión');
         setModalVisible(true);
         return;
       }
-
+  
       const data = await response.json();
-      
-      // Si las credenciales son correctas, guarda los datos del usuario y navega al menú
-      storeUserData(data);
-      navigation.navigate('Menu');
-
+      console.log('Datos del usuario desde el servidor:', data); 
+  
+      // Pasar tipousuario
+      if (data.tipousuario) {
+        storeUserData(data);
+        navigation.navigate('Menu');
+      } else {
+        console.error('El tipo de usuario no está presente en los datos:', data);
+        setModalMessage('Error: el tipo de usuario no se encontró.');
+        setModalVisible(true);
+      }
+  
     } catch (error) {
       console.error('Error en la solicitud:', error);
       setModalMessage('Error de conexión. Intente nuevamente.');
