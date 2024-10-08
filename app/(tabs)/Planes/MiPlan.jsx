@@ -99,7 +99,7 @@ const PantallaPlan = ({ navigation }) => {
           descripcion={planActual.descripcion}
           precio={planActual.precio}
           imagen={planActual.imagen}
-          onPress={() => navigation.navigate('VerPlan', { item: planActual })}
+          onPress={() => navigation.navigate('VerPlan', { item: planActual, usuario_id : userData.usuario_id })}
         />
       ) : (
         <Text>No tienes un plan contratado actualmente.</Text>
@@ -118,7 +118,9 @@ const PantallaPlan = ({ navigation }) => {
             descripcion={item.descripcion}
             precio={item.precio}
             imagen={item.imagen}
-            onPress={() => navigation.navigate('VerPlan', { item })}
+            onPress={() => navigation.navigate('VerPlan', { 
+              item, usuario_id : userData.usuario_id
+            })}
           />
         )}
         contentContainerStyle={styles.listaContenido}
