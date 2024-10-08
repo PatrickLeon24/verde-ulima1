@@ -74,14 +74,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#555',
   },
-  canjearContainer: {
-    paddingHorizontal: 20,
-    marginTop: 20,
-  },
-  canjearTexto: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
   inputCodigo: {
     borderBottomWidth: 1,
     borderBottomColor: '#000',

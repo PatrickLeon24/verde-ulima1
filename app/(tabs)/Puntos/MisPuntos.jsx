@@ -40,19 +40,6 @@ const MisPuntos = ({ navigation }) => {
           ))}
         </View>
       </ScrollView>
-
-      {/* Canjear Código */}
-      <View style={styles.canjearContainer}>
-        <Text style={styles.canjearTexto}>Canjear Código</Text>
-        <View style={styles.linea}></View>
-        <TextInput 
-          style={styles.inputCodigo}
-          placeholder="Ingresar Código. . ."
-        />
-        <TouchableOpacity style={styles.botonEnviar}>
-          <Text style={styles.textoBoton}>Enviar</Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
