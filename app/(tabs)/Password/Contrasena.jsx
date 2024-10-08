@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView, Moda
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
-const ChangePasswordScreen = ({navigation}) => {
+const ChangePasswordScreen = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -11,22 +11,21 @@ const ChangePasswordScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  // Función para cambiar la contraseña
   const handleChangePassword = async () => {
     if (newPassword !== confirmNewPassword) {
       setModalMessage('Las contraseñas no coinciden.');
       setModalVisible(true);
       return;
     }
-  
+
     console.log('Datos enviados:', {
       email: userData.email,
       contrasena_actual: currentPassword,
       nueva_contrasena: newPassword,
     });
-  
+
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/guardar_cambio_contrasena', {
+      const response = await fetch('http://192.168.18.12:8000/back/guardar_cambio_contrasena', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,25 +34,26 @@ const ChangePasswordScreen = ({navigation}) => {
           email: userData.email,
           contrasena_actual: currentPassword,
           nueva_contrasena: newPassword,
+          tipo_usuario: userData.tipousuario,
         }),
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         setModalMessage(errorData.error || 'Error al cambiar la contraseña');
         setModalVisible(true);
         return;
       }
-  
+
       const data = await response.json();
-      setModalMessage(data.mensaje);  // Mensaje de éxito
+      setModalMessage(data.mensaje); 
       setModalVisible(true);
-  
+
       // Limpiar los campos de contraseña después del éxito
       setCurrentPassword('');
       setNewPassword('');
       setConfirmNewPassword('');
-  
+
     } catch (error) {
       console.error('Error en la solicitud:', error);
       setModalMessage('Error de conexión. Intente nuevamente.');
@@ -61,7 +61,6 @@ const ChangePasswordScreen = ({navigation}) => {
     }
   };
 
-  // Cargar los datos del usuario de AsyncStorage
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -79,7 +78,7 @@ const ChangePasswordScreen = ({navigation}) => {
   }, []);
 
   if (!userData) {
-    return <Text>Cargando...</Text>; 
+    return <Text>Cargando...</Text>;
   }
 
   return (

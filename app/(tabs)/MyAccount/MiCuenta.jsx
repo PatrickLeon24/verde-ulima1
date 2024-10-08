@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
 const AccountScreen = ({ navigation }) => {
-  const [userData, setUserData] = useState(null); 
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -18,24 +18,31 @@ const AccountScreen = ({ navigation }) => {
       }
     };
 
-    getUserData(); 
-  }, []);
+    // Escuchar el evento de enfoque para obtener los datos actualizados
+    const unsubscribe = navigation.addListener('focus', () => {
+      getUserData();
+    });
 
-  // Función para manejar el cierre de sesión
+    getUserData(); // Cargar los datos cuando el componente se monta
+
+    return unsubscribe; // Limpiar el evento al desmontar el componente
+  }, [navigation]);
+
   const handleLogout = async () => {
     try {
-      await AsyncStorage.clear(); // Limpiar todos los datos almacenados
-      navigation.replace('Login'); // Redirigir al inicio de sesión y reemplazar la navegación
+      await AsyncStorage.clear();
+      navigation.replace('Login');
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
   };
 
   if (!userData) {
-    return <Text>Cargando...</Text>; 
+    return <Text>Cargando...</Text>;
   }
 
-  const { nombres, apellidos, direccion, DNI, email } = userData;
+  const { nombres, apellidos, direccion, DNI, email, tipousuario } = userData;
+  
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra Superior */}
@@ -88,19 +95,24 @@ const AccountScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* Sección de Servicios */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Servicios</Text>
-        <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText} onPress={() => navigation.navigate('MiPedido')}>Ver mi Pedido</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText} onPress={() => navigation.navigate('MiPlan')}>Ver mi Plan</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText} onPress={() => navigation.navigate('MisPuntos')}>Ver mis Puntos</Text>
-        </TouchableOpacity>
-      </View>
+      {/* Mostrar solo para tipo de usuario Cliente */}
+      {tipousuario === 'Cliente' && (
+        <View>
+          {/* Sección de Servicios */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Servicios</Text>
+            <TouchableOpacity style={styles.option}>
+              <Text style={styles.optionText} onPress={() => navigation.navigate('MiPedido')}>Ver mi Pedido</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
+              <Text style={styles.optionText} onPress={() => navigation.navigate('MiPlan')}>Ver mi Plan</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
+              <Text style={styles.optionText} onPress={() => navigation.navigate('MisPuntos')}>Ver mis Puntos</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
