@@ -1,13 +1,52 @@
-import React from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react'; // Importar useEffect y useState
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import HistorialItem from './HistorialItem'; // Importamos el componente del historial
 import data from './historial.json'; // Datos del historial
 import styles from './stylesMisPuntos'; // Importamos los estilos
-import saldo from './Saldo.json'; // Importamos los puntos desde Saldo.json
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Importar AsyncStorage
 
+const MisPuntos = ({ navigation }) => { // Quitar usuarioId como prop
+  const [puntosDisponibles, setPuntosDisponibles] = useState(0); // Estado para almacenar los puntos
+  const [usuarioId, setUsuarioId] = useState(null); // Estado para almacenar el ID del usuario
 
-const MisPuntos = ({ navigation }) => {
+  useEffect(() => {
+    // Función para obtener el ID del usuario desde AsyncStorage
+    const getUserId = async () => {
+      try {
+        const jsonUserData = await AsyncStorage.getItem('userData');
+        if (jsonUserData !== null) {
+          const userData = JSON.parse(jsonUserData);
+          setUsuarioId(userData.usuario_id); // Establecer el ID del usuario
+        }
+      } catch (error) {
+        console.error('Error al recuperar el ID del usuario:', error);
+      }
+    };
+
+    getUserId(); // Llamar a la función para obtener el ID del usuario
+  }, []); // Ejecutar este efecto una vez al montar el componente
+
+  useEffect(() => {
+    // Función para obtener el puntaje del usuario desde el backend
+    const fetchPuntos = async () => {
+      if (usuarioId) {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/back/puntos/${usuarioId}/`); // Reemplaza con la URL de tu backend
+          if (!response.ok) {
+            throw new Error('Error al obtener los puntos');
+          }
+          const data = await response.json();
+          setPuntosDisponibles(data.puntos); // Establecer los puntos en el estado
+        } catch (error) {
+          console.error('Error fetching puntos:', error);
+        }
+      }
+    };
+
+    fetchPuntos(); // Llamar a la función para obtener los puntos
+  }, [usuarioId]); // Ejecutar el efecto cuando usuarioId cambie
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior verde */}
@@ -22,8 +61,8 @@ const MisPuntos = ({ navigation }) => {
       <View style={styles.puntosContainer}>
         <Text style={styles.textoDisponibles}>Disponibles</Text>
         <View style={styles.puntos}>
-          {/*Puntos dinamicos*/}
-          <Text style={styles.numeroPuntos}>{saldo.puntosDisponibles}</Text> 
+          {/* Puntos dinámicos */}
+          <Text style={styles.numeroPuntos}>{puntosDisponibles}</Text> 
           <FontAwesome name="star" size={24} color="#000" />
         </View>
       </View>
@@ -43,6 +82,5 @@ const MisPuntos = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
 
 export default MisPuntos;
