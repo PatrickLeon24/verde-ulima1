@@ -22,7 +22,7 @@ const RegisterII = ({ navigation }) => {
   useEffect(() => {
     const fetchTiposUsuario = async () => {
       try {
-        const response = await fetch('http://192.168.18.12:8000/back/tipos-usuario'); // URL para obtener los tipos de usuario
+        const response = await fetch('http://10.48.201.68:8000/back/tipos-usuario'); // URL para obtener los tipos de usuario
         const data = await response.json();
         setTiposUsuario(data);
       } catch (error) {
@@ -46,7 +46,7 @@ const RegisterII = ({ navigation }) => {
     } else {
       // Enviar los datos al backend
       try {
-        const response = await fetch('http://127.0.0.1:8000/back/register', {
+        const response = await fetch('http://10.48.201.68:8000/back/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

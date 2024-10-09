@@ -104,7 +104,7 @@ const estilosPedi = StyleSheet.create({
         height: 90,
         position: 'absolute',
         top: -80,
-        left: -30,
+        left: 30,
     },  
       labelx: {
         fontSize: 11,

@@ -13,7 +13,7 @@ const PantallaPuntos = ({navigation}) => {
   useEffect(() => {
     const fetchPlanes = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/back/cupones');
+        const response = await fetch('http://10.48.201.68:8000/back/cupones');
         if (!response.ok) {
           throw new Error('Error en la carga de los datos');
         }
