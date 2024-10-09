@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import {Text, StyleSheet, ScrollView , TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Button } from 'react-native';
 
-// Componente para mostrar los recojos activos
 const RecojoActivoCard = ({ nombre, apellido, plan, fecha_ingreso, onPress }) => (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
-      <Text style={styles.cardTitle}>Recojo Activo</Text>
-      <Text style={styles.cardText}>Usuario: {nombre} {apellido}</Text>
-      <Text style={styles.cardText}>Plan: {plan}</Text>
-      <Text style={styles.cardText}>Fecha ingreso: {fecha_ingreso}</Text>
-    </TouchableOpacity>
-  );
+  <TouchableOpacity style={styles.card} onPress={onPress}>
+    <Text style={styles.cardTitle}>Recojo Activo</Text>
+    <Text style={styles.cardText}>Usuario: {nombre} {apellido}</Text>
+    <Text style={styles.cardText}>Plan: {plan}</Text>
+    <Text style={styles.cardText}>Fecha ingreso: {fecha_ingreso}</Text>
+  </TouchableOpacity>
+);
 
 const RecojoActivoList = () => {
   const [adminData, setAdminData] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  // Función para obtener los datos de recojos activos
   const fetchAdminData = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/back/obtener_recojos');
@@ -28,10 +28,14 @@ const RecojoActivoList = () => {
     }
   };
 
-  // Llamar a la función cuando el componente se monte
   useEffect(() => {
     fetchAdminData();
   }, []);
+
+  const handleCardPress = (recojo) => {
+    setSelectedUser(recojo);
+    setModalVisible(true); 
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -43,40 +47,82 @@ const RecojoActivoList = () => {
             apellido={recojo.apellido}
             plan={recojo.gestorplan__plan__nombre}
             fecha_ingreso={recojo.gestorplan__recojo__fecha_ingreso}
+            onPress={() => handleCardPress(recojo)}
           />
         ))
       ) : (
         <Text>No hay recojos activos para mostrar.</Text>
       )}
+
+      {/* Modal para mostrar la información del usuario */}
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        transparent={true}
+      >
+        <View style={styles.modalBackground}>
+          <View style={styles.modalContainer}>
+            {selectedUser && (
+              <>
+                <Text style={styles.modalTitle}>Detalles del Usuario</Text>
+                <Text>Nombre: {selectedUser.nombre}</Text>
+                <Text>Apellido: {selectedUser.apellido}</Text>
+                <Text>Dni: {selectedUser.DNI}</Text>
+                <Text>Celular: {selectedUser.numero_contacto}</Text>
+                <Text>Direccion: {selectedUser.direccion}</Text>
+                <Text>Plan: {selectedUser.gestorplan__plan__nombre}</Text>
+                <Text>Fecha de ingreso: {selectedUser.gestorplan__recojo__fecha_ingreso}</Text>
+                <Text> </Text>
+
+                <Button title="Cerrar" onPress={() => setModalVisible(false)} />
+              </>
+            )}
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 };
 
-// Estilos para el componente de tarjeta
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 20,
   },
   card: {
-    backgroundColor: '#fff',
     padding: 15,
     marginVertical: 10,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 5,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
   },
   cardTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 5,
   },
   cardText: {
     fontSize: 16,
-    marginBottom: 3,
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+  },
+  modalContainer: {
+    width: '80%', 
+    backgroundColor: 'white', 
+    borderRadius: 10,
+    padding: 20,
+    elevation: 5, 
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
 });
 
 export default RecojoActivoList;
+
+
