@@ -49,7 +49,7 @@ const PantallaPedido = ({ navigation }) => {
 
   // Actualizar la posición del carrito en función del estado del pedido
   useEffect(() => {
-    switch (estadoPedido) {
+    switch (+estadoPedido) {
       case 1:
         setPosicionCarrito(0); // Primera posición
         break;
