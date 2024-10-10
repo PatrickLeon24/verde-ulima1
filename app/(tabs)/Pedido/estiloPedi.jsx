@@ -249,6 +249,7 @@ const estilosPedi = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 15,
         marginBottom: 20,
+        marginHorizontal: 30,
       },
       cuadratexto: {
         backgroundColor: 'white',

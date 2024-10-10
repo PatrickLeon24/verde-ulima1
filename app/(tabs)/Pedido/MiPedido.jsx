@@ -81,33 +81,32 @@ const PantallaPedido = ({ navigation }) => {
       <View style={styles.container2}>
         {/* Información del Paquete */}
         <View style={styles.cuadra}>
-          <Text style={styles.cuadratexto}>Pedido: <Text style={styles.cuadratextodeltexto}>COS410XXXX</Text></Text>
-          <Text style={styles.cuadratexto}>Cliente: <Text style={styles.cuadratextodeltexto}>Nombre del Cliente</Text></Text>
-          <Text style={styles.cuadratexto}>Estado: <Text style={styles.cuadratextodeltexto}>Completado</Text></Text>
+          
+          <Text style={styles.cuadratexto}>ESTADO DEL PEDIDO</Text>
         </View>
 
         {/* Detalles de Seguimiento Manuales */}
         <View style={styles.stepRow}>
           <View style={[styles.dot, estadoPedido >= 1 && { backgroundColor: 'green' }]} />  
           <View style={styles.stepContainer}>
-            <Text style={styles.stepTitle}>Compra realizada</Text>
-            <Text style={styles.stepDescription}>Tu paquete ha sido creado en nuestro sistema.</Text>
+            <Text style={styles.stepTitle}>Solicitud Recibida</Text>
+            <Text style={styles.stepDescription}>Su servicio ha sido creado en nuestro sistema.</Text>
           </View>
         </View>
 
         <View style={styles.stepRow}>
           <View style={[styles.dot, estadoPedido >= 2 && { backgroundColor: 'green' }]} />  
           <View style={styles.stepContainer}>
-            <Text style={styles.stepTitle}>En Bodega</Text>
-            <Text style={styles.stepDescription}>Tu paquete ha llegado a nuestro centro de distribución.</Text>
+            <Text style={styles.stepTitle}>En Preparación</Text>
+            <Text style={styles.stepDescription}>Su servicio ha llegado a nuestro centro de distribución.</Text>
           </View>
         </View>
 
         <View style={styles.stepRow}>
           <View style={[styles.dot, estadoPedido >= 3 && { backgroundColor: 'green' }]} />  
           <View style={styles.stepContainer}>
-            <Text style={styles.stepTitle}>En ruta</Text>
-            <Text style={styles.stepDescription}>Tu paquete está en camino, te llamaremos cuando estemos cerca.</Text>
+            <Text style={styles.stepTitle}>En camino</Text>
+            <Text style={styles.stepDescription}>Su servicio está en camino, te llamaremos cuando estemos cerca.</Text>
           </View>
         </View>
 
@@ -115,7 +114,7 @@ const PantallaPedido = ({ navigation }) => {
           <View style={[styles.dot, estadoPedido >= 4 && { backgroundColor: 'green' }]} />  
           <View style={styles.stepContainer}>
             <Text style={styles.stepTitle}>Entregado</Text>
-            <Text style={styles.stepDescription}>Tu paquete ha sido entregado exitosamente.</Text>
+            <Text style={styles.stepDescription}>Su servicio ha sido entregado exitosamente.</Text>
           </View>
         </View>
       </View>
