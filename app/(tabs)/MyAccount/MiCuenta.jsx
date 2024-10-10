@@ -76,9 +76,9 @@ const AccountScreen = ({ navigation }) => {
         <View style={styles.container2}>
           <Text style={styles.titu2}>Información Personal</Text>
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPerfil')}>
-            <Ionicons name="create-outline" size={12} color="gray"/>  
+            {/*<Ionicons name="create-outline" size={12} color="gray"/>*/}
             <Text style={styles.menuText2}>Editar Perfil</Text> 
-            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
+            {/*<Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>*/}
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('Contrasena')}>  

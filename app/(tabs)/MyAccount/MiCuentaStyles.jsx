@@ -87,14 +87,12 @@ const MiCuentaStyles = StyleSheet.create({
       textAlign: 'center', // Asegura que el texto esté centrado
     },
     container2: {
-      flex: 1,
-      backgroundColor: '#FFF',
-      padding: 20,
+      padding: 15,
       borderColor: '#bcbec2',
       borderWidth: 1,
       borderRadius: 10,
       width: '90%',
-      marginBottom: 40,
+      marginBottom: 20,
     },
     menuItem2: {
       flexDirection: 'row',
