@@ -58,7 +58,7 @@ const AccountScreen = ({ navigation }) => {
       {/* Información del Usuario */}
         <View style={styles.userInfo}>
           <Image
-            source={require('../../../assets/images/xd.jpg')}
+            source={require('../../../assets/images/BOCAAA.jpg')}
             style={styles.userImage}
           />
           <View style={styles.userDetails}>

@@ -24,7 +24,7 @@ const MiCuentaStyles = StyleSheet.create({
       textAlign: 'center',
     },
     lineatitulo: {
-        borderBottomColor: '#34A853',
+        borderBottomColor: 'green',
         borderBottomWidth: 2,
         marginBottom: 16,
         alignSelf: 'center',
