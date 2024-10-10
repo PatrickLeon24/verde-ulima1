@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './MiCuentaStyles'
 
 const AccountScreen = ({ navigation }) => {
+
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -55,40 +56,41 @@ const AccountScreen = ({ navigation }) => {
       </View>
 
       {/* Información del Usuario */}
-
-      <View style={styles.userInfo}>
-        <Image
-          source={require('../../../assets/images/SAzRztbw_400x400.jpg')}
-          style={styles.userImage}
-        />
-        <View style={styles.userDetails}>
-          <Text style={styles.userName}>{nombres} {apellidos}</Text>
-          <Text style={styles.userInfoText}>DNI: {DNI}</Text>
-          <Text style={styles.userInfoText}>Dirección: {direccion}</Text>
-          <Text style={styles.userInfoText}>Email: {email}</Text>
+        <View style={styles.userInfo}>
+          <Image
+            source={require('../../../assets/images/xd.jpg')}
+            style={styles.userImage}
+          />
+          <View style={styles.userDetails}>
+            <Text style={styles.userName}>{nombres} {apellidos}</Text>
+            <View style={styles.lineatitulo} />
+            <Text style={styles.userInfoText}>DNI: {DNI}</Text>
+            <Text style={styles.userInfoText}>Dirección: {direccion}</Text>
+            <Text style={styles.userInfoText}>Email: {email}</Text>
+          </View>
         </View>
-      </View>
+     
 
       {/* Sección de Información Personal */}
       <View style={styles.section}>
         <View style={styles.container2}>
           <Text style={styles.titu2}>Información Personal</Text>
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPerfil')}>
-            <Ionicons name="create-outline" size={24} color="gray"/>  
+            <Ionicons name="create-outline" size={12} color="gray"/>  
             <Text style={styles.menuText2}>Editar Perfil</Text> 
-            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/>
+            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('Contrasena')}>  
-            < Ionicons name="lock-closed" size={24} color="gray"/>
+            < Ionicons name="lock-closed" size={12} color="gray"/>
             <Text style={styles.menuText2}>Cambiar Contraseña</Text> 
-            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/>
+            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem3} onPress={handleLogout}>  
-            <Ionicons name="log-out-outline" size={24} color="gray"/>
+            <Ionicons name="log-out-outline" size={12} color="gray"/>
             <Text style={styles.menuText3}>Cerrar Sesión</Text> 
-            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/> 
+            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/> 
           </TouchableOpacity>
         </View>
 
@@ -98,21 +100,21 @@ const AccountScreen = ({ navigation }) => {
         <View style={styles.container2}>
           <Text style={styles.titu2}>Servicios</Text>
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPedido')}>
-            <Ionicons name="cart" size={24} color="gray"/>  
+            <Ionicons name="cart" size={12} color="gray"/>  
             <Text style={styles.menuText2}>Ver mi Pedido</Text> 
-            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/>
+            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPlan')}>  
-            < Ionicons name="reader-outline" size={24} color="gray"/>
+            < Ionicons name="reader-outline" size={12} color="gray"/>
             <Text style={styles.menuText2}>Ver mi Plan</Text> 
-            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/>
+            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem3} onPress={() => navigation.navigate('MisPuntos')}>  
-            <Ionicons name="ticket-sharp" size={24} color="gray"/>
+            <Ionicons name="ticket-sharp" size={12} color="gray"/>
             <Text style={styles.menuText2}>Ver mis Puntos</Text> 
-            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/> 
+            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/> 
           </TouchableOpacity>
         </View>
         )}

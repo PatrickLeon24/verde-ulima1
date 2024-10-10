@@ -23,27 +23,37 @@ const MiCuentaStyles = StyleSheet.create({
       fontWeight: 'bold',
       textAlign: 'center',
     },
+    lineatitulo: {
+        borderBottomColor: '#34A853',
+        borderBottomWidth: 2,
+        marginBottom: 16,
+        alignSelf: 'center',
+        width: '100%',
+    },
     userInfo: {
-      flexDirection: 'row',
+      //flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
       marginVertical: 16,
     },
     userImage: {
-      width: 50,
-      height: 50,
-      borderRadius: 25,
-      marginRight: 12,
+      width: 150,
+      height: 150,
+      borderRadius: 75,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 15,
     },
     userDetails: {
       alignItems: 'center',
     },
     userName: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: 28,
+      fontWeight: '600',
+      paddingBottom: 10,
     },
     userInfoText: {
-      fontSize: 14,
+      fontSize: 18,
       color: 'gray',
     },
     section: {
@@ -84,7 +94,7 @@ const MiCuentaStyles = StyleSheet.create({
       borderWidth: 1,
       borderRadius: 10,
       width: '90%',
-      marginBottom: 20,
+      marginBottom: 40,
     },
     menuItem2: {
       flexDirection: 'row',
@@ -99,19 +109,19 @@ const MiCuentaStyles = StyleSheet.create({
       paddingTop: 15,
     },
     menuText2: {
-      fontSize: 20,
+      fontSize: 12,
       marginLeft: 10,
       color: '#000',
     },
     menuText3: {
-        fontSize: 20,
+        fontSize: 12,
         marginLeft: 10,
         color: 'red',
       },
 
     titu2: {
       color: 'green',
-      fontSize: 28,
+      fontSize: 12,
       borderBottomWidth: 1,
       borderBottomColor: '#bcbec2',
       paddingBottom: 12,

@@ -4,7 +4,7 @@ const estilosPedi = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: 'white',
-      paddingVertical: 40
+      paddingVertical: 40,
     },
     button: {
       backgroundColor: 'white', // Color del botón
@@ -69,9 +69,12 @@ const estilosPedi = StyleSheet.create({
       width: '100%',
     },
     dot: {
+        marginTop: 32,
+        marginRight: 15,
         width: 28,
         height: 28,
         borderRadius: 14,
+        marginLeft: 15,
       backgroundColor: '#000', // Color negro para los puntos
     },
     dotlast: {
@@ -117,6 +120,150 @@ const estilosPedi = StyleSheet.create({
         left: 20,
         paddingTop: 10,
         justifyContent: 'flex-end'
+      },
+      contenidoja: {
+        marginBottom: 20,
+        padding: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
+      },
+      labelja: {
+        fontWeight: 'bold',
+        color: '#444',
+      },
+      valueja: {
+        fontWeight: 'normal',
+        color: '#666',
+      },
+
+      //- - - 
+      container2: {
+        flex: 1,
+        padding: 20,
+        backgroundColor: '#f9f9f9',
+        paddingHorizontal: 90,
+      },
+      packageInfo: {
+        marginBottom: 20,
+        padding: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
+      },
+      label: {
+        fontWeight: 'bold',
+        color: '#444',
+      },
+      value: {
+        fontWeight: 'normal',
+        color: '#666',
+      },
+      stepRow: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 15,
+      },
+      stepContainer: {
+        flex: 1,
+        padding: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
+      },
+      stepTitle: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: '#444',
+      },
+      stepDescription: {
+        marginTop: 5,
+        fontSize: 14,
+        color: '#666',
+      },
+      stepTime: {
+        marginTop: 5,
+        fontSize: 12,
+        color: '#999',
+      },
+      stepRow: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 15,
+      },
+      circleAndLine: {
+        alignItems: 'center',
+      },
+      circle: {
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        backgroundColor: '#6a1b9a', // Color morado del círculo
+        marginTop: 8, // Para alinear con el texto
+      },
+      line: {
+        width: 12, // Ancho del conector
+        height: 12, // Altura de la línea debajo del círculo
+        backgroundColor: 'black',
+        marginTop: 14, // Espacio entre el círculo y la línea
+        marginBottom: 10,
+      },
+      stepContainer: {
+        flex: 1,
+        padding: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
+      },
+      stepTitle: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: '#444',
+      },
+      stepDescription: {
+        marginTop: 5,
+        fontSize: 14,
+        color: '#666',
+      },
+      stepTime: {
+        marginTop: 5,
+        fontSize: 12,
+        color: '#999',
+      },
+      cuadra: {
+        backgroundColor: '#d0d3d9',
+        paddingHorizontal: 30,
+        paddingTop: 20,
+        paddingBottom: 10,
+        borderRadius: 15,
+        marginBottom: 20,
+      },
+      cuadratexto: {
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 15,
+        marginBottom: 15,
+        color: '#34A853',
+        fontWeight: '500',
+        fontSize: 18,
+      },
+      cuadratextodeltexto: {
+        fontSize: 18,
+        color: 'black',
+        fontWeight: '100',
+        marginLeft: 'auto',
       }
   });
 

@@ -78,54 +78,55 @@ const PantallaPedido = ({ navigation }) => {
         <Text style={styles.textoBarra}>Mi Pedido</Text>
       </View>
       
-      <View style={styles.contEst}>
-        <View style={styles.boxEst}>
-          <Text style={styles.textoEst}>Estado de mi Pedido</Text>
+      
+
+      <View style={styles.container2}>
+        {/* Información del Paquete */}
+        <View style={styles.cuadra}>
+          <Text style={styles.cuadratexto}>Pedido: <Text style={styles.cuadratextodeltexto}>COS410XXXX</Text></Text>
+          <Text style={styles.cuadratexto}>Cliente: <Text style={styles.cuadratextodeltexto}>Nombre del Cliente</Text></Text>
+          <Text style={styles.cuadratexto}>Estado: <Text style={styles.cuadratextodeltexto}>Completado</Text></Text>
         </View>
-        
-        <View style={styles.contPed}>
-          {/* Línea de progreso */}
-          <View style={styles.linPed} />
 
-          {/* Dots y carrito */}
-          <View style={styles.dotContainer}>
-            {/* Carrito en la posición */}
-            <Image
-              source={carrogolf}
-              style={[
-                styles.truckIcon,
-                { left: `${posicionCarrito * 25}%` } // Ajustar la posición del carrito
-              ]}
-            />
+        {/* Detalles de Seguimiento Manuales */}
+        <View style={styles.stepRow}>
+          <View style={[styles.dot, estadoPedido >= 1 && { backgroundColor: 'green' }]} />  
+          <View style={styles.stepContainer}>
+            <Text style={styles.stepTitle}>Compra realizada</Text>
+            <Text style={styles.stepDescription}>Tu paquete ha sido creado en nuestro sistema.</Text>
+            <Text style={styles.stepTime}>13-07-2022 08:28:48</Text>
+          </View>
+        </View>
 
-            {/* Botón 1: Solicitud Recibida */}
-            <View>
-              <View style={[styles.dot, estadoPedido >= 1 && { backgroundColor: 'green' }]} />
-              <Text style={styles.labelx}>Solicitud</Text>
-              <Text style={styles.labelx}>Recibida</Text>
-            </View>
+        <View style={styles.stepRow}>
+          <View style={[styles.dot, estadoPedido >= 2 && { backgroundColor: 'green' }]} />  
+          <View style={styles.stepContainer}>
+            <Text style={styles.stepTitle}>En Bodega</Text>
+            <Text style={styles.stepDescription}>Tu paquete ha llegado a nuestro centro de distribución.</Text>
+            <Text style={styles.stepTime}>13-07-2022 14:40:59</Text>
+          </View>
+        </View>
 
-            {/* Botón 2: Preparación */}
-            <View>
-              <View style={[styles.dot, estadoPedido >= 2 && { backgroundColor: 'green' }]} />
-              <Text style={styles.labelx}>Preparación</Text>
-            </View>
+        <View style={styles.stepRow}>
+          <View style={[styles.dot, estadoPedido >= 3 && { backgroundColor: 'green' }]} />  
+          <View style={styles.stepContainer}>
+            <Text style={styles.stepTitle}>En ruta</Text>
+            <Text style={styles.stepDescription}>Tu paquete está en camino, te llamaremos cuando estemos cerca.</Text>
+            <Text style={styles.stepTime}>13-07-2022 15:26:06</Text>
+          </View>
+        </View>
 
-            {/* Botón 3: En camino */}
-            <View>
-              <View style={[styles.dot, estadoPedido >= 3 && { backgroundColor: 'green' }]} />
-              <Text style={styles.labelx}>En</Text>
-              <Text style={styles.labelx}>Camino</Text>
-            </View>
-
-            {/* Botón 4: Entregado */}
-            <View>
-              <View style={[styles.dotlast, estadoPedido >= 4 && { backgroundColor: 'green' }]} />
-              <Text style={styles.labellast}>Entregado</Text>
-            </View>
+        <View style={styles.stepRow}>
+          <View style={[styles.dot, estadoPedido >= 4 && { backgroundColor: 'green' }]} />  
+          <View style={styles.stepContainer}>
+            <Text style={styles.stepTitle}>Entregado</Text>
+            <Text style={styles.stepDescription}>Tu paquete ha sido entregado exitosamente.</Text>
+            <Text style={styles.stepTime}>13-07-2022 20:49:49</Text>
           </View>
         </View>
       </View>
+
+    
 
       {/* Modal de error */}
       <Modal
@@ -146,3 +147,93 @@ const PantallaPedido = ({ navigation }) => {
 };
 
 export default PantallaPedido;
+
+//<View style={styles.stepRow}>
+//        <View style={styles.circleAndLine}>
+//          <View style={styles.dot} />
+//          <View style={styles.line} />
+//          <View style={styles.line} />
+//          
+//        </View>
+//        <View style={styles.stepContainer}>
+//          <Text style={styles.stepTitle}>Compra realizada</Text>
+//          <Text style={styles.stepDescription}>Tu paquete ha sido creado en nuestro sistema.</Text>
+//          <Text style={styles.stepTime}>13-07-2022 08:28:48</Text>
+//        </View>
+//      </View>
+//
+//      <View style={styles.stepRow}>
+//        <View style={styles.circleAndLine}>
+//        <View style={styles.dot} />
+//          <View style={styles.line} />
+//          <View style={styles.line} />
+//        </View>
+//        <View style={styles.stepContainer}>
+//          <Text style={styles.stepTitle}>En Bodega</Text>
+//          <Text style={styles.stepDescription}>Tu paquete ha llegado a nuestro centro de distribución.</Text>
+//          <Text style={styles.stepTime}>13-07-2022 14:40:59</Text>
+//        </View>
+//      </View>
+//
+//      <View style={styles.stepRow}>
+//        <View style={styles.circleAndLine}>
+//        <View style={styles.dot} />
+//          <View style={styles.line} />
+//          <View style={styles.line} />
+//        </View>
+//        <View style={styles.stepContainer}>
+//          <Text style={styles.stepTitle}>En ruta</Text>
+//          <Text style={styles.stepDescription}>Tu paquete está en camino, te llamaremos cuando estemos cerca.</Text>
+//          <Text style={styles.stepTime}>13-07-2022 15:26:06</Text>
+//        </View>
+//      </View>
+
+//<View style={styles.contEst}>
+//        <View style={styles.boxEst}>
+//          <Text style={styles.textoEst}>Estado de mi Pedido</Text>
+//        </View>
+//        
+//        <View style={styles.contPed}>
+//          {/* Línea de progreso */}
+//          <View style={styles.linPed} />
+//
+//          {/* Dots y carrito */}
+//          <View style={styles.dotContainer}>
+//            {/* Carrito en la posición */}
+//            <Image
+//              source={carrogolf}
+//              style={[
+//                styles.truckIcon,
+//                { left: `${posicionCarrito * 25}%` } // Ajustar la posición del carrito
+//              ]}
+//            />
+//
+//            {/* Botón 1: Solicitud Recibida */}
+//            <View>
+//              <View style={[styles.dot, estadoPedido >= 1 && { backgroundColor: 'green' }]} />
+//              
+//              <Text style={styles.labelx}>Solicitud</Text>
+//              <Text style={styles.labelx}>Recibida</Text>
+//            </View>
+//
+//            {/* Botón 2: Preparación */}
+//            <View>
+//              <View style={[styles.dot, estadoPedido >= 2 && { backgroundColor: 'green' }]} />
+//              <Text style={styles.labelx}>Preparación</Text>
+//            </View>
+//
+//            {/* Botón 3: En camino */}
+//            <View>
+//              <View style={[styles.dot, estadoPedido >= 3 && { backgroundColor: 'green' }]} />
+//              <Text style={styles.labelx}>En</Text>
+//              <Text style={styles.labelx}>Camino</Text>
+//            </View>
+//
+//            {/* Botón 4: Entregado */}
+//            <View>
+//              <View style={[styles.dotlast, estadoPedido >= 4 && { backgroundColor: 'green' }]} />
+//              <Text style={styles.labellast}>Entregado</Text>
+//            </View>
+//          </View>
+//        </View>
+//      </View>
