@@ -46,7 +46,7 @@ const RegisterII = ({ navigation }) => {
     } else {
       // Enviar los datos al backend
       try {
-        const response = await fetch('http://10.48.201.68:8000/back/register', {
+        const response = await fetch('http://127.0.0.1:8000/back/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

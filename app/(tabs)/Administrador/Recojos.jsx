@@ -40,7 +40,7 @@ const RecojoActivoList = () => {
 
   const handleEnviarRecojoId = async () => {
     try {
-      const response = await fetch('http://10.48.201.68:8000/back/consultar_recojo', {
+      const response = await fetch('http://127.0.0.1:8000/back/consultar_recojo', {
         method: 'POST', // o 'GET' dependiendo de lo que necesites
         headers: {
           'Content-Type': 'application/json',
