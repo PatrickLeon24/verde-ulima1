@@ -37,9 +37,9 @@ const MiCuentaStyles = StyleSheet.create({
       marginVertical: 16,
     },
     userImage: {
-      width: 150,
-      height: 150,
-      borderRadius: 75,
+      width: 100,
+      height: 100,
+      borderRadius: 50,
       alignItems: 'center',
       justifyContent: 'center',
       marginBottom: 15,
@@ -48,12 +48,12 @@ const MiCuentaStyles = StyleSheet.create({
       alignItems: 'center',
     },
     userName: {
-      fontSize: 28,
+      fontSize: 26,
       fontWeight: '600',
       paddingBottom: 10,
     },
     userInfoText: {
-      fontSize: 18,
+      fontSize: 16,
       color: 'gray',
     },
     section: {
@@ -107,19 +107,19 @@ const MiCuentaStyles = StyleSheet.create({
       paddingTop: 15,
     },
     menuText2: {
-      fontSize: 12,
+      fontSize: 16,
       marginLeft: 10,
       color: '#000',
     },
     menuText3: {
-        fontSize: 12,
+        fontSize: 16,
         marginLeft: 10,
         color: 'red',
       },
 
     titu2: {
       color: 'green',
-      fontSize: 12,
+      fontSize: 20,
       borderBottomWidth: 1,
       borderBottomColor: '#bcbec2',
       paddingBottom: 12,
