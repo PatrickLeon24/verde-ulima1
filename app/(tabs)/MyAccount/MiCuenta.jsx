@@ -58,12 +58,12 @@ const AccountScreen = ({ navigation }) => {
       {/* Información del Usuario */}
         <View style={styles.userInfo}>
           <Image
-            source={require('../../../assets/images/BOCAAA.jpg')}
+            source={require('../../../assets/images/xd.jpg')}
             style={styles.userImage}
           />
           <View style={styles.userDetails}>
             <Text style={styles.userName}>{nombres} {apellidos}</Text>
-            <View style={styles.lineatitulo} />
+            {/*<View style={styles.lineatitulo} />*/}
             <Text style={styles.userInfoText}>DNI: {DNI}</Text>
             <Text style={styles.userInfoText}>Dirección: {direccion}</Text>
             <Text style={styles.userInfoText}>Email: {email}</Text>
@@ -76,21 +76,21 @@ const AccountScreen = ({ navigation }) => {
         <View style={styles.container2}>
           <Text style={styles.titu2}>Información Personal</Text>
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPerfil')}>
-            <Ionicons name="create" size={12} color="gray"/>
+            <Ionicons name="create" size={16} color="gray"/>
             <Text style={styles.menuText2}>Editar Perfil</Text> 
-            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
+            <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('Contrasena')}>  
-            < Ionicons name="lock-closed" size={12} color="gray"/>
+            < Ionicons name="lock-closed" size={16} color="gray"/>
             <Text style={styles.menuText2}>Cambiar Contraseña</Text> 
-            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
+            <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem3} onPress={handleLogout}>  
-            <Ionicons name="log-out-outline" size={12} color="gray"/>
+            <Ionicons name="log-out-outline" size={16} color="gray"/>
             <Text style={styles.menuText3}>Cerrar Sesión</Text> 
-            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/> 
+            <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/> 
           </TouchableOpacity>
         </View>
 
@@ -100,21 +100,21 @@ const AccountScreen = ({ navigation }) => {
         <View style={styles.container2}>
           <Text style={styles.titu2}>Servicios</Text>
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPedido')}>
-            <Ionicons name="cart" size={12} color="gray"/>  
+            <Ionicons name="cart" size={16} color="gray"/>  
             <Text style={styles.menuText2}>Ver mi Pedido</Text> 
-            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
+            <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPlan')}>  
-            < Ionicons name="reader-outline" size={12} color="gray"/>
+            < Ionicons name="reader-outline" size={16} color="gray"/>
             <Text style={styles.menuText2}>Ver mi Plan</Text> 
-            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/>
+            <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem3} onPress={() => navigation.navigate('MisPuntos')}>  
-            <Ionicons name="ticket-sharp" size={12} color="gray"/>
+            <Ionicons name="ticket-sharp" size={16} color="gray"/>
             <Text style={styles.menuText2}>Ver mis Puntos</Text> 
-            <Ionicons name="chevron-forward-outline" size={12} color="gray" style={styles.flesha}/> 
+            <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/> 
           </TouchableOpacity>
         </View>
         )}

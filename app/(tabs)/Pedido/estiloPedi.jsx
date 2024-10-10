@@ -145,7 +145,7 @@ const estilosPedi = StyleSheet.create({
         flex: 1,
         padding: 20,
         backgroundColor: '#f9f9f9',
-        paddingHorizontal: 90,
+        paddingHorizontal: 20,
       },
       packageInfo: {
         marginBottom: 20,

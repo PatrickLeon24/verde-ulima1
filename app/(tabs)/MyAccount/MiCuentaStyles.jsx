@@ -31,7 +31,6 @@ const MiCuentaStyles = StyleSheet.create({
         width: '100%',
     },
     userInfo: {
-      //flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
       marginVertical: 16,

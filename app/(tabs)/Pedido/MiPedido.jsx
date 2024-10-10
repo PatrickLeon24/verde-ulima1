@@ -78,8 +78,6 @@ const PantallaPedido = ({ navigation }) => {
         <Text style={styles.textoBarra}>Mi Pedido</Text>
       </View>
       
-      
-
       <View style={styles.container2}>
         {/* Información del Paquete */}
         <View style={styles.cuadra}>
@@ -94,7 +92,6 @@ const PantallaPedido = ({ navigation }) => {
           <View style={styles.stepContainer}>
             <Text style={styles.stepTitle}>Compra realizada</Text>
             <Text style={styles.stepDescription}>Tu paquete ha sido creado en nuestro sistema.</Text>
-            <Text style={styles.stepTime}>13-07-2022 08:28:48</Text>
           </View>
         </View>
 
@@ -103,7 +100,6 @@ const PantallaPedido = ({ navigation }) => {
           <View style={styles.stepContainer}>
             <Text style={styles.stepTitle}>En Bodega</Text>
             <Text style={styles.stepDescription}>Tu paquete ha llegado a nuestro centro de distribución.</Text>
-            <Text style={styles.stepTime}>13-07-2022 14:40:59</Text>
           </View>
         </View>
 
@@ -112,7 +108,6 @@ const PantallaPedido = ({ navigation }) => {
           <View style={styles.stepContainer}>
             <Text style={styles.stepTitle}>En ruta</Text>
             <Text style={styles.stepDescription}>Tu paquete está en camino, te llamaremos cuando estemos cerca.</Text>
-            <Text style={styles.stepTime}>13-07-2022 15:26:06</Text>
           </View>
         </View>
 
@@ -121,7 +116,6 @@ const PantallaPedido = ({ navigation }) => {
           <View style={styles.stepContainer}>
             <Text style={styles.stepTitle}>Entregado</Text>
             <Text style={styles.stepDescription}>Tu paquete ha sido entregado exitosamente.</Text>
-            <Text style={styles.stepTime}>13-07-2022 20:49:49</Text>
           </View>
         </View>
       </View>
