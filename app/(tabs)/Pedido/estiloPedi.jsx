@@ -259,6 +259,8 @@ const estilosPedi = StyleSheet.create({
         color: '#34A853',
         fontWeight: '500',
         fontSize: 18,
+        justifyContent: 'center',
+        alignItems: 'center',
       },
       cuadratextodeltexto: {
         fontSize: 18,

@@ -98,7 +98,7 @@ const PantallaPedido = ({ navigation }) => {
           <View style={[styles.dot, estadoPedido >= 2 && { backgroundColor: 'green' }]} />  
           <View style={styles.stepContainer}>
             <Text style={styles.stepTitle}>En Preparación</Text>
-            <Text style={styles.stepDescription}>Su servicio ha llegado a nuestro centro de distribución.</Text>
+            <Text style={styles.stepDescription}>Su servicio ha sido asignado a un personal.</Text>
           </View>
         </View>
 

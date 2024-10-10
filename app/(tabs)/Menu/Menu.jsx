@@ -46,7 +46,7 @@ const PantallaConBarraVerde = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => navigation.navigate('Micuenta')}>
-          <Image source={require('../../../assets/images/SAzRztbw_400x400.jpg')} style={styles.image} />
+          <Image source={require('../../../assets/images/xd.jpg')} style={styles.image} />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Hola, {nombres} {apellidos}</Text>
       </View>

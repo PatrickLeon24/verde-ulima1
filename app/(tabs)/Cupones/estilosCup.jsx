@@ -130,7 +130,7 @@ const estilosCup = StyleSheet.create({
         paddingTop: 20,
         paddingLeft: 20,
         paddingEnd: 20,
-        fontSize: 30,
+        fontSize: 24,
         fontWeight: 'bold',
       },
       lineatitulo: {
@@ -144,9 +144,22 @@ const estilosCup = StyleSheet.create({
         paddingTop: 1,
         color: 'green',
         fontWeight: 'bold',
-        
-        
-      }
+      },
+      ola: {
+        color: 'green',
+        marginLeft: 'auto',
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingEnd: 20,
+        fontSize: 24,
+        fontWeight: 'bold',
+      },
+      OLAxd: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingBottom: 1,
+      },
 });
 
 export default estilosCup;

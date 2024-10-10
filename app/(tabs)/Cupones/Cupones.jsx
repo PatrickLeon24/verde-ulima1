@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import styles from './estilosCup';
 import CuponItem from './CuponItem'; 
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Importar AsyncStorage
 //import CuponInfo from '../Cupones/Cupons.json';
 
 
 const PantallaPuntos = ({navigation}) => {
   const [cuponesData, setCuponesData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);const [puntosDisponibles, setPuntosDisponibles] = useState(0); // Estado para almacenar los puntos
+  const [usuarioId, setUsuarioId] = useState(null); // Estado para almacenar el ID del usuario
 
   useEffect(() => {
     const fetchPlanes = async () => {
@@ -29,6 +31,44 @@ const PantallaPuntos = ({navigation}) => {
     fetchPlanes();
   }, []);
 
+  useEffect(() => {
+    // Función para obtener el ID del usuario desde AsyncStorage
+    const getUserId = async () => {
+      try {
+        const jsonUserData = await AsyncStorage.getItem('userData');
+        if (jsonUserData !== null) {
+          const userData = JSON.parse(jsonUserData);
+          setUsuarioId(userData.usuario_id); // Establecer el ID del usuario
+        }
+      } catch (error) {
+        console.error('Error al recuperar el ID del usuario:', error);
+      }
+    };
+
+    getUserId(); // Llamar a la función para obtener el ID del usuario
+  }, []); // Ejecutar este efecto una vez al montar el componente
+
+  useEffect(() => {
+    // Función para obtener el puntaje del usuario desde el backend
+    const fetchPuntos = async () => {
+      if (usuarioId) {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/back/puntos/${usuarioId}/`); // Reemplaza con la URL de tu backend
+          if (!response.ok) {
+            throw new Error('Error al obtener los puntos');
+          }
+          const data = await response.json();
+          setPuntosDisponibles(data.puntos); // Establecer los puntos en el estado
+        } catch (error) {
+          console.error('Error fetching puntos:', error);
+        }
+      }
+    };
+
+    fetchPuntos(); // Llamar a la función para obtener los puntos
+  }, [usuarioId]); // Ejecutar el efecto cuando usuarioId cambie
+
+
   if (loading) {
     return (
       <View /*style={styles.loadingContainer}*/>
@@ -36,7 +76,6 @@ const PantallaPuntos = ({navigation}) => {
       </View>
     );
   }
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,14 +88,11 @@ const PantallaPuntos = ({navigation}) => {
       </View>
       
       {/* - - - - - Navbar - - - - - */ }
-      <View>
-        <Text style={styles.homero}>
-            Lista de Cupones
-            
-        </Text>
-        <View style={styles.lineatitulo}/>  
+      <View style={styles.OLAxd}>
+        <Text style={styles.homero}>Lista de Cupones </Text><Text style={styles.ola}>{puntosDisponibles} <FontAwesome name="star" size={24} color="#green" style={styles.starrrr}/></Text>
+        
       </View>
-     
+      <View style={styles.lineatitulo}/> 
 
       {/* - - - - - Lista de Cupones - - - - - */}
       <FlatList
