@@ -12,9 +12,10 @@ const MiCuentaStyles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'row',
+      paddingHorizontal: 10
     },
     botonRetroceso: {
-      paddingLeft: 10,
+      //paddingLeft: 5,
     },
     textoBarra: {
       flex: 1,
@@ -22,6 +23,7 @@ const MiCuentaStyles = StyleSheet.create({
       fontSize: 20,
       fontWeight: 'bold',
       textAlign: 'center',
+      paddingRight: 40,
     },
     lineatitulo: {
         borderBottomColor: 'green',

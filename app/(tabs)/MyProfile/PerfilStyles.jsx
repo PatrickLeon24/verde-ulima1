@@ -29,9 +29,11 @@ const PerfilStyles = StyleSheet.create({
       },
       label: {
         fontSize: 16,
+        alignSelf: 'center',  
         color: '#333',
         marginBottom: 8,
         fontWeight: '600',
+        width: '90%',
       },
       input: {
         width: '90%',
