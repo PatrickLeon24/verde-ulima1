@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
+import styles from './MiCuentaStyles'
 
 const AccountScreen = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
@@ -54,6 +55,7 @@ const AccountScreen = ({ navigation }) => {
       </View>
 
       {/* Información del Usuario */}
+
       <View style={styles.userInfo}>
         <Image
           source={require('../../../assets/images/SAzRztbw_400x400.jpg')}
@@ -69,130 +71,105 @@ const AccountScreen = ({ navigation }) => {
 
       {/* Sección de Información Personal */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Información Personal</Text>
-        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil')}>
-          <Image
-            source={require('../../../assets/images/EditarPerfil.png')}
-            style={styles.optionIcon}
-          />
-          <Text style={styles.optionText}>Editar Perfil</Text>
-        </TouchableOpacity>
+        <View style={styles.container2}>
+          <Text style={styles.titu2}>Información Personal</Text>
+          <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPerfil')}>
+            <Ionicons name="create-outline" size={24} color="gray"/>  
+            <Text style={styles.menuText2}>Editar Perfil</Text> 
+            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>
-          <Image
-            source={require('../../../assets/images/CambiarContrasena.png')}
-            style={styles.optionIcon}
-          />
-          <Text style={styles.optionText}>Cambiar Contraseña</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('Contrasena')}>  
+            < Ionicons name="lock-closed" size={24} color="gray"/>
+            <Text style={styles.menuText2}>Cambiar Contraseña</Text> 
+            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.option} onPress={handleLogout}>
-          <Image
-            source={require('../../../assets/images/CerrarSesion.png')}
-            style={styles.optionIcon}
-          />
-          <Text style={[styles.optionText, { color: 'red' }]}>Cerrar Sesión</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Mostrar solo para tipo de usuario Cliente */}
-      {tipousuario === 'Cliente' && (
-        <View>
-          {/* Sección de Servicios */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Servicios</Text>
-            <TouchableOpacity style={styles.option}>
-              <Text style={styles.optionText} onPress={() => navigation.navigate('MiPedido')}>Ver mi Pedido</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.option}>
-              <Text style={styles.optionText} onPress={() => navigation.navigate('MiPlan')}>Ver mi Plan</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.option}>
-              <Text style={styles.optionText} onPress={() => navigation.navigate('MisPuntos')}>Ver mis Puntos</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={styles.menuItem3} onPress={handleLogout}>  
+            <Ionicons name="log-out-outline" size={24} color="gray"/>
+            <Text style={styles.menuText3}>Cerrar Sesión</Text> 
+            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/> 
+          </TouchableOpacity>
         </View>
-      )}
+
+
+        {/* Mostrar solo para tipo de usuario Cliente */}
+        {tipousuario === 'Cliente' && (
+        <View style={styles.container2}>
+          <Text style={styles.titu2}>Servicios</Text>
+          <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPedido')}>
+            <Ionicons name="cart" size={24} color="gray"/>  
+            <Text style={styles.menuText2}>Ver mi Pedido</Text> 
+            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MiPlan')}>  
+            < Ionicons name="reader-outline" size={24} color="gray"/>
+            <Text style={styles.menuText2}>Ver mi Plan</Text> 
+            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.menuItem3} onPress={() => navigation.navigate('MisPuntos')}>  
+            <Ionicons name="ticket-sharp" size={24} color="gray"/>
+            <Text style={styles.menuText2}>Ver mis Puntos</Text> 
+            <Ionicons name="chevron-forward-outline" size={24} color="gray" style={styles.flesha}/> 
+          </TouchableOpacity>
+        </View>
+        )}
+      </View>
+      
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white', // Usa backgroundColor en lugar de background
-    paddingVertical: 40
-  },
-  barraSuperior: {
-    height: 60,
-    backgroundColor: '#34A853',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  botonRetroceso: {
-    paddingLeft: 10,
-  },
-  textoBarra: {
-    flex: 1,
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  userInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 16,
-  },
-  userImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 12,
-  },
-  userDetails: {
-    alignItems: 'center',
-  },
-  userName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  userInfoText: {
-    fontSize: 14,
-    color: 'gray',
-  },
-  section: {
-    marginVertical: 16,
-    alignItems: 'center', // Centramos los textos dentro de cada sección
-    justifyContent: 'center',
-    width: '100%', // Asegurar que ocupe todo el ancho
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  option: {
-    width: '90%', // Ancho de las opciones para que ocupen el 90% del ancho de la pantalla
-    flexDirection: 'row', // Coloca la imagen y el texto en fila
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    alignItems: 'center', // Alinea verticalmente la imagen y el texto
-    justifyContent: 'center', // Centramos tanto la imagen como el texto
-  },
-  optionIcon: {
-    width: 24, // Tamaño del ícono
-    height: 24, // Tamaño del ícono
-    marginRight: 12, // Espacio entre el ícono y el texto
-  },
-  optionText: {
-    fontSize: 16,
-    textAlign: 'center', // Asegura que el texto esté centrado
-  },
-});
+
 
 export default AccountScreen;
+
+//{/*- - - - - - - - - -*/}
+//
+//<Text style={styles.sectionTitle}>Información Personal</Text>
+//<TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil')}>
+//  <Image
+//    source={require('../../../assets/images/EditarPerfil.png')}
+//    style={styles.optionIcon}
+//  />
+//  <Text style={styles.optionText}>Editar Perfil</Text>
+//</TouchableOpacity>
+//
+//<TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>
+//  <Image
+//    source={require('../../../assets/images/CambiarContrasena.png')}
+//    style={styles.optionIcon}
+//  />
+//  <Text style={styles.optionText}>Cambiar Contraseña</Text>
+//</TouchableOpacity>
+//
+//<TouchableOpacity style={styles.option} onPress={handleLogout}>
+//  <Image
+//    source={require('../../../assets/images/CerrarSesion.png')}
+//    style={styles.optionIcon}
+//  />
+//  <Text style={[styles.optionText, { color: 'red' }]}>Cerrar Sesión</Text>
+//</TouchableOpacity>
+//</View>
+//
+//{/* Mostrar solo para tipo de usuario Cliente */}
+//{tipousuario === 'Cliente' && (
+//<View>
+//  {/* Sección de Servicios */}
+//  <View style={styles.section}>
+//    <Text style={styles.sectionTitle}>Servicios</Text>
+//    <TouchableOpacity style={styles.option}>
+//      <Text style={styles.optionText} onPress={() => navigation.navigate('MiPedido')}>Ver mi Pedido</Text>
+//    </TouchableOpacity>
+//    <TouchableOpacity style={styles.option}>
+//      <Text style={styles.optionText} onPress={() => navigation.navigate('MiPlan')}>Ver mi Plan</Text>
+//    </TouchableOpacity>
+//    <TouchableOpacity style={styles.option}>
+//      <Text style={styles.optionText} onPress={() => navigation.navigate('MisPuntos')}>Ver mis Puntos</Text>
+//    </TouchableOpacity>
+//  </View>
+//</View>
+//)}
+//

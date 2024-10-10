@@ -32,7 +32,7 @@ const MisPuntos = ({ navigation }) => { // Quitar usuarioId como prop
     const fetchPuntos = async () => {
       if (usuarioId) {
         try {
-          const response = await fetch(`http://10.48.201.68:8000/back/puntos/${usuarioId}/`); // Reemplaza con la URL de tu backend
+          const response = await fetch(`http://127.0.0.1:8000/back/puntos/${usuarioId}/`); // Reemplaza con la URL de tu backend
           if (!response.ok) {
             throw new Error('Error al obtener los puntos');
           }
