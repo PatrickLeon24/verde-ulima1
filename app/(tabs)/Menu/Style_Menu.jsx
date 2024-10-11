@@ -106,13 +106,13 @@ const Style_Menu = StyleSheet.create({
       backgroundColor: 'rgba(0,0,0,0.5)'
     },
     modalContent: {
-      padding: 20,
+      padding: 15,
       backgroundColor: 'white',
       borderRadius: 10,
       alignItems: 'center'
     },
     modalText: {
-      fontSize: 20,
+      fontSize: 16,
       marginBottom: 15
     },
     modalbotn: {
@@ -121,7 +121,7 @@ const Style_Menu = StyleSheet.create({
       padding: 10,
       paddingHorizontal: 15,
       color: 'white',
-      fontSize: 18,
+      fontSize: 14,
     }
   });
 

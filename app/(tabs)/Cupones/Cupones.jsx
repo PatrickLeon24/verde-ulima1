@@ -3,13 +3,12 @@ import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from 'react-nati
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import styles from './estilosCup';
 import CuponItem from './CuponItem'; 
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Importar AsyncStorage
-//import CuponInfo from '../Cupones/Cupons.json';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PantallaPuntos = ({navigation}) => {
   const [cuponesData, setCuponesData] = useState([]);
-  const [loading, setLoading] = useState(true);const [puntosDisponibles, setPuntosDisponibles] = useState(0); // Estado para almacenar los puntos
+  const [loading, setLoading] = useState(true);
+  const [puntosDisponibles, setPuntosDisponibles] = useState(0); // Estado para almacenar los puntos
   const [usuarioId, setUsuarioId] = useState(null); // Estado para almacenar el ID del usuario
 
   useEffect(() => {
@@ -104,7 +103,7 @@ const PantallaPuntos = ({navigation}) => {
             descripcion={item.descripcion}
             costo_puntos={item.costo_puntos}
             imagen={item.imagen}
-            onPress={() =>  navigation.navigate('VerCupon', { item })} // Navegar al plan específico
+            onPress={() =>  navigation.navigate('VerCupon', { item, puntosDisponibles })} // Navegar al plan específico
           />
         )}
         contentContainerStyle = {styles.listaContenido} // Añadido para mejor estilo de contenido

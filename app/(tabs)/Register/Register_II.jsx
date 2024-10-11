@@ -18,11 +18,10 @@ const RegisterII = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  // Función para obtener los tipos de usuario del backend
   useEffect(() => {
     const fetchTiposUsuario = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/back/tipos-usuario'); // URL para obtener los tipos de usuario
+        const response = await fetch('http://127.0.0.1:8000/back/tipos-usuario');
         const data = await response.json();
         setTiposUsuario(data);
       } catch (error) {
@@ -66,7 +65,6 @@ const RegisterII = ({ navigation }) => {
   
         const data = await response.json();
         if (response.ok) {
-          // Registro exitoso, navega al login
           navigation.navigate('Login');
         } else {
           setModalMessage(data.error || 'Error al registrar el usuario.');

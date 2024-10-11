@@ -5,9 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 const PlanDetailsCupon = ({ navigation, route }) => {
   
-  const { item } = route.params;
+  const { item, puntosDisponibles } = route.params;
   const [modalVisible, setModalVisible] = React.useState(false);
-  const [Puntos, SetPuntos] = useState(400);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,7 +48,7 @@ const PlanDetailsCupon = ({ navigation, route }) => {
         {/* Modal para canje exitoso */}
         <Modal
           transparent={true}
-          visible={modalVisible && Puntos >= item.costo_puntos}
+          visible={modalVisible && puntosDisponibles >= item.costo_puntos}
           onRequestClose={() => setModalVisible(false)}
         >
           <View style={styles.modalOverlay}>
@@ -67,7 +66,7 @@ const PlanDetailsCupon = ({ navigation, route }) => {
         {/* Modal para canje fallido */}
         <Modal
           transparent={true}
-          visible={modalVisible && Puntos < item.costo_puntos}
+          visible={modalVisible && puntosDisponibles < item.costo_puntos}
           onRequestClose={() => setModalVisible(false)}
         >
           <View style={styles.modalOverlay}>

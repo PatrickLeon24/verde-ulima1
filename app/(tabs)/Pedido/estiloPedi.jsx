@@ -267,6 +267,11 @@ const estilosPedi = StyleSheet.create({
         color: 'black',
         fontWeight: '100',
         marginLeft: 'auto',
+      },
+      stepDate: {
+        fontSize: 14,
+        color: 'gray',
+        marginTop: 4,
       }
   });
 
