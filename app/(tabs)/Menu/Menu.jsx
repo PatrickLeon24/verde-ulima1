@@ -6,7 +6,7 @@ import PlanButton from './PlanButton';
 import SolicitarButton from './SolicitarButton';
 import ContactButton from './ContactButton';
 import RecojoActivoList from '../Administrador/Recojos'
-import styles from './Style_Menu'; // Importa tu estilo existente
+import styles from './Style_Menu'; 
 
 const PantallaConBarraVerde = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
@@ -28,19 +28,19 @@ const PantallaConBarraVerde = ({ navigation }) => {
     };
 
     const unsubscribe = navigation.addListener('focus', () => {
-      getUserData(); // Llamar a getUserData cuando la pantalla gana foco
+      getUserData();
     });
 
-    getUserData(); // También llamar al cargar el componente
+    getUserData(); 
 
-    return unsubscribe; // Limpia el evento al desmontar el componente
+    return unsubscribe; 
   }, [navigation]);
 
   if (!userData) {
     return <Text>Cargando...</Text>;
   }
 
-  const { nombres, apellidos, tipousuario } = userData; // 'tipousuario' es una cadena
+  const { nombres, apellidos, tipousuario } = userData; 
 
   return (
     <SafeAreaView style={styles.container}>
@@ -56,7 +56,7 @@ const PantallaConBarraVerde = ({ navigation }) => {
           <>
             <CuponButton navigation={navigation} />
             <PlanButton navigation={navigation} />
-            <SolicitarButton />
+            <SolicitarButton userData={userData}/>
             <ContactButton />
           </>
         )}

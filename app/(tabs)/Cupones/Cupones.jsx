@@ -31,7 +31,6 @@ const PantallaPuntos = ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    // Función para obtener el ID del usuario desde AsyncStorage
     const getUserId = async () => {
       try {
         const jsonUserData = await AsyncStorage.getItem('userData');
@@ -44,28 +43,27 @@ const PantallaPuntos = ({navigation}) => {
       }
     };
 
-    getUserId(); // Llamar a la función para obtener el ID del usuario
-  }, []); // Ejecutar este efecto una vez al montar el componente
+    getUserId(); 
+  }, []); 
 
   useEffect(() => {
-    // Función para obtener el puntaje del usuario desde el backend
     const fetchPuntos = async () => {
       if (usuarioId) {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/back/puntos/${usuarioId}/`); // Reemplaza con la URL de tu backend
+          const response = await fetch(`http://127.0.0.1:8000/back/puntos/${usuarioId}/`); 
           if (!response.ok) {
             throw new Error('Error al obtener los puntos');
           }
           const data = await response.json();
-          setPuntosDisponibles(data.puntos); // Establecer los puntos en el estado
+          setPuntosDisponibles(data.puntos); 
         } catch (error) {
           console.error('Error fetching puntos:', error);
         }
       }
     };
 
-    fetchPuntos(); // Llamar a la función para obtener los puntos
-  }, [usuarioId]); // Ejecutar el efecto cuando usuarioId cambie
+    fetchPuntos();
+  }, [usuarioId]);
 
 
   if (loading) {
@@ -106,7 +104,7 @@ const PantallaPuntos = ({navigation}) => {
             onPress={() =>  navigation.navigate('VerCupon', { item, puntosDisponibles })} // Navegar al plan específico
           />
         )}
-        contentContainerStyle = {styles.listaContenido} // Añadido para mejor estilo de contenido
+        contentContainerStyle = {styles.listaContenido} 
       />
     </SafeAreaView>
   );

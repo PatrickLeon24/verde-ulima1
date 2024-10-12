@@ -20,14 +20,14 @@ const AccountScreen = ({ navigation }) => {
       }
     };
 
-    // Escuchar el evento de enfoque para obtener los datos actualizados
+    // obtener los datos actualizados
     const unsubscribe = navigation.addListener('focus', () => {
       getUserData();
     });
 
-    getUserData(); // Cargar los datos cuando el componente se monta
+    getUserData(); // Cargar los datos
 
-    return unsubscribe; // Limpiar el evento al desmontar el componente
+    return unsubscribe;
   }, [navigation]);
 
   const handleLogout = async () => {
@@ -128,50 +128,3 @@ const AccountScreen = ({ navigation }) => {
 
 export default AccountScreen;
 
-//{/*- - - - - - - - - -*/}
-//
-//<Text style={styles.sectionTitle}>Información Personal</Text>
-//<TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MiPerfil')}>
-//  <Image
-//    source={require('../../../assets/images/EditarPerfil.png')}
-//    style={styles.optionIcon}
-//  />
-//  <Text style={styles.optionText}>Editar Perfil</Text>
-//</TouchableOpacity>
-//
-//<TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contrasena')}>
-//  <Image
-//    source={require('../../../assets/images/CambiarContrasena.png')}
-//    style={styles.optionIcon}
-//  />
-//  <Text style={styles.optionText}>Cambiar Contraseña</Text>
-//</TouchableOpacity>
-//
-//<TouchableOpacity style={styles.option} onPress={handleLogout}>
-//  <Image
-//    source={require('../../../assets/images/CerrarSesion.png')}
-//    style={styles.optionIcon}
-//  />
-//  <Text style={[styles.optionText, { color: 'red' }]}>Cerrar Sesión</Text>
-//</TouchableOpacity>
-//</View>
-//
-//{/* Mostrar solo para tipo de usuario Cliente */}
-//{tipousuario === 'Cliente' && (
-//<View>
-//  {/* Sección de Servicios */}
-//  <View style={styles.section}>
-//    <Text style={styles.sectionTitle}>Servicios</Text>
-//    <TouchableOpacity style={styles.option}>
-//      <Text style={styles.optionText} onPress={() => navigation.navigate('MiPedido')}>Ver mi Pedido</Text>
-//    </TouchableOpacity>
-//    <TouchableOpacity style={styles.option}>
-//      <Text style={styles.optionText} onPress={() => navigation.navigate('MiPlan')}>Ver mi Plan</Text>
-//    </TouchableOpacity>
-//    <TouchableOpacity style={styles.option}>
-//      <Text style={styles.optionText} onPress={() => navigation.navigate('MisPuntos')}>Ver mis Puntos</Text>
-//    </TouchableOpacity>
-//  </View>
-//</View>
-//)}
-//

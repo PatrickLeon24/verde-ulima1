@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
   
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Error del servidor:', errorData); // Log de error
+        console.error('Error del servidor:', errorData);
         setModalMessage(errorData.message || 'Error en el inicio de sesión');
         setModalVisible(true);
         return;

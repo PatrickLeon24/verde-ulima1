@@ -6,10 +6,7 @@ import { useRoute } from '@react-navigation/native';
 
 const RegisterII = ({ navigation }) => {
   const route = useRoute();
-  
-  // Recibimos los datos de la primera pantalla RegisterI
   const { nombre, apellido, DNI, direccion, genero, numero_contacto } = route.params;
-
   const [tipoUsuario, setTipoUsuario] = useState('');
   const [tiposUsuario, setTiposUsuario] = useState([]);
   const [correo, setCorreo] = useState('');
@@ -43,7 +40,6 @@ const RegisterII = ({ navigation }) => {
       setModalMessage('Las contraseñas no coinciden.');
       setModalVisible(true);
     } else {
-      // Enviar los datos al backend
       try {
         const response = await fetch('http://127.0.0.1:8000/back/register', {
           method: 'POST',

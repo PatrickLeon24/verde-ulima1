@@ -41,7 +41,7 @@ const RecojoActivoList = () => {
   const handleEnviarRecojoId = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/back/consultar_recojo', {
-        method: 'POST', // o 'GET' dependiendo de lo que necesites
+        method: 'POST', 
         headers: {
           'Content-Type': 'application/json',
         },
@@ -55,8 +55,6 @@ const RecojoActivoList = () => {
       
       const result = await response.json();
       console.log('Resultado de la consulta:', result);
-      
-      // Aquí puedes manejar lo que harás con el resultado, por ejemplo, mostrarlo en un modal o alerta.
 
     } catch (error) {
       console.error('Error al enviar el recojo ID:', error);
@@ -74,7 +72,7 @@ const RecojoActivoList = () => {
             plan={recojo.gestorplan__plan__nombre}
             fecha_ingreso={recojo.gestorplan__recojo__fecha_ingreso}
             onPress={() => handleCardPress(recojo)}
-            onEnviarRecojoId={() => handleEnviarRecojoId(recojo.id)} // Asumiendo que recojo.id contiene el ID del recojo
+            onEnviarRecojoId={() => handleEnviarRecojoId(recojo.id)} 
           />
         ))
       ) : (
@@ -105,7 +103,7 @@ const RecojoActivoList = () => {
                 <Button title="Cerrar" onPress={() => setModalVisible(false)} />
                 <Button
                   title="Consultar Recojo"
-                  onPress={() => handleEnviarRecojoId(selectedUser.id)} // Llamada a la función de envío de recojo_id
+                  onPress={() => handleEnviarRecojoId(selectedUser.id)} 
                 />
               </View>
             </>
@@ -138,7 +136,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',  // Asegura que los botones ocupen todo el ancho del contenedor
+    width: '100%', 
     marginTop: 20,
   },
 

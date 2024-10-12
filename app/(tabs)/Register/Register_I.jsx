@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Modal, Button, SafeAreaView } from 'react-native';
-import styles from './Style_RegisterI'; // Importa los estilos desde el archivo separado
+import styles from './Style_RegisterI'; 
 
 const RegisterI = ({navigation}) => {
   const [nombres, setNombres] = useState('');
@@ -13,13 +13,13 @@ const RegisterI = ({navigation}) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const validarDNI = (dni) => {
-    // Ejemplo de validación simple: el DNI debe tener 8 dígitos
+    // Validacion DNI
     const dniPattern = /^\d{8}$/;
     return dniPattern.test(dni);
   };
 
   const validarCelular = (celular) => {
-    // Ejemplo de validación simple: el celular debe tener 9 dígitos
+    // Validacion celular
     const celularPattern = /^\d{9}$/;
     return celularPattern.test(celular);
   };
