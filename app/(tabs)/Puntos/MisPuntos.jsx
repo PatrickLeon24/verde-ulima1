@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import HistorialItem from './HistorialItem'; 
+import data from './historial.json';
 import styles from './stylesMisPuntos'; 
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
