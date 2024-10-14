@@ -57,13 +57,13 @@ const RecojoActivoList = () => {
       // Actualiza el estado del usuario seleccionado
       setSelectedUser((prevUser) => ({
         ...prevUser,
-        ...result // Suponiendo que el resultado contiene los datos actualizados del recojo
+        ...result // Datos actualizados del recojo
       }));
 
-      // Actualiza la lista de recojos para reflejar los cambios
+      // Actualiza la lista de recojos
       fetchAdminData();
 
-      // Cierra el modal
+      // Cerrar modal
       setModalVisible(false);
 
     } catch (error) {
