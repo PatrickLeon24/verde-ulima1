@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Button } from 'react-native';
 
-const RecojoActivoCard = ({ nombre, apellido, plan, fecha_ingreso, onPress, onEnviarRecojoId }) => (
+const RecojoActivoCard = ({ nombre, apellido, plan, fecha_ingreso, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
     <Text style={styles.cardTitle}>Recojo Activo</Text>
     <Text style={styles.cardText}>Usuario: {nombre} {apellido}</Text>
     <Text style={styles.cardText}>Plan: {plan}</Text>
     <Text style={styles.cardText}>Fecha ingreso: {fecha_ingreso}</Text>
-    
   </TouchableOpacity>
 );
 
@@ -45,16 +44,27 @@ const RecojoActivoList = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        
         body: JSON.stringify({ recojo_id: selectedUser.id }),
       });
-      console.log(selectedUser.id);
+      
       if (!response.ok) {
         throw new Error(`Error en la solicitud: ${response.status}`);
       }
       
       const result = await response.json();
       console.log('Resultado de la consulta:', result);
+
+      // Actualiza el estado del usuario seleccionado
+      setSelectedUser((prevUser) => ({
+        ...prevUser,
+        ...result // Suponiendo que el resultado contiene los datos actualizados del recojo
+      }));
+
+      // Actualiza la lista de recojos para reflejar los cambios
+      fetchAdminData();
+
+      // Cierra el modal
+      setModalVisible(false);
 
     } catch (error) {
       console.error('Error al enviar el recojo ID:', error);
@@ -72,7 +82,6 @@ const RecojoActivoList = () => {
             plan={recojo.gestorplan__plan__nombre}
             fecha_ingreso={recojo.gestorplan__recojo__fecha_ingreso}
             onPress={() => handleCardPress(recojo)}
-            onEnviarRecojoId={() => handleEnviarRecojoId(recojo.id)} 
           />
         ))
       ) : (
@@ -103,7 +112,7 @@ const RecojoActivoList = () => {
                 <Button title="Cerrar" onPress={() => setModalVisible(false)} />
                 <Button
                   title="Consultar Recojo"
-                  onPress={() => handleEnviarRecojoId(selectedUser.id)} 
+                  onPress={handleEnviarRecojoId} 
                 />
               </View>
             </>
