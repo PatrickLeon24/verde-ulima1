@@ -5,7 +5,7 @@ import CuponButton from './CuponButton';
 import PlanButton from './PlanButton'; 
 import SolicitarButton from './SolicitarButton';
 import ContactButton from './ContactButton';
-import RecojoActivoList from '../Administrador/Recojos'
+import AdminMenu from '../Administrador/AdminMenu';
 import styles from './Style_Menu'; 
 
 const PantallaConBarraVerde = ({ navigation }) => {
@@ -63,7 +63,7 @@ const PantallaConBarraVerde = ({ navigation }) => {
         {tipousuario === 'Administrador' && (
           <View>
             {/* Mostrar el componente de recojos activos */}
-            <RecojoActivoList />
+            <AdminMenu userData={userData}/>
           </View>
         )}
       </ScrollView>

@@ -16,7 +16,8 @@ import MisPuntos from './app/(tabs)/Puntos/MisPuntos'
 import Register_I from './app/(tabs)/Register/Register_I'
 import Register_II from './app/(tabs)/Register/Register_II'
 import Cupon from './app/(tabs)/DetalleCupon/PlanDetailsCupon'
-
+import Recojos from './app/(tabs)/Administrador/Recojos';
+import GenerarCodigo from './app/(tabs)/Administrador/GenerarCodigo';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,14 @@ const App = () => {
           name="Menu"
           component={Menu}
           
+        />
+        <Stack.Screen
+          name="Recojos"
+          component={Recojos}
+        />
+        <Stack.Screen
+          name="GenerarCodigo"
+          component={GenerarCodigo}
         />
         
         <Stack.Screen

@@ -12,6 +12,7 @@ const RegisterII = ({ navigation }) => {
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [ConfirContra, setConfirContra] = useState('');
+  const [codigoInvitacion, setCodigoInvitacion] = useState('');  // Estado para el código de invitación
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
@@ -25,7 +26,6 @@ const RegisterII = ({ navigation }) => {
         console.error('Error al obtener los tipos de usuario:', error);
         setModalMessage('Error al cargar los tipos de usuario.');
         setModalVisible(true);
-        setLoading(false);
       }
     };
 
@@ -40,25 +40,32 @@ const RegisterII = ({ navigation }) => {
       setModalMessage('Las contraseñas no coinciden.');
       setModalVisible(true);
     } else {
+      const bodyData = {
+        nombre,
+        apellido,
+        DNI,
+        direccion,
+        genero,
+        numero_contacto,
+        email: correo,
+        contrasena,
+        tipo_usuario: tipoUsuario,
+      };
+
+      // Agregar código de invitación si es un administrador
+      if (tipoUsuario === '2') {  // Reemplaza 'ID_DEL_TIPO_ADMINISTRADOR' con el ID correspondiente
+        bodyData.codigo_invitacion = codigoInvitacion;
+      }
+
       try {
         const response = await fetch('http://127.0.0.1:8000/back/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            nombre,
-            apellido,
-            DNI,
-            direccion,
-            genero,
-            numero_contacto,
-            email: correo,
-            contrasena,
-            tipo_usuario: tipoUsuario, 
-          }),
+          body: JSON.stringify(bodyData),
         });
-  
+
         const data = await response.json();
         if (response.ok) {
           navigation.navigate('Login');
@@ -112,15 +119,29 @@ const RegisterII = ({ navigation }) => {
       <Text style={styles.subTitle}>Por favor, escoja su tipo de usuario</Text>
 
       <Picker
-          selectedValue={tipoUsuario}
-          onValueChange={(itemValue) => setTipoUsuario(itemValue)}
-          style={styles.picker}
+        selectedValue={tipoUsuario}
+        onValueChange={(itemValue) => {
+          setTipoUsuario(itemValue);
+          setCodigoInvitacion('');  // Reiniciar el código de invitación si cambia el tipo de usuario
+          console.log("Tipo de usuario seleccionado:", itemValue);
+        }}
+        style={styles.picker}
       >
-      <Picker.Item label="Seleccione el tipo de usuario"/>
+        <Picker.Item label="Seleccione el tipo de usuario" />
         {tiposUsuario.map((tipo) => (
           <Picker.Item key={tipo.id} label={tipo.tipo} value={tipo.id} />
         ))}
       </Picker>
+
+      {/* Campo para código de invitación, visible solo si se selecciona Administrador */}
+      {tipoUsuario === '2' && (  // Reemplaza 'ID_DEL_TIPO_ADMINISTRADOR' con el ID correspondiente
+        <TextInput
+          style={styles.input}
+          placeholder="Ingrese su código de invitación"
+          value={codigoInvitacion}
+          onChangeText={setCodigoInvitacion}
+        />
+      )}
 
       {/* Botón para completar el registro */}
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
