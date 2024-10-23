@@ -35,14 +35,12 @@ const Style_RegisterII = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 20,
   },
-  picker: {
+  inputContainer: {
     width: '90%',
     alignSelf: 'center',
-    height: 45,
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: 15,
     marginBottom: 20,
   },
   button: {
@@ -84,6 +82,41 @@ const Style_RegisterII = StyleSheet.create({
   modalButtonText: {
     color: 'white',
     fontSize: 16,
+  },
+  radioContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    width: '100%',  // Cambia a 100% para llenar el contenedor
+  },
+  radioSelected: {
+    borderColor: '#4CAF50',
+  },
+  radioLabel: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#333',
+  },
+  radioCircle: {
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#4CAF50',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  radioCircleInner: {
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    backgroundColor: '#4CAF50',
   },
 });
 

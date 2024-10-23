@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Modal, Button } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import styles from './Style_RegisterII';
 import { useRoute } from '@react-navigation/native';
 
@@ -12,7 +11,7 @@ const RegisterII = ({ navigation }) => {
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [ConfirContra, setConfirContra] = useState('');
-  const [codigoInvitacion, setCodigoInvitacion] = useState('');  // Estado para el código de invitación
+  const [codigoInvitacion, setCodigoInvitacion] = useState('');  
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
@@ -52,8 +51,7 @@ const RegisterII = ({ navigation }) => {
         tipo_usuario: tipoUsuario,
       };
 
-      // Agregar código de invitación si es un administrador
-      if (tipoUsuario === '2') {  // Reemplaza 'ID_DEL_TIPO_ADMINISTRADOR' con el ID correspondiente
+      if (tipoUsuario === 2) {
         bodyData.codigo_invitacion = codigoInvitacion;
       }
 
@@ -82,15 +80,12 @@ const RegisterII = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Título */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Registro de cuenta</Text>
       </View>
 
-      {/* Subtítulo para ingresar el correo y la contraseña */}
       <Text style={styles.subTitle}>Ingrese su correo y contraseña</Text>
 
-      {/* Campo para correo */}
       <TextInput
         style={styles.input}
         placeholder="Ingrese su correo electrónico"
@@ -98,7 +93,6 @@ const RegisterII = ({ navigation }) => {
         onChangeText={setCorreo}
       />
       
-      {/* Campo para contraseña */}
       <TextInput
         style={styles.input}
         placeholder="Ingrese su contraseña"
@@ -107,7 +101,6 @@ const RegisterII = ({ navigation }) => {
         onChangeText={setContrasena}
       />
       
-      {/* Campo para confirmar contraseña */}
       <TextInput
         style={styles.input}
         placeholder="Confirme su contraseña"
@@ -116,25 +109,27 @@ const RegisterII = ({ navigation }) => {
         onChangeText={setConfirContra}
       />
 
-      <Text style={styles.subTitle}>Por favor, escoja su tipo de usuario</Text>
+<Text style={styles.subTitle}>Por favor, escoja su tipo de usuario</Text>
 
-      <Picker
-        selectedValue={tipoUsuario}
-        onValueChange={(itemValue) => {
-          setTipoUsuario(itemValue);
-          setCodigoInvitacion('');  // Reiniciar el código de invitación si cambia el tipo de usuario
-          console.log("Tipo de usuario seleccionado:", itemValue);
-        }}
-        style={styles.picker}
-      >
-        <Picker.Item label="Seleccione el tipo de usuario" />
-        {tiposUsuario.map((tipo) => (
-          <Picker.Item key={tipo.id} label={tipo.tipo} value={tipo.id} />
-        ))}
-      </Picker>
+<View style={styles.inputContainer}>
+  {tiposUsuario.map((tipo) => (
+    <TouchableOpacity
+      key={tipo.id}
+      style={[
+        styles.radioContainer,
+        tipoUsuario === tipo.id && styles.radioSelected,
+      ]}
+      onPress={() => {
+        setTipoUsuario(tipo.id);
+        setCodigoInvitacion('');  // Reiniciar el código de invitación si cambia el tipo de usuario
+      }}
+    >
+      <Text style={styles.radioLabel}>{tipo.tipo}</Text>
+    </TouchableOpacity>
+  ))}
+</View>
 
-      {/* Campo para código de invitación, visible solo si se selecciona Administrador */}
-      {tipoUsuario === '2' && (  // Reemplaza 'ID_DEL_TIPO_ADMINISTRADOR' con el ID correspondiente
+      {tipoUsuario === 2 && (
         <TextInput
           style={styles.input}
           placeholder="Ingrese su código de invitación"
@@ -143,12 +138,10 @@ const RegisterII = ({ navigation }) => {
         />
       )}
 
-      {/* Botón para completar el registro */}
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Registrar</Text>
       </TouchableOpacity>
 
-      {/* Modal para mensajes de error */}
       <Modal
         transparent={true}
         animationType="slide"
