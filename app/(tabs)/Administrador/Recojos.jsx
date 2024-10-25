@@ -10,7 +10,8 @@ const RecojoActivoCard = ({ nombre, apellido, plan, fecha_ingreso, onPress }) =>
   </TouchableOpacity>
 );
 
-const RecojoActivoList = () => {
+const RecojoActivoList = ({route}) => {
+  const {userData} = route.params;
   const [adminData, setAdminData] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -44,7 +45,7 @@ const RecojoActivoList = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ recojo_id: selectedUser.id }),
+        body: JSON.stringify({ recojo_id: selectedUser.id, admin_id: userData.usuario_id }),
       });
       
       if (!response.ok) {

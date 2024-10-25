@@ -7,7 +7,7 @@ const AdminMenu = ({ userData }) => {
 
   const handleVisualizarRecojos = () => {
     // Navegar a la pantalla que visualiza los recojos activos
-    navigation.navigate('Recojos');
+    navigation.navigate('Recojos', {userData});
   };
 
   const handleGenerarCodigo = () => {
