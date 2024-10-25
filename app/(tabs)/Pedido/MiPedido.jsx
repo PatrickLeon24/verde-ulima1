@@ -7,6 +7,7 @@ import styles from './estiloPedi';
 const PantallaPedido = ({ navigation }) => {
   const [estadoPedido, setEstadoPedido] = useState(0); 
   const [fechasHoras, setFechasHoras] = useState([]);
+  const [administradores, setAdministradores] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
@@ -29,9 +30,10 @@ const PantallaPedido = ({ navigation }) => {
         if (response.ok) {
             setEstadoPedido(data.estado_trayectoria);
             setFechasHoras(data.fechas_hora);
+            setAdministradores(data.administradores);
         }
     }
-};
+  };
 
   useEffect(() => {
     obtenerEstadoPedido();
@@ -67,6 +69,7 @@ const PantallaPedido = ({ navigation }) => {
             <Text style={styles.stepTitle}>En Preparación</Text>
             <Text style={styles.stepDescription}>Su servicio ha sido asignado a un personal.</Text>
             {fechasHoras[1] && <Text style={styles.stepDate}>Fecha y hora registrada: {fechasHoras[1]}</Text>}
+            {administradores[1] && <Text style={styles.stepDate}>Gestionado por: {administradores[1]}</Text>}
           </View>
         </View>
 
@@ -76,6 +79,7 @@ const PantallaPedido = ({ navigation }) => {
             <Text style={styles.stepTitle}>En camino</Text>
             <Text style={styles.stepDescription}>Su servicio está en camino, te llamaremos cuando estemos cerca.</Text>
             {fechasHoras[2] && <Text style={styles.stepDate}>Fecha y hora registrada: {fechasHoras[2]}</Text>}
+            {administradores[2] && <Text style={styles.stepDate}>Gestionado por: {administradores[2]}</Text>}
           </View>
         </View>
 
@@ -85,6 +89,7 @@ const PantallaPedido = ({ navigation }) => {
             <Text style={styles.stepTitle}>Entregado</Text>
             <Text style={styles.stepDescription}>Su servicio ha sido entregado exitosamente.</Text>
             {fechasHoras[3] && <Text style={styles.stepDate}>Fecha y hora registrada: {fechasHoras[3]}</Text>}
+            {administradores[3] && <Text style={styles.stepDate}>Gestionado por: {administradores[3]}</Text>}
           </View>
         </View>
       </View>
@@ -107,5 +112,6 @@ const PantallaPedido = ({ navigation }) => {
 };
 
 export default PantallaPedido;
+
 
 
