@@ -14,24 +14,54 @@ const PantallaPedido = ({ navigation }) => {
   const obtenerEstadoPedido = async () => {
     const jsonUserData = await AsyncStorage.getItem('userData');
     if (jsonUserData !== null) {
-        const userData = JSON.parse(jsonUserData);
-        const response = await fetch('http://127.0.0.1:8000/back/estado_pedido', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                usuario_id: userData.usuario_id,
-            }),
-        });
+      const userData = JSON.parse(jsonUserData);
+      const response = await fetch('http://127.0.0.1:8000/back/estado_pedido', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          usuario_id: userData.usuario_id,
+        }),
+      });
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (response.ok) {
-            setEstadoPedido(data.estado_trayectoria);
-            setFechasHoras(data.fechas_hora);
-            setAdministradores(data.administradores);
-        }
+      if (response.ok) {
+        setEstadoPedido(data.estado_trayectoria);
+        setFechasHoras(data.fechas_hora);
+        setAdministradores(data.administradores);
+      }
+    }
+  };
+
+  const cancelarRecojo = async () => {
+    const jsonUserData = await AsyncStorage.getItem('userData');
+    if (jsonUserData !== null) {
+      const userData = JSON.parse(jsonUserData);
+      const response = await fetch('http://127.0.0.1:8000/back/cancelar_recojo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          usuario_id: userData.usuario_id,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setModalMessage('Recojo cancelado exitosamente.');
+        setModalVisible(true);
+        setTimeout(() => {
+          setModalVisible(false);
+          navigation.navigate('Menu'); // Redirige al menú tras cerrar el modal
+        }, 1500); // Espera 1.5 segundos antes de redirigir
+      } else {
+        setModalMessage(data.error || 'No se pudo cancelar el recojo.');
+        setModalVisible(true);
+      }
     }
   };
 
@@ -92,7 +122,14 @@ const PantallaPedido = ({ navigation }) => {
             {administradores[3] && <Text style={styles.stepDate}>Gestionado por: {administradores[3]}</Text>}
           </View>
         </View>
+                {/* Contenedor para centrar el botón */}
+        <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 20 }}>
+          <TouchableOpacity style={styles.cancelButton} onPress={cancelarRecojo}>
+            <Text style={styles.cancelButtonText}>Cancelar Recojo</Text>
+          </TouchableOpacity>
+        </View>
       </View>
+
 
       <Modal
         transparent={true}
@@ -112,6 +149,3 @@ const PantallaPedido = ({ navigation }) => {
 };
 
 export default PantallaPedido;
-
-
-

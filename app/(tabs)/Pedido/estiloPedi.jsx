@@ -272,7 +272,50 @@ const estilosPedi = StyleSheet.create({
         fontSize: 14,
         color: 'gray',
         marginTop: 4,
-      }
+      },
+      cancelButton: {
+        backgroundColor: '#FF4D4D', // Color rojo para el botón
+        paddingVertical: 12, // Espaciado vertical
+        paddingHorizontal: 10, // Espaciado horizontal ajustado
+        borderRadius: 8, // Bordes redondeados
+        alignItems: 'center', // Centrar el contenido
+        justifyContent: 'center', // Centrar el texto verticalmente
+        marginTop: 10, // Espaciado superior
+        shadowOpacity: 0.3, 
+        shadowRadius: 4, 
+        width: '80%', 
+        alignSelf: 'center'
+      },
+      cancelButtonText: {
+        color: '#FFFFFF', // Texto blanco
+        fontSize: 16, // Tamaño de fuente
+        fontWeight: 'bold', // Negrita
+      },
+    
+      // Estilos del modal
+      modalOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo oscuro semi-transparente
+      },
+      modalContent: {
+        width: '80%', // Ancho del modal
+        backgroundColor: '#FFFFFF', // Fondo blanco del modal
+        borderRadius: 10, // Bordes redondeados
+        padding: 20, // Espaciado interior
+        alignItems: 'center', // Centrar el contenido
+        elevation: 5, // Sombra para Android
+        shadowColor: '#000', // Color de sombra para iOS
+        shadowOffset: { width: 0, height: 2 }, // Offset de sombra
+        shadowOpacity: 0.3, // Opacidad de la sombra
+        shadowRadius: 4, // Radio de la sombra
+      },
+      modalText: {
+        fontSize: 18, // Tamaño de fuente del texto del modal
+        marginBottom: 20, // Espaciado inferior
+        textAlign: 'center', // Alinear el texto al centro
+      },
   });
 
 
