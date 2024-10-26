@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, SafeAreaView, Modal, Button } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, SafeAreaView, Modal, Button, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './PerfilStyles'
@@ -93,6 +93,7 @@ const EditProfileScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
@@ -169,6 +170,7 @@ const EditProfileScreen = ({ navigation }) => {
           </View>
         </View>
       </Modal>
+      </ScrollView>
     </SafeAreaView>
   );
 };
