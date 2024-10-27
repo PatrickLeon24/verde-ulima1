@@ -5,7 +5,7 @@ const RecojoActivoCard = ({ nombre, apellido, plan, fecha_ingreso, onPress }) =>
   <TouchableOpacity style={styles.card} onPress={onPress}>
     <Text style={styles.cardTitle}>Recojo Activo</Text>
     <Text style={styles.cardText}>Usuario: {nombre} {apellido}</Text>
-    <Text style={styles.cardText}>Plan: {plan}</Text>
+    <Text style={styles.cardText}>Tipo de plan: {plan}</Text>
     <Text style={styles.cardText}>Fecha ingreso: {fecha_ingreso}</Text>
   </TouchableOpacity>
 );
@@ -55,13 +55,11 @@ const RecojoActivoList = ({route}) => {
       const result = await response.json();
       console.log('Resultado de la consulta:', result);
 
-      // Actualiza el estado del usuario seleccionado
       setSelectedUser((prevUser) => ({
         ...prevUser,
-        ...result // Datos actualizados del recojo
+        ...result
       }));
 
-      // Actualiza la lista de recojos
       fetchAdminData();
 
       // Cerrar modal

@@ -18,6 +18,7 @@ import Register_II from './app/(tabs)/Register/Register_II'
 import Cupon from './app/(tabs)/DetalleCupon/PlanDetailsCupon'
 import Recojos from './app/(tabs)/Administrador/Recojos';
 import GenerarCodigo from './app/(tabs)/Administrador/GenerarCodigo';
+import Historial from './app/(tabs)/Administrador/Historial';
 
 const Stack = createStackNavigator();
 
@@ -59,6 +60,11 @@ const App = () => {
           component={GenerarCodigo}
         />
         
+        <Stack.Screen
+          name="Historial"
+          component={Historial}
+        />
+
         <Stack.Screen
           name="Cupones"
           component={Cupones}

@@ -1,23 +1,21 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Importa el hook useNavigation
+import { Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; 
 
 const AdminMenu = ({ userData }) => {
-  const navigation = useNavigation(); // Inicializa el hook de navegación
+  const navigation = useNavigation();
 
   const handleVisualizarRecojos = () => {
-    // Navegar a la pantalla que visualiza los recojos activos
     navigation.navigate('Recojos', {userData});
   };
 
   const handleGenerarCodigo = () => {
-    console.log('Datos de userData en handleGenerarCodigo:', userData); 
-    // Navegar a la pantalla para generar el código de invitación y pasar los datos de userData
     navigation.navigate('GenerarCodigo', { userData });
   };
 
-  console.log('Datos en AdminMenu:', userData); // Verifica que userData esté llegando correctamente
-
+  const handleHistorial = () => {
+    navigation.navigate('Historial', { userData });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={handleVisualizarRecojos}>
@@ -26,6 +24,10 @@ const AdminMenu = ({ userData }) => {
 
       <TouchableOpacity style={styles.button} onPress={handleGenerarCodigo}>
         <Text style={styles.buttonText}>Generar Código de Invitación</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleHistorial}>
+        <Text style={styles.buttonText}>Visualizar Historial de Recojos</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
