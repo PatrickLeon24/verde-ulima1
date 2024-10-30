@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Modal, Text, Image, TouchableOpacity, SafeAreaView } from 'react-native'; 
+import { View, Modal, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'; 
+import QRCode from 'react-native-qrcode-svg';
 import styles from './estilosPDetaCup';
 import { Ionicons } from '@expo/vector-icons';
 
 const PlanDetailsCupon = ({ navigation, route }) => {
   const { item, puntosDisponibles, usuario_id } = route.params;
   const [modalVisible, setModalVisible] = useState(false);
+  const [qrUrl, setQrUrl] = useState('');
 
   // Función para realizar el canje del cupón
   const handleCanjeCupon = async () => {
@@ -21,10 +23,12 @@ const PlanDetailsCupon = ({ navigation, route }) => {
         }),
       });
 
+      const data = await response.json(); 
       if (response.ok) {
+        setQrUrl(data.url_qr); 
         setModalVisible(true);
       } else {
-        console.error('Error al realizar el canje del cupón');
+        console.error('Error al realizar el canje del cupón:', data.error);
       }
     } catch (error) {
       console.error('Error en la solicitud de canje:', error);
@@ -40,6 +44,7 @@ const PlanDetailsCupon = ({ navigation, route }) => {
         <Text style={styles.textoBarra}>Detalles del Cupón</Text>
       </View>
 
+      {/* Asegúrate de que item.imagen sea una URL válida */}
       <Image source={{ uri: item.imagen }} style={styles.image} />
 
       <View style={styles.detailsContainer}>
@@ -63,6 +68,7 @@ const PlanDetailsCupon = ({ navigation, route }) => {
           <Text style={styles.buttonText}>Canjear Ahora</Text>
         </TouchableOpacity>
 
+        {/* Modal de éxito para mostrar el QR */}
         <Modal
           transparent={true}
           visible={modalVisible && puntosDisponibles >= item.costo_puntos}
@@ -71,15 +77,17 @@ const PlanDetailsCupon = ({ navigation, route }) => {
           <View style={styles.modalOverlay}>
             <View style={styles.modalContentSI}>
               <Text style={styles.modalText}>¡Felicidades! Su cupón de {item.local} ha sido canjeado correctamente</Text>
-              <Image
-                source={{ uri: 'https://cdn.pixabay.com/photo/2013/07/12/14/45/qr-code-148732_640.png' }}
-                style={styles.ImagenModal}
+              <QRCode
+                value={qrUrl}  // Usar la URL para generar el QR
+                size={200} 
+                style={{ marginVertical: 10 }}
               />
               <Text style={styles.modalbotonSI} onPress={() => { setModalVisible(false); navigation.navigate('Menu'); }}>Cerrar</Text>
             </View>
           </View>
         </Modal>
 
+        {/* Modal de error para puntos insuficientes */}
         <Modal
           transparent={true}
           visible={modalVisible && puntosDisponibles < item.costo_puntos}
@@ -98,4 +106,3 @@ const PlanDetailsCupon = ({ navigation, route }) => {
 };
 
 export default PlanDetailsCupon;
-
