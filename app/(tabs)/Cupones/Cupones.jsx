@@ -101,7 +101,7 @@ const PantallaPuntos = ({navigation}) => {
             descripcion={item.descripcion}
             costo_puntos={item.costo_puntos}
             imagen={item.imagen}
-            onPress={() =>  navigation.navigate('VerCupon', { item, puntosDisponibles })} // Navegar al plan específico
+            onPress={() =>  navigation.navigate('VerCupon', { item, puntosDisponibles, usuario_id : usuarioId })} // Navegar al plan específico
           />
         )}
         contentContainerStyle = {styles.listaContenido} 
