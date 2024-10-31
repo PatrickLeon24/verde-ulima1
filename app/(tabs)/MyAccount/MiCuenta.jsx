@@ -108,17 +108,12 @@ const AccountScreen = ({ navigation }) => {
                 <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MisPuntos')}>  
+              <TouchableOpacity style={styles.menuItem3} onPress={() => navigation.navigate('MisPuntos')}>  
                 <Ionicons name="ticket-sharp" size={16} color="gray"/>
                 <Text style={styles.menuText2}>Ver mis Puntos</Text> 
                 <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/> 
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.menuItem3} /*onPress={() => navigation.navigate('MiPlan')}*/>  
-                <Ionicons name="reader-outline" size={16} color="gray"/>
-                <Text style={styles.menuText2}>Ver mi Historial</Text> 
-                <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/>
-              </TouchableOpacity>
             </View>
           )}
         </View>
