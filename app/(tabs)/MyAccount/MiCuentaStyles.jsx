@@ -129,7 +129,7 @@ const MiCuentaStyles = StyleSheet.create({
 
     flesha: {
         marginLeft: 'auto',
-    }
+    },
 });
 
 export default MiCuentaStyles;

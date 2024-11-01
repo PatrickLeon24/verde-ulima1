@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 const HistorialActivoCard = ({ nombre, apellido, plan, fecha_salida, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
@@ -36,6 +37,13 @@ const HistorialActivoList = ({ route }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.barraSuperior}>
+        <TouchableOpacity /*onPress={() => navigation.goBack()} style={styles.botonRetroceso}*/>
+          <Ionicons name="arrow-back" size={24} color="white" />
+        </TouchableOpacity>
+        <Text style={styles.textoBarra}>Historial de Recojos</Text>
+      </View>
+
       {adminData && adminData.length > 0 ? (
         adminData.map((historial, index) => (
           <HistorialActivoCard
@@ -56,7 +64,20 @@ const HistorialActivoList = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  barraSuperior: {
+    height: 60,
+    backgroundColor: '#34A853',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  textoBarra: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   card: {
     padding: 15,
@@ -64,6 +85,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 8,
+    paddingHorizontal: 10,
+    marginHorizontal: 20,
   },
   cardTitle: {
     fontSize: 18,

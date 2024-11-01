@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; 
+import styles from './AdminStyle'; 
 
 const AdminMenu = ({ userData }) => {
   const navigation = useNavigation();
@@ -17,48 +18,29 @@ const AdminMenu = ({ userData }) => {
     navigation.navigate('Historial', { userData });
   };
   return (
+    
+    
+
     <SafeAreaView style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={handleVisualizarRecojos}>
-        <Text style={styles.buttonText}>Visualizar Recojos Activos</Text>
+        <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
+        <Text style={styles.buttonText1}></Text>
+        <Text style={styles.buttonText}>RECOJOS ACTIVOS</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleGenerarCodigo}>
-        <Text style={styles.buttonText}>Generar Código de Invitación</Text>
+        <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
+        <Text style={styles.buttonText1}></Text>
+        <Text style={styles.buttonText}>GENERAR CÓDIGOS DE INVITACIÓN</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleHistorial}>
-        <Text style={styles.buttonText}>Visualizar Historial de Recojos</Text>
+        <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
+        <Text style={styles.buttonText1}></Text>
+        <Text style={styles.buttonText}>HISTORIAL DE RECOJOS</Text>     
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  header: {
-    marginBottom: 30,
-  },
-  headerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#4CAF50',
-    padding: 15,
-    marginVertical: 10,
-    borderRadius: 5,
-    width: '80%',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-  },
-});
 
 export default AdminMenu;
