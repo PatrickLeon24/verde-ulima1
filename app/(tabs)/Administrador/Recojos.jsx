@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Button } from 'react-native';
+import styles from './RecojoStyle';
 
 const RecojoActivoCard = ({ nombre, apellido, plan, fecha_ingreso, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
