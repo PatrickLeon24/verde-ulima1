@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const HistorialActivoCard = ({ nombre, apellido, plan, fecha_salida, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
@@ -10,7 +11,8 @@ const HistorialActivoCard = ({ nombre, apellido, plan, fecha_salida, onPress }) 
   </TouchableOpacity>
 );
 
-const HistorialActivoList = ({ route }) => {
+const HistorialRecojos = ({ route }) => {
+  const navigation = useNavigation();
   const { userData } = route.params;
   const [adminData, setAdminData] = useState([]);
 
@@ -38,7 +40,7 @@ const HistorialActivoList = ({ route }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.barraSuperior}>
-        <TouchableOpacity /*onPress={() => navigation.goBack()} style={styles.botonRetroceso}*/>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Historial de Recojos</Text>
@@ -97,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HistorialActivoList;
+export default HistorialRecojos;

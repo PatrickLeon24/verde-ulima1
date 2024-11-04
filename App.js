@@ -18,7 +18,8 @@ import Register_II from './app/(tabs)/Register/Register_II'
 import Cupon from './app/(tabs)/DetalleCupon/PlanDetailsCupon'
 import Recojos from './app/(tabs)/Administrador/Recojos';
 import GenerarCodigo from './app/(tabs)/Administrador/GenerarCodigo';
-import Historial from './app/(tabs)/Administrador/Historial';
+import HistorialRecojos from './app/(tabs)/Administrador/HistorialRecojos';
+import HistorialCodigos from './app/(tabs)/Administrador/HistorialCodigos';
 
 const Stack = createStackNavigator();
 
@@ -61,8 +62,13 @@ const App = () => {
         />
         
         <Stack.Screen
-          name="Historial"
-          component={Historial}
+          name="HistorialRecojos"
+          component={HistorialRecojos}
+        />
+
+        <Stack.Screen
+          name="HistorialCodigos"
+          component={HistorialCodigos}
         />
 
         <Stack.Screen

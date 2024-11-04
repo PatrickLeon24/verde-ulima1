@@ -1,6 +1,6 @@
-import React from 'react';
-import { Text, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; 
+import React, { useState } from 'react';
+import { Text, TouchableOpacity, SafeAreaView, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import styles from './AdminStyle'; 
 
 const AdminMenu = ({ userData }) => {
@@ -14,13 +14,14 @@ const AdminMenu = ({ userData }) => {
     navigation.navigate('GenerarCodigo', { userData });
   };
 
-  const handleHistorial = () => {
-    navigation.navigate('Historial', { userData });
+  const handleHistorialRecojos = () => {
+    navigation.navigate('HistorialRecojos', { userData });
+  };
+
+  const handleHistorialCodigos = () => {
+    navigation.navigate('HistorialCodigos', { userData });
   };
   return (
-    
-    
-
     <SafeAreaView style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={handleVisualizarRecojos}>
         <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
@@ -34,11 +35,18 @@ const AdminMenu = ({ userData }) => {
         <Text style={styles.buttonText}>GENERAR CÓDIGOS DE INVITACIÓN</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={handleHistorial}>
+      <TouchableOpacity style={styles.button} onPress={handleHistorialRecojos}>
         <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
         <Text style={styles.buttonText1}></Text>
         <Text style={styles.buttonText}>HISTORIAL DE RECOJOS</Text>     
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleHistorialCodigos}>
+        <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
+        <Text style={styles.buttonText1}></Text>
+        <Text style={styles.buttonText}>HISTORIAL DE CODIGOS DE INVITACION</Text>     
+      </TouchableOpacity>
+
     </SafeAreaView>
   );
 };

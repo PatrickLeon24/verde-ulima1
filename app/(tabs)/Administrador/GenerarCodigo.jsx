@@ -56,9 +56,9 @@ const GenerarCodigoInvitacion = ({ route }) => {
         <View style={styles.warningContainer}>
             <Text style={styles.warningText}>
               <Text style={styles.boldText}>
-                Este código es solo para compras por internet.
+                Este código es exclusivo para compartir con amigos y familiares.
                 </Text> 
-                Nunca te lo pediremos por chat, llamada, SMS o correo.
+                {'\n'}Nunca compartas este código en público.
             </Text>
           </View>
 
