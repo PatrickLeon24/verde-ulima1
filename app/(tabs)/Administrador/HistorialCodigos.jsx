@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -38,7 +38,7 @@ const HistorialCodigos = ({ route }) => {
   }, [userData.usuario_id]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
@@ -60,7 +60,7 @@ const HistorialCodigos = ({ route }) => {
           <Text style={styles.cardText}>No hay códigos de invitación para mostrar.</Text> // Asegúrate de envolver este texto en <Text>
         )}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

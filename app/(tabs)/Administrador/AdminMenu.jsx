@@ -22,7 +22,7 @@ const AdminMenu = ({ userData }) => {
     navigation.navigate('HistorialCodigos', { userData });
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <TouchableOpacity style={styles.button} onPress={handleVisualizarRecojos}>
         <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
         <Text style={styles.buttonText1}></Text>

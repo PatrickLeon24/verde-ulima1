@@ -64,7 +64,7 @@ const RecoverPasswordScreen = () => {
       setModalVisible(true);
       setTimeout(() => {
         setModalVisible(false);
-        navigation.navigate('Menu');
+        navigation.navigate('Login');
       }, 2000); // Reinicia a la pantalla inicial
 
     } catch (error) {

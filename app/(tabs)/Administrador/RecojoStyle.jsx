@@ -5,7 +5,6 @@ const RecojoStyle = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white', // Color de fondo blanco
     paddingVertical: 40,
-    
   },
   card: {
     width: '90%', // Ancho de la tarjeta al 90% del contenedor

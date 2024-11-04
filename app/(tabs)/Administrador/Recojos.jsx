@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Button } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, Button, SafeAreaView } from 'react-native';
 import styles from './RecojoStyle';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -22,7 +22,7 @@ const RecojoActivoList = ({ route }) => {
 
   const fetchAdminData = async () => {
     try {
-      const response = await fetch('http://192.168.18.12:8000/back/obtener_recojos');
+      const response = await fetch('http://127.0.0.1:8000/back/obtener_recojos');
       if (!response.ok) {
         throw new Error(`Error en la respuesta: ${response.status}`);
       }
@@ -65,71 +65,69 @@ const RecojoActivoList = ({ route }) => {
       }));
 
       fetchAdminData();
-
-      // Cerrar modal
       setModalVisible(false);
-
     } catch (error) {
       console.error('Error al enviar el recojo ID:', error);
     }
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
-          <Ionicons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Recojos Activos</Text>
-      </View>
-      {adminData && adminData.length > 0 ? (
-        adminData.map((recojo, index) => (
-          <RecojoActivoCard
-            key={index}
-            nombre={recojo.nombre}
-            apellido={recojo.apellido}
-            plan={recojo.gestorplan__plan__nombre}
-            fecha_ingreso={recojo.gestorplan__recojo__fecha_ingreso}
-            onPress={() => handleCardPress(recojo)}
-          />
-        ))
-      ) : (
-        <Text>No hay recojos activos para mostrar.</Text>
-      )}
-
-      <Modal
-        visible={modalVisible}
-        animationType="slide"
-        transparent={true}
-      >
-        <View style={styles.modalBackground}>
-          <View style={styles.modalContainer}>
-            {selectedUser && (
-              <>
-                <Text style={styles.modalTitle}>Detalles del Usuario</Text>
-                <Text>Nombre: {selectedUser.nombre}</Text>
-                <Text>Apellido: {selectedUser.apellido}</Text>
-                <Text>Dni: {selectedUser.DNI}</Text>
-                <Text>Celular: {selectedUser.numero_contacto}</Text>
-                <Text>Direccion: {selectedUser.direccion}</Text>
-                <Text>Tipo de plan: {selectedUser.gestorplan__plan__nombre}</Text>
-                <Text>Fecha de ingreso: {selectedUser.gestorplan__recojo__fecha_ingreso}</Text>
-                <Text>Estado del servicio: {selectedUser.gestorplan__recojo__recojo_trayectoria__trayectoria__estado}</Text>
-
-                {/* Botones: Cerrar y Consultar Recojo */}
-                <View style={styles.buttonContainer}>
-                  <Button title="Cerrar" onPress={() => setModalVisible(false)} />
-                  <Button
-                    title="Consultar Recojo"
-                    onPress={handleEnviarRecojoId}
-                  />
-                </View>
-              </>
-            )}
-          </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
+            <Ionicons name="arrow-back" size={24} color="white" />
+          </TouchableOpacity>
+          <Text style={styles.headerText}>Recojos Activos</Text>
         </View>
-      </Modal>
-    </ScrollView>
+        {adminData && adminData.length > 0 ? (
+          adminData.map((recojo, index) => (
+            <RecojoActivoCard
+              key={index}
+              nombre={recojo.nombre}
+              apellido={recojo.apellido}
+              plan={recojo.gestorplan__plan__nombre}
+              fecha_ingreso={recojo.gestorplan__recojo__fecha_ingreso}
+              onPress={() => handleCardPress(recojo)}
+            />
+          ))
+        ) : (
+          <Text>No hay recojos activos para mostrar.</Text>
+        )}
+
+        <Modal
+          visible={modalVisible}
+          animationType="slide"
+          transparent={true}
+        >
+          <View style={styles.modalBackground}>
+            <View style={styles.modalContainer}>
+              {selectedUser && (
+                <>
+                  <Text style={styles.modalTitle}>Detalles del Usuario</Text>
+                  <Text>Nombre: {selectedUser.nombre}</Text>
+                  <Text>Apellido: {selectedUser.apellido}</Text>
+                  <Text>Dni: {selectedUser.DNI}</Text>
+                  <Text>Celular: {selectedUser.numero_contacto}</Text>
+                  <Text>Direccion: {selectedUser.direccion}</Text>
+                  <Text>Tipo de plan: {selectedUser.gestorplan__plan__nombre}</Text>
+                  <Text>Fecha de ingreso: {selectedUser.gestorplan__recojo__fecha_ingreso}</Text>
+                  <Text>Estado del servicio: {selectedUser.gestorplan__recojo__recojo_trayectoria__trayectoria__estado}</Text>
+
+                  <View style={styles.buttonContainer}>
+                    <Button title="Cerrar" onPress={() => setModalVisible(false)} />
+                    <Button
+                      title="Consultar Recojo"
+                      onPress={handleEnviarRecojoId}
+                    />
+                  </View>
+                </>
+              )}
+            </View>
+          </View>
+        </Modal>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
