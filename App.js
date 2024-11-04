@@ -20,6 +20,7 @@ import Recojos from './app/(tabs)/Administrador/Recojos';
 import GenerarCodigo from './app/(tabs)/Administrador/GenerarCodigo';
 import HistorialRecojos from './app/(tabs)/Administrador/HistorialRecojos';
 import HistorialCodigos from './app/(tabs)/Administrador/HistorialCodigos';
+import RecuperaContra from './app/(tabs)/RecuperacionContra/RecuperaContra';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,11 @@ const App = () => {
         <Stack.Screen
           name="Register_II"
           component={Register_II}
+          
+        />
+        <Stack.Screen
+          name="RecuperaContra"
+          component={RecuperaContra}
           
         />
         <Stack.Screen

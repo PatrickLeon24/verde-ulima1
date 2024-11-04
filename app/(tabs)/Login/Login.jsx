@@ -84,15 +84,19 @@ const Login = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Iniciar sesión</Text>
       </TouchableOpacity>
-
+      
       <Text style={styles.orText}>o continua con</Text>
       <TouchableOpacity style={styles.googleButton}>
         <Image source={google} style={styles.googleIcon} />
         <Text style={styles.googleButtonText}>Google</Text>
       </TouchableOpacity>
-
+     
       <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Register_I')}>
         <Text style={styles.registerText}>¿No tienes cuenta? Regístrate</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('RecuperaContra')}>
+        <Text style={styles.registerText}>¿Olvidaste tu contraseña?</Text>
       </TouchableOpacity>
 
       <ErrorModal 
