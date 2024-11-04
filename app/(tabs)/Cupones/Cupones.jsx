@@ -93,7 +93,7 @@ const PantallaPuntos = ({navigation}) => {
 
       {/* - - - - - Lista de Cupones - - - - - */}
       <FlatList
-        data={cuponesData}
+        data={cuponesData.filter((item) => item.disponibilidad > 0)}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <CuponItem
