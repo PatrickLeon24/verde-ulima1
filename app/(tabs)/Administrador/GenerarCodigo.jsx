@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const GenerarCodigoInvitacion = ({ route }) => {
+  const navigation = useNavigation();
   const { userData } = route.params; // Asegúrate de que userData está bien definido
   const [codigo, setCodigo] = useState(null);
   console.log('Datos de userData:', userData); // Verifica que userData no sea indefinido
