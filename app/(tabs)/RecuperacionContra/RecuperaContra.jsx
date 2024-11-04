@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
 import ErrorModal from '../Login/ErrorModal';
+import { useNavigation } from '@react-navigation/native';
 
 const RecoverPasswordScreen = () => {
   const [email, setEmail] = useState('');
@@ -9,7 +10,8 @@ const RecoverPasswordScreen = () => {
   const [step, setStep] = useState(1); // 1: Ingresar correo, 2: Ingresar token y nueva contraseña
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-
+  const navigation = useNavigation();
+  
   const handleSendToken = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/back/enviar_token', {

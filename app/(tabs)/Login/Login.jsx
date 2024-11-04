@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, Image, TextInput, BackHandler } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './Style_Login';
 import logo from '../../../assets/images/logo.jpg';
@@ -11,6 +11,12 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
+  useEffect(() => {
+    // Deshabilita el retroceso en la pantalla
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true);
+    return () => backHandler.remove();
+  }, []);
 
   const storeUserData = async (user) => {
     try {
@@ -45,7 +51,7 @@ const Login = ({ navigation }) => {
       // Pasar tipousuario
       if (data.tipousuario) {
         storeUserData(data);
-        navigation.navigate('Menu');
+        navigation.replace('Menu');
       } else {
         console.error('El tipo de usuario no está presente en los datos:', data);
         setModalMessage('Error: el tipo de usuario no se encontró.');
@@ -109,5 +115,3 @@ const Login = ({ navigation }) => {
 };
 
 export default Login;
-
-

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Modal } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,9 +7,10 @@ const GenerarCodigoInvitacion = ({ route }) => {
   const navigation = useNavigation();
   const { userData } = route.params;
   const [codigo, setCodigo] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const [modalTitle, setModalTitle] = useState('');
+
+  useEffect(() => {
+    generarCodigo();
+  }, []);
 
   const generarCodigo = async () => {
     try {
@@ -24,24 +25,12 @@ const GenerarCodigoInvitacion = ({ route }) => {
       if (response.status === 200) {
         const data = await response.json();
         setCodigo(data.codigo);
-        showModal('Éxito', 'Código generado exitosamente');
       } else {
-        const errorData = await response.json();
-        showModal('Error', errorData.error || 'No se pudo generar el código');
+        console.log('Error al obtener el código');
       }
     } catch (error) {
-      showModal('Error', 'Hubo un problema al generar el código');
+      console.log('Hubo un problema al obtener el código');
     }
-  };
-
-  const showModal = (title, message) => {
-    setModalTitle(title);
-    setModalMessage(message);
-    setModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setModalVisible(false);
   };
 
   return (
@@ -54,7 +43,7 @@ const GenerarCodigoInvitacion = ({ route }) => {
       </View>
       <View style={styles.image} />
       <View style={styles.detailsContainer}>
-        <Text style={styles.headerText}>Generar Código de Invitación</Text>
+        <Text style={styles.headerText}>Código de Invitación</Text>
         {codigo && (
           <View style={styles.codigoContainer}>
             <Text style={styles.codigoText}>Tu Código:</Text>
@@ -68,28 +57,7 @@ const GenerarCodigoInvitacion = ({ route }) => {
             {'\n'}Nunca compartas este código en público.
           </Text>
         </View>
-        <TouchableOpacity style={styles.button} onPress={generarCodigo}>
-          <Text style={styles.buttonText}>Generar otro Código</Text>
-        </TouchableOpacity>
       </View>
-
-      {/* Modal personalizado */}
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={closeModal}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalTitle}>{modalTitle}</Text>
-            <Text style={styles.modalMessage}>{modalMessage}</Text>
-            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-              <Text style={styles.closeButtonText}>Cerrar</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </SafeAreaView>
   );
 };

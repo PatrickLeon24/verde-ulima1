@@ -10,7 +10,7 @@ const Styles_Login = StyleSheet.create({
     paddingVertical: 20,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 20,
   },
