@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const HistorialActivoCard = ({ nombre, apellido, plan, fecha_salida, onPress }) => (
-  <TouchableOpacity style={styles.card} onPress={onPress}>
+const HistorialActivoCard = ({ nombre, apellido, plan, fecha_salida }) => (
+  <View style={styles.card}>
     <Text style={styles.cardText}>Usuario: {nombre} {apellido}</Text>
     <Text style={styles.cardText}>Tipo de plan: {plan}</Text>
-    <Text style={styles.cardText}>Fecha salida: {fecha_salida}</Text>
-  </TouchableOpacity>
+    <Text style={styles.cardText}>Fecha de finalizacion: {fecha_salida}</Text>
+  </View>
 );
 
 const HistorialRecojos = ({ route }) => {
@@ -26,19 +26,15 @@ const HistorialRecojos = ({ route }) => {
         const data = await response.json();
         setAdminData(data);
       } catch (error) {
+        console.error(error); // Agregar manejo de errores
       }
     };
 
     fetchAdminData();
-  }, [userData.usuario_id]); 
-
-  const handleHistorialPress = (historial) => {
-    setSelectedUser(historial);
-    setModalVisible(true); 
-  };
+  }, [userData.usuario_id]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
@@ -46,21 +42,22 @@ const HistorialRecojos = ({ route }) => {
         <Text style={styles.textoBarra}>Historial de Recojos</Text>
       </View>
 
-      {adminData && adminData.length > 0 ? (
-        adminData.map((historial, index) => (
-          <HistorialActivoCard
-            key={index}
-            nombre={historial.recojo__gestor_plan__usuario__nombre}
-            apellido={historial.recojo__gestor_plan__usuario__apellido}
-            plan={historial.recojo__gestor_plan__plan__nombre}
-            fecha_salida={historial.recojo__fecha_salida}
-            onPress={() => handleHistorialPress(historial)}
-          />
-        ))
-      ) : (
-        <Text>No hay recojos activos para mostrar.</Text>
-      )}
-    </ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {adminData && adminData.length > 0 ? (
+          adminData.map((historial, index) => (
+            <HistorialActivoCard
+              key={index}
+              nombre={historial.recojo__gestor_plan__usuario__nombre}
+              apellido={historial.recojo__gestor_plan__usuario__apellido}
+              plan={historial.recojo__gestor_plan__plan__nombre}
+              fecha_salida={historial.recojo__fecha_salida}
+            />
+          ))
+        ) : (
+          <Text style={styles.cardText}>No hay recojos activos para mostrar.</Text>
+        )}
+      </ScrollView>
+    </View>
   );
 };
 
@@ -68,6 +65,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    paddingVertical: 40
+  },
+  scrollContainer: {
+    paddingVertical: 20,
   },
   barraSuperior: {
     height: 60,
@@ -90,12 +91,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginHorizontal: 20,
   },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
   cardText: {
     fontSize: 16,
+  },
+  botonRetroceso: {
+    marginRight: 20,
   },
 });
 

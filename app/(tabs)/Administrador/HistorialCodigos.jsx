@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const CodigoInvitacionCard = ({ codigo, utilizado, fecha_creacion }) => {
-  // Estilo adicional para códigos utilizados
   const cardStyle = utilizado ? styles.cardUtilizado : styles.card;
 
   return (
@@ -39,7 +38,7 @@ const HistorialCodigos = ({ route }) => {
   }, [userData.usuario_id]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <View style={styles.barraSuperior}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
           <Ionicons name="arrow-back" size={24} color="white" />
@@ -47,19 +46,21 @@ const HistorialCodigos = ({ route }) => {
         <Text style={styles.textoBarra}>Códigos de Invitación</Text>
       </View>
 
-      {codigosData && codigosData.length > 0 ? (
-        codigosData.map((codigo, index) => (
-          <CodigoInvitacionCard
-            key={index}
-            codigo={codigo.codigo}
-            utilizado={codigo.utilizado}
-            fecha_creacion={codigo.fecha_creacion}
-          />
-        ))
-      ) : (
-        <Text>No hay códigos de invitación para mostrar.</Text>
-      )}
-    </ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {codigosData && codigosData.length > 0 ? (
+          codigosData.map((codigo, index) => (
+            <CodigoInvitacionCard
+              key={index}
+              codigo={codigo.codigo}
+              utilizado={codigo.utilizado}
+              fecha_creacion={codigo.fecha_creacion}
+            />
+          ))
+        ) : (
+          <Text style={styles.cardText}>No hay códigos de invitación para mostrar.</Text> // Asegúrate de envolver este texto en <Text>
+        )}
+      </ScrollView>
+    </View>
   );
 };
 
@@ -67,6 +68,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    paddingVertical: 40
+  },
+  scrollContainer: {
+    paddingVertical: 20,
   },
   barraSuperior: {
     height: 60,
@@ -93,17 +98,17 @@ const styles = StyleSheet.create({
     padding: 15,
     marginVertical: 10,
     borderWidth: 1,
-    borderColor: '#ffcccb', // Color diferente para los utilizados
+    borderColor: '#ffcccb',
     borderRadius: 8,
     paddingHorizontal: 10,
     marginHorizontal: 20,
-    backgroundColor: '#ffe6e6', // Fondo diferente para los utilizados
+    backgroundColor: '#ffe6e6',
   },
   cardText: {
     fontSize: 16,
   },
   botonRetroceso: {
-    //paddingLeft: 5,
+    marginRight: 20,
   },
 });
 

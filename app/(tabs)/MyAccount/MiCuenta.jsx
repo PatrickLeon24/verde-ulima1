@@ -44,9 +44,9 @@ const AccountScreen = ({ navigation }) => {
 
   const { nombres, apellidos, direccion, DNI, email, tipousuario } = userData;
 
-  return (
+return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         {/* Barra Superior */}
         <View style={styles.barraSuperior}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>

@@ -56,7 +56,7 @@ const AdminStyle = StyleSheet.create({
         height: 79,        // Espacio horizontal interno
         borderRadius: 15,            // Hace el botón redondeado
         alignItems: 'center',        // Alinea el texto al centro
-        marginVertical: 50, 
+        marginVertical: 30, 
         borderWidth: 1,             // Ancho del borde
         borderColor: 'white',
         // Sombra para iOS

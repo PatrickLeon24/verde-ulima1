@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const GenerarCodigoInvitacion = ({ route }) => {
   const navigation = useNavigation();
-  const { userData } = route.params; // Asegúrate de que userData está bien definido
+  const { userData } = route.params;
   const [codigo, setCodigo] = useState(null);
-  console.log('Datos de userData:', userData); // Verifica que userData no sea indefinido
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [modalTitle, setModalTitle] = useState('');
 
   const generarCodigo = async () => {
     try {
@@ -16,20 +18,30 @@ const GenerarCodigoInvitacion = ({ route }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ admin_id: userData.usuario_id }), // Asegúrate de que userData.usuario_id sea un valor válido
+        body: JSON.stringify({ admin_id: userData.usuario_id }),
       });
-      
+
       if (response.status === 200) {
         const data = await response.json();
-        setCodigo(data.codigo); // Aquí guardamos el código generado
-        Alert.alert('Éxito', 'Código generado exitosamente');
+        setCodigo(data.codigo);
+        showModal('Éxito', 'Código generado exitosamente');
       } else {
         const errorData = await response.json();
-        Alert.alert('Error', errorData.error || 'No se pudo generar el código');
+        showModal('Error', errorData.error || 'No se pudo generar el código');
       }
     } catch (error) {
-      Alert.alert('Error', 'Hubo un problema al generar el código');
+      showModal('Error', 'Hubo un problema al generar el código');
     }
+  };
+
+  const showModal = (title, message) => {
+    setModalTitle(title);
+    setModalMessage(message);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
   };
 
   return (
@@ -40,87 +52,87 @@ const GenerarCodigoInvitacion = ({ route }) => {
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Código de Invitación</Text>
       </View>
-      <View style={styles.image} 
-      />
-      
+      <View style={styles.image} />
       <View style={styles.detailsContainer}>
         <Text style={styles.headerText}>Generar Código de Invitación</Text>
-        {codigo && ( // Condicional para mostrar el código generado
+        {codigo && (
           <View style={styles.codigoContainer}>
-            <Text style={styles.codigoText}></Text>
+            <Text style={styles.codigoText}>Tu Código:</Text>
             <Text style={styles.codigo}>{codigo}</Text>
           </View>
-          
-          
         )}
         <View style={styles.separator} />
-
         <View style={styles.warningContainer}>
-            <Text style={styles.warningText}>
-              <Text style={styles.boldText}>
-                Este código es exclusivo para compartir con amigos y familiares.
-                </Text> 
-                {'\n'}Nunca compartas este código en público.
-            </Text>
-          </View>
-
+          <Text style={styles.warningText}>
+            <Text style={styles.boldText}>Este código es exclusivo para compartir con amigos y familiares.</Text>
+            {'\n'}Nunca compartas este código en público.
+          </Text>
+        </View>
         <TouchableOpacity style={styles.button} onPress={generarCodigo}>
           <Text style={styles.buttonText}>Generar otro Código</Text>
         </TouchableOpacity>
-        
-        
       </View>
+
+      {/* Modal personalizado */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>{modalTitle}</Text>
+            <Text style={styles.modalMessage}>{modalMessage}</Text>
+            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+              <Text style={styles.closeButtonText}>Cerrar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  //container: {
-  //  flex: 1,
-  //  justifyContent: 'center',
-  //  alignItems: 'center',
-  //  padding: 20,
-  //  backgroundColor: 'green',
-  //},
-  barraSuperior: {
-    height: 60,
-    backgroundColor: '#34A853',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    
-    borderBottomColor: '#e6e6e6',
-  },
-  botonRetroceso: {
-    marginRight: 30,
-  },
-  textoBarra: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
   container: {
     flex: 1,
     backgroundColor: '#f8f8f8',
     paddingVertical: 40,
     backgroundColor: 'white',
   },
+  barraSuperior: {
+    height: 60,
+    backgroundColor: '#34A853',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    borderBottomColor: '#e6e6e6',
+  },
+  botonRetroceso: {
+    marginRight: 20,
+  },
+  textoBarra: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   headerText: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
   },
   button: {
     backgroundColor: '#4CAF50',
     padding: 15,
-    paddingVertical: 15,
-    paddingHorizontal: 30,
     borderRadius: 8,
     alignItems: 'center',
+    marginTop: 20,
   },
   buttonText: {
     color: 'white',
-    fontSize: 24,
+    fontSize: 16,
   },
   codigoContainer: {
     marginTop: 30,
@@ -131,13 +143,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   codigo: {
-    fontSize: 32,
+    fontSize: 20,
     color: '#34A853',
     marginTop: 10,
-    marginBottom: 14,
   },
   detailsContainer: {
-    padding: 32,
+    padding: 20,
     backgroundColor: 'white',
     borderRadius: 10,
     shadowColor: '#000',
@@ -146,10 +157,68 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 5,
     marginHorizontal: 16,
-    marginTop: -30,
+    marginTop: -50,
     marginVertical: 30, 
     alignItems: 'center',
-    
+  },
+  separator: {
+    height: 8,
+    borderRadius: 5,
+    backgroundColor: '#34A853',
+    width: '60%',
+    alignSelf: 'center',
+    marginVertical: 20,
+  },
+  warningContainer: {
+    backgroundColor: '#FFF4E5',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 20,
+  },
+  warningText: {
+    color: '#4a4a4a',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+  boldText: {
+    fontWeight: 'bold',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalView: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalMessage: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  closeButton: {
+    backgroundColor: '#34A853',
+    padding: 10,
+    borderRadius: 5,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   image: {
     width: '100%',
@@ -158,63 +227,6 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     backgroundColor: '#34A853',
   },
-
-    image2: {
-      width: 60,              // Ancho de la imagen circular
-      height: 60,             // Alto de la imagen circular
-      borderRadius: 30,
-      borderWidth: 1,             // Ancho del borde
-      borderColor: '#34A853',
-          // Hace la imagen circular
-      
-      
-            // Espaciado entre la imagen y el texto
-    },
-    xd1: {
-      color: '#000000',              // Color del texto
-      fontSize: 12,                // Tamaño de la fuente
-      fontWeight: 'bold',
-      textAlign: 'center', 
-      marginVertical:45,
-      
-      
-                // Negrita para el texto
-    },
-    xd: {
-      color: '#000000',              // Color del texto
-      fontSize: 12,                // Tamaño de la fuente
-      fontWeight: 'bold',
-      textAlign: 'center', 
-      position: 'absolute',
-      
-      
-                // Negrita para el texto
-    },
-    warningContainer: {
-      backgroundColor: '#FFF4E5',
-      padding: 15,
-      borderRadius: 8,
-      marginBottom: 20,
-      maxWidth: '50%',
-    },
-    warningText: {
-      color: '#4a4a4a',
-      fontSize: 20,
-      textAlign: 'center',
-      flexWrap: 'wrap',
-    },
-    boldText: {
-      fontWeight: 'bold',
-      fontSize: 20,
-    },
-    separator: {
-    height: 8, // Altura de la línea
-    borderRadius: 5,
-    backgroundColor: '#34A853', // Color de la línea
-    width: '20%', // Ancho de la línea para alinearse con el cuadro
-    marginBottom: 40, // Espacio entre la línea y el botón
-    //paddingBottom: 20,
-    },
 });
 
 export default GenerarCodigoInvitacion;

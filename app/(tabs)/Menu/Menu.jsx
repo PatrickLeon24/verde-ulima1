@@ -61,10 +61,10 @@ const PantallaConBarraVerde = ({ navigation }) => {
           </>
         )}
         {tipousuario === 'Administrador' && (
-          <View>
+          <>
             {/* Mostrar el componente de recojos activos */}
             <AdminMenu userData={userData}/>
-          </View>
+          </>
         )}
       </ScrollView>
     </SafeAreaView>
