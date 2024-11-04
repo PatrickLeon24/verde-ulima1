@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const GenerarCodigoInvitacion = ({ route }) => {
   const { userData } = route.params; // Asegúrate de que userData está bien definido
@@ -31,28 +32,76 @@ const GenerarCodigoInvitacion = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerText}>Generar Código de Invitación</Text>
+      <View style={styles.barraSuperior}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
+          <Ionicons name="arrow-back" size={24} color="white" />
+        </TouchableOpacity>
+        <Text style={styles.textoBarra}>Código de Invitación</Text>
+      </View>
+      <View style={styles.image} 
+      />
+      
+      <View style={styles.detailsContainer}>
+        <Text style={styles.headerText}>Generar Código de Invitación</Text>
+        {codigo && ( // Condicional para mostrar el código generado
+          <View style={styles.codigoContainer}>
+            <Text style={styles.codigoText}></Text>
+            <Text style={styles.codigo}>{codigo}</Text>
+          </View>
+          
+          
+        )}
+        <View style={styles.separator} />
 
-      <TouchableOpacity style={styles.button} onPress={generarCodigo}>
-        <Text style={styles.buttonText}>Generar Código</Text>
-      </TouchableOpacity>
+        <View style={styles.warningContainer}>
+            <Text style={styles.warningText}>
+              <Text style={styles.boldText}>
+                Este código es solo para compras por internet.
+                </Text> 
+                Nunca te lo pediremos por chat, llamada, SMS o correo.
+            </Text>
+          </View>
 
-      {codigo && ( // Condicional para mostrar el código generado
-        <View style={styles.codigoContainer}>
-          <Text style={styles.codigoText}>Código Generado:</Text>
-          <Text style={styles.codigo}>{codigo}</Text>
-        </View>
-      )}
+        <TouchableOpacity style={styles.button} onPress={generarCodigo}>
+          <Text style={styles.buttonText}>Generar otro Código</Text>
+        </TouchableOpacity>
+        
+        
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  //container: {
+  //  flex: 1,
+  //  justifyContent: 'center',
+  //  alignItems: 'center',
+  //  padding: 20,
+  //  backgroundColor: 'green',
+  //},
+  barraSuperior: {
+    height: 60,
+    backgroundColor: '#34A853',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    
+    borderBottomColor: '#e6e6e6',
+  },
+  botonRetroceso: {
+    marginRight: 30,
+  },
+  textoBarra: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
+    backgroundColor: '#f8f8f8',
+    paddingVertical: 40,
+    backgroundColor: 'white',
   },
   headerText: {
     fontSize: 24,
@@ -62,14 +111,14 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#4CAF50',
     padding: 15,
-    borderRadius: 5,
-    marginVertical: 20,
-    width: '80%',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 8,
     alignItems: 'center',
   },
   buttonText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 24,
   },
   codigoContainer: {
     marginTop: 30,
@@ -80,10 +129,90 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   codigo: {
-    fontSize: 22,
-    color: '#333',
+    fontSize: 32,
+    color: '#34A853',
     marginTop: 10,
+    marginBottom: 14,
   },
+  detailsContainer: {
+    padding: 32,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 5,
+    marginHorizontal: 16,
+    marginTop: -30,
+    marginVertical: 30, 
+    alignItems: 'center',
+    
+  },
+  image: {
+    width: '100%',
+    height: 100,
+    marginBottom: 10,
+    resizeMode: 'cover',
+    backgroundColor: '#34A853',
+  },
+
+    image2: {
+      width: 60,              // Ancho de la imagen circular
+      height: 60,             // Alto de la imagen circular
+      borderRadius: 30,
+      borderWidth: 1,             // Ancho del borde
+      borderColor: '#34A853',
+          // Hace la imagen circular
+      
+      
+            // Espaciado entre la imagen y el texto
+    },
+    xd1: {
+      color: '#000000',              // Color del texto
+      fontSize: 12,                // Tamaño de la fuente
+      fontWeight: 'bold',
+      textAlign: 'center', 
+      marginVertical:45,
+      
+      
+                // Negrita para el texto
+    },
+    xd: {
+      color: '#000000',              // Color del texto
+      fontSize: 12,                // Tamaño de la fuente
+      fontWeight: 'bold',
+      textAlign: 'center', 
+      position: 'absolute',
+      
+      
+                // Negrita para el texto
+    },
+    warningContainer: {
+      backgroundColor: '#FFF4E5',
+      padding: 15,
+      borderRadius: 8,
+      marginBottom: 20,
+      maxWidth: '50%',
+    },
+    warningText: {
+      color: '#4a4a4a',
+      fontSize: 20,
+      textAlign: 'center',
+      flexWrap: 'wrap',
+    },
+    boldText: {
+      fontWeight: 'bold',
+      fontSize: 20,
+    },
+    separator: {
+    height: 8, // Altura de la línea
+    borderRadius: 5,
+    backgroundColor: '#34A853', // Color de la línea
+    width: '20%', // Ancho de la línea para alinearse con el cuadro
+    marginBottom: 40, // Espacio entre la línea y el botón
+    //paddingBottom: 20,
+    },
 });
 
 export default GenerarCodigoInvitacion;
