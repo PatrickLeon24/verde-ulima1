@@ -57,7 +57,7 @@ const HistorialCodigos = ({ route }) => {
             />
           ))
         ) : (
-          <Text style={styles.cardText}>No hay códigos de invitación para mostrar.</Text> // Asegúrate de envolver este texto en <Text>
+          <Text style={styles.cardText}>No hay códigos de invitación para mostrar.</Text>
         )}
       </ScrollView>
     </SafeAreaView>

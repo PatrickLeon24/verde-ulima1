@@ -7,9 +7,23 @@ const GenerarCodigoInvitacion = ({ route }) => {
   const navigation = useNavigation();
   const { userData } = route.params;
   const [codigo, setCodigo] = useState(null);
+  const [progress, setProgress] = useState(0); // Progreso de linea
 
   useEffect(() => {
     generarCodigo();
+    // Temporizador para aumentar el progreso
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          navigation.navigate('Menu'); // Redirige al menú cuando llegue al 100%
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 50); // Ajusta el intervalo para la velocidad del llenado (más bajo = más rápido)
+
+    return () => clearInterval(interval); // Limpia el intervalo cuando finaliza
   }, []);
 
   const generarCodigo = async () => {
@@ -50,7 +64,8 @@ const GenerarCodigoInvitacion = ({ route }) => {
             <Text style={styles.codigo}>{codigo}</Text>
           </View>
         )}
-        <View style={styles.separator} />
+        {/* Separador progresivo */}
+        <View style={[styles.separator, { width: `${progress}%` }]} />
         <View style={styles.warningContainer}>
           <Text style={styles.warningText}>
             <Text style={styles.boldText}>Este código es exclusivo para compartir con amigos y familiares.</Text>
@@ -133,7 +148,7 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 5,
     backgroundColor: '#34A853',
-    width: '60%',
+    width: '0%',
     alignSelf: 'center',
     marginVertical: 20,
   },
@@ -149,43 +164,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   boldText: {
-    fontWeight: 'bold',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalView: {
-    width: '80%',
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  modalMessage: {
-    fontSize: 16,
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  closeButton: {
-    backgroundColor: '#34A853',
-    padding: 10,
-    borderRadius: 5,
-  },
-  closeButtonText: {
-    color: 'white',
     fontWeight: 'bold',
   },
   image: {

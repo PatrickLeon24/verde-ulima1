@@ -24,7 +24,7 @@ const AdminMenu = ({ userData }) => {
   return (
     <SafeAreaView>
       <TouchableOpacity style={styles.button} onPress={handleVisualizarRecojos}>
-        <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
+        <Image source={require('../../../assets/images/entrega.png')} style={styles.image2} />
         <Text style={styles.buttonText1}></Text>
         <Text style={styles.buttonText}>RECOJOS ACTIVOS</Text>
       </TouchableOpacity>
