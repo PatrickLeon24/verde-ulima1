@@ -30,19 +30,19 @@ const AdminMenu = ({ userData }) => {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleGenerarCodigo}>
-        <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
+        <Image source={require('../../../assets/images/invitacion.png')} style={styles.image2} />
         <Text style={styles.buttonText1}></Text>
         <Text style={styles.buttonText}>GENERAR CÓDIGOS DE INVITACIÓN</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleHistorialRecojos}>
-        <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
+        <Image source={require('../../../assets/images/historial.png')} style={styles.image2} />
         <Text style={styles.buttonText1}></Text>
         <Text style={styles.buttonText}>HISTORIAL DE RECOJOS</Text>     
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleHistorialCodigos}>
-        <Image source={require('../../../assets/images/BOCAAA.jpg')} style={styles.image2} />
+        <Image source={require('../../../assets/images/historial2.png')} style={styles.image2} />
         <Text style={styles.buttonText1}></Text>
         <Text style={styles.buttonText}>HISTORIAL DE CODIGOS DE INVITACION</Text>     
       </TouchableOpacity>
