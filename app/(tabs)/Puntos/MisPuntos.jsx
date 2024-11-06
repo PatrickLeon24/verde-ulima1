@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import HistorialItem from './HistorialItem'; 
-import data from './historial.json';
 import styles from './stylesMisPuntos'; 
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 const MisPuntos = ({ navigation }) => {
   const [puntosDisponibles, setPuntosDisponibles] = useState(0);
   const [usuarioId, setUsuarioId] = useState(null);
+  const [historial, setHistorial] = useState([]); // Estado para el historial de cupones
 
   useEffect(() => {
- 
     const getUserId = async () => {
       try {
         const jsonUserData = await AsyncStorage.getItem('userData');
@@ -36,7 +35,7 @@ const MisPuntos = ({ navigation }) => {
             throw new Error('Error al obtener los puntos');
           }
           const data = await response.json();
-          setPuntosDisponibles(data.puntos); // Establecer los puntos en el estado
+          setPuntosDisponibles(data.puntos);
         } catch (error) {
           console.error('Error fetching puntos:', error);
         }
@@ -44,7 +43,26 @@ const MisPuntos = ({ navigation }) => {
     };
 
     fetchPuntos(); 
-  }, [usuarioId]); 
+  }, [usuarioId]);
+
+  useEffect(() => {
+    const fetchHistorial = async () => {
+      if (usuarioId) {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/back/historial_cupones/${usuarioId}/`);
+          if (!response.ok) {
+            throw new Error('Error al obtener el historial de cupones');
+          }
+          const data = await response.json();
+          setHistorial(data); // Establecer el historial en el estado
+        } catch (error) {
+          console.error('Error fetching historial:', error);
+        }
+      }
+    };
+
+    fetchHistorial();
+  }, [usuarioId]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -60,8 +78,7 @@ const MisPuntos = ({ navigation }) => {
       <View style={styles.puntosContainer}>
         <Text style={styles.textoDisponibles}>Disponibles</Text>
         <View style={styles.puntos}>
-          {/* Puntos dinámicos */}
-          <Text style={styles.numeroPuntos}>{puntosDisponibles}</Text> 
+          <Text style={styles.numeroPuntos}>{puntosDisponibles}</Text>
           <FontAwesome name="star" size={24} color="#000" />
         </View>
       </View>
@@ -72,9 +89,13 @@ const MisPuntos = ({ navigation }) => {
           <Text style={styles.historialTexto}>Historial</Text>
           <View style={styles.linea}></View>
 
-        
-          {data.map((item) => (
-            <HistorialItem key={item.id} nombre={item.nombre} puntos={item.puntosGastados} />
+          {/* Renderizar el historial dinámico */}
+          {historial.map((item, index) => (
+            <HistorialItem 
+              key={index} 
+              nombre={item.nombre_cupon} 
+              fecha={item.fecha_canje} 
+            />
           ))}
         </View>
       </ScrollView>

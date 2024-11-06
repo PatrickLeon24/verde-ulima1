@@ -95,6 +95,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  
+  historialItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  historialNombre: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  historialFecha: {
+    fontSize: 14,
+    color: '#555',
+  },
 });
 
 export default styles;

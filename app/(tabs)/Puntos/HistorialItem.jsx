@@ -1,12 +1,13 @@
+// HistorialItem.jsx
 import React from 'react';
 import { View, Text } from 'react-native';
-import styles from './stylesMisPuntos'; // Importamos los estilos
+import styles from './stylesMisPuntos';
 
-const HistorialItem = ({ nombre, puntos }) => {
+const HistorialItem = ({ nombre, fecha }) => {
   return (
-    <View style={styles.itemHistorial}>
-      <Text style={styles.textoItemHistorial}>{nombre}</Text>
-      <Text style={styles.puntosItemHistorial}>{puntos} puntos</Text>
+    <View style={styles.historialItem}>
+      <Text style={styles.historialNombre}>{nombre}</Text>
+      <Text style={styles.historialFecha}>{fecha}</Text>
     </View>
   );
 };
