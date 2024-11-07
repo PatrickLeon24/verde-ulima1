@@ -1,14 +1,13 @@
-// HistorialItem.jsx
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './stylesMisPuntos';
 
-const HistorialItem = ({ nombre, fecha }) => {
+const HistorialItem = ({ nombre, fecha, onPress }) => {
   return (
-    <View style={styles.historialItem}>
+    <TouchableOpacity onPress={onPress} style={styles.historialItem}>
       <Text style={styles.historialNombre}>{nombre}</Text>
       <Text style={styles.historialFecha}>{fecha}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

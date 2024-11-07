@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'; 
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, Modal, Image } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import HistorialItem from './HistorialItem'; 
 import styles from './stylesMisPuntos'; 
@@ -8,7 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const MisPuntos = ({ navigation }) => {
   const [puntosDisponibles, setPuntosDisponibles] = useState(0);
   const [usuarioId, setUsuarioId] = useState(null);
-  const [historial, setHistorial] = useState([]); // Estado para el historial de cupones
+  const [historial, setHistorial] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false); // Estado del modal
+  const [qrActual, setQrActual] = useState(''); // Código QR actual a mostrar
 
   useEffect(() => {
     const getUserId = async () => {
@@ -54,7 +56,7 @@ const MisPuntos = ({ navigation }) => {
             throw new Error('Error al obtener el historial de cupones');
           }
           const data = await response.json();
-          setHistorial(data); // Establecer el historial en el estado
+          setHistorial(data); 
         } catch (error) {
           console.error('Error fetching historial:', error);
         }
@@ -63,6 +65,12 @@ const MisPuntos = ({ navigation }) => {
 
     fetchHistorial();
   }, [usuarioId]);
+
+  // Función para mostrar el modal con el QR
+  const mostrarQR = (qrUrl) => {
+    setQrActual(qrUrl);
+    setModalVisible(true);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -94,11 +102,30 @@ const MisPuntos = ({ navigation }) => {
             <HistorialItem 
               key={index} 
               nombre={item.nombre_cupon} 
-              fecha={item.fecha_canje} 
+              fecha={item.fecha_canje}
+              onPress={() => mostrarQR(item.url_qr)} // Pasamos el QR al hacer clic
             />
           ))}
         </View>
       </ScrollView>
+
+      {/* Modal para mostrar el QR */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Código QR</Text>
+            <Image source={{ uri: qrActual }} style={styles.qrImage} />
+            <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.modalCloseButton}>
+              <Text style={styles.modalCloseText}>Cerrar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
