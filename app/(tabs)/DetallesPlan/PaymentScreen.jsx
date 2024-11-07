@@ -39,14 +39,14 @@ const PaymentScreen = () => {
     if (formattedText.length > 2) {
       formattedText = `${formattedText.slice(0, 2)}/${formattedText.slice(2, 6)}`;
     }
-    if (parseInt(formattedText.slice(0, 2), 10) > 12) {
-      formattedText = '12';
-    }
+    
     setExpiryDate(formattedText);
     if (formattedText.length === 7) {
       cvvRef.current.focus();
     }
   };
+
+
 
   const handleCardNumberChange = (text) => {
     setCardNumber(text);
@@ -99,8 +99,21 @@ const PaymentScreen = () => {
 
       return false;
     }
-    return true;
-  };
+
+    const [month, year] = expiryDate.split('/');
+    const expiryMonth = parseInt(month, 10);
+    const expiryYear = parseInt(year, 10);
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth() + 1; 
+
+    if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+      setModalMessage('La fecha de vencimiento no puede ser anterior al mes y año actual.');
+      setModalVisible(true);
+      return false;
+    }
+
+      return true;
+    };
 
   const handlePay = async () => {
     if (validateFields()) {
