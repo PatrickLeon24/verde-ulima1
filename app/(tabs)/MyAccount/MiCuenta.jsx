@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './MiCuentaStyles';
@@ -117,7 +117,7 @@ const AccountScreen = ({ navigation}) => {
 
               <TouchableOpacity style={styles.menuItem3} onPress={() => navigation.navigate('MisRecojos', {userData})}>  
                 <Ionicons name="archive" size={16} color="gray"/>
-                <Text style={styles.menuText2}>Ver mis recojos</Text> 
+                <Text style={styles.menuText2}>Ver mis Recojos</Text> 
                 <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/> 
               </TouchableOpacity>
 

@@ -56,8 +56,8 @@ const PantallaPedido = ({ navigation }) => {
         setModalVisible(true);
         setTimeout(() => {
           setModalVisible(false);
-          navigation.navigate('Menu'); // Redirige al menú tras cerrar el modal
-        }, 1500); // Espera 1.5 segundos antes de redirigir
+          navigation.navigate('Menu'); 
+        }, 1500);
       } else {
         setModalMessage(data.error || 'No se pudo cancelar el recojo.');
         setModalVisible(true);
