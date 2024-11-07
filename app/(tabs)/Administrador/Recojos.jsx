@@ -71,6 +71,35 @@ const RecojoActivoList = ({ route }) => {
     }
   };
 
+  const handleRetrocederEstado = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/back/retroceder_estado', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ recojo_id: selectedUser.id, admin_id: userData.usuario_id }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('Resultado de retroceso de estado:', result);
+
+      setSelectedUser((prevUser) => ({
+        ...prevUser,
+        ...result
+      }));
+
+      fetchAdminData();
+      setModalVisible(false);
+    } catch (error) {
+      console.error('Error al retroceder el estado del recojo:', error);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -119,6 +148,10 @@ const RecojoActivoList = ({ route }) => {
                     <Button
                       title="Consultar Recojo"
                       onPress={handleEnviarRecojoId}
+                    />
+                    <Button
+                      title="Retroceder Estado"
+                      onPress={handleRetrocederEstado}
                     />
                   </View>
                 </>
