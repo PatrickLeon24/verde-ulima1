@@ -21,6 +21,7 @@ import GenerarCodigo from './app/(tabs)/Administrador/GenerarCodigo';
 import HistorialRecojos from './app/(tabs)/Administrador/HistorialRecojos';
 import HistorialCodigos from './app/(tabs)/Administrador/HistorialCodigos';
 import RecuperaContra from './app/(tabs)/RecuperacionContra/RecuperaContra';
+import MisRecojos from './app/(tabs)/Recojos/MisRecojos';
 
 const Stack = createStackNavigator();
 
@@ -134,6 +135,12 @@ const App = () => {
           component={PaymentScreen}
           
         />
+         <Stack.Screen
+          name="MisRecojos"
+          component={MisRecojos}
+          
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

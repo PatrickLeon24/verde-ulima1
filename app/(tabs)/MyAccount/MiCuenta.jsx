@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './MiCuentaStyles';
 
-const AccountScreen = ({ navigation }) => {
+const AccountScreen = ({ navigation}) => {
 
   const [userData, setUserData] = useState(null);
 
@@ -43,10 +43,11 @@ const AccountScreen = ({ navigation }) => {
   }
 
   const { nombres, apellidos, direccion, DNI, email, tipousuario } = userData;
+  console.log("User Data:", userData);
 
-return (
+  return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         {/* Barra Superior */}
         <View style={styles.barraSuperior}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
@@ -108,11 +109,19 @@ return (
                 <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.menuItem3} onPress={() => navigation.navigate('MisPuntos')}>  
+              <TouchableOpacity style={styles.menuItem2} onPress={() => navigation.navigate('MisPuntos')}>  
                 <Ionicons name="ticket-sharp" size={16} color="gray"/>
                 <Text style={styles.menuText2}>Ver mis Puntos</Text> 
                 <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/> 
               </TouchableOpacity>
+
+              <TouchableOpacity style={styles.menuItem3} onPress={() => navigation.navigate('MisRecojos', {userData})}>  
+                <Ionicons name="archive" size={16} color="gray"/>
+                <Text style={styles.menuText2}>Ver mis recojos</Text> 
+                <Ionicons name="chevron-forward-outline" size={16} color="gray" style={styles.flesha}/> 
+              </TouchableOpacity>
+
+              
 
             </View>
           )}
