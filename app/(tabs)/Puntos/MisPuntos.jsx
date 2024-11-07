@@ -100,11 +100,11 @@ const MisPuntos = ({ navigation }) => {
           {/* Renderizar el historial dinámico */}
           {historial.map((item, index) => (
             <HistorialItem 
-              key={index} 
-              nombre={item.nombre_cupon} 
-              fecha={item.fecha_canje}
-              onPress={() => mostrarQR(item.url_qr)} // Pasamos el QR al hacer clic
-            />
+            key={index} 
+            nombre={item.nombre_cupon} 
+            fecha_canje={item.fecha_canje} // Nombre del prop corregido
+            url_qr={item.url_qr} // Asegúrate de pasar el url_qr aquí
+          />
           ))}
         </View>
       </ScrollView>
