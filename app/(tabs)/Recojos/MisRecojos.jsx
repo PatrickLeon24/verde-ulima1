@@ -5,10 +5,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './MisRecojosStyle';
 
-const RecojoActivoCard = ({ numero, nombre, apellido, plan, fecha_ingreso, onPress, navigation, fecha_salida}) => (
+const RecojoActivoCard = ({ numero, plan, fecha_ingreso, onPress, navigation, fecha_salida}) => (
     <TouchableOpacity style={styles.card} onPress={onPress}>
       <Text style={styles.cardTitle}>Recojo {numero}</Text>
-      <Text style={styles.cardText}>Usuario: {nombre} {apellido}</Text>
+      
       <Text style={styles.cardText}>Tipo de plan: {plan}</Text>
       <Text style={styles.cardText}>Fecha ingreso: {fecha_ingreso}</Text>
       <Text style={styles.cardText}>Fecha salida: {fecha_salida}</Text>
@@ -76,8 +76,7 @@ const RecojoActivoList = ({ navigation }) => {
                 <RecojoActivoCard
                 key={index}
                 numero={index + 1} 
-                nombre={recojo.nombre}
-                apellido={recojo.apellido}
+                
                 plan={recojo.gestorplan__plan__nombre}
                 fecha_ingreso={recojo.gestorplan__recojo__fecha_ingreso}
                 fecha_salida={recojo.gestorplan__recojo__fecha_salida}
