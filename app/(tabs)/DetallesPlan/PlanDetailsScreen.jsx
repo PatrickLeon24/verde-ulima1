@@ -3,7 +3,10 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'r
 import { Ionicons } from '@expo/vector-icons';
 
 const PlanDetailsScreen = ({ navigation, route }) => {
-  const {item, usuario_id} = route.params;
+  const { item, usuario_id, activo, planM } = route.params;
+  console.log(usuario_id)
+  console.log(activo)
+  console.log(planM)
   return (
     <SafeAreaView style={styles.container}>
       {/* Barra superior */}
@@ -40,23 +43,32 @@ const PlanDetailsScreen = ({ navigation, route }) => {
         {/* Precio del plan */}
         <Text style={styles.planPrice}>S/. {item.precio}</Text>
 
-        {/* Botón de pago */}
-        <TouchableOpacity
-          style={styles.payButton}
-          onPress={() => {
-            // Visualizar usuario_id y plan_id en la consola
-            console.log("usuario_id:", usuario_id);
-            console.log("plan_id:", item.plan_id);
+        {/* Botón de pago, desactivado si el usuario ya tiene un plan activo */}
+        {planM ?(
+          <Text style={styles.activePlanMessage}>..</Text>
+        ):(
+          activo ? (
+            <Text style={styles.activePlanMessage}>Tienes un recojo activo.</Text>
+          ) : (
+            <TouchableOpacity
+              style={styles.payButton}
+              onPress={() => {
+                console.log("usuario_id:", usuario_id);
+                console.log("plan_id:", item.plan_id);
+                navigation.navigate('Pago', {
+                  plan_id: item.plan_id,
+                  usuario_id: usuario_id,
+                });
+              }}
+            >
+              <Text style={styles.payButtonText}>Pagar Plan</Text>
+            </TouchableOpacity>
+          )
+          
+        )
 
-            // Navegar a la pantalla de pago
-            navigation.navigate('Pago', {
-              plan_id: item.plan_id,
-              usuario_id: usuario_id,
-            });
-          }}
-        >
-          <Text style={styles.payButtonText}>Pagar Plan</Text>
-        </TouchableOpacity>
+        }
+        
       </View>
     </SafeAreaView>
   );
@@ -147,6 +159,12 @@ const styles = StyleSheet.create({
     color: '#000',
     marginVertical: 16,
     textAlign: 'center',
+  },
+  activePlanMessage: {
+    color: '#888',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 16,
   },
   payButton: {
     backgroundColor: '#34A853',
