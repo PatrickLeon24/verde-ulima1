@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import ErrorModal from '../Login/ErrorModal';
 import { useNavigation } from '@react-navigation/native';
 
@@ -67,7 +68,7 @@ const RecoverPasswordScreen = () => {
       setTimeout(() => {
         setModalVisible(false);
         navigation.navigate('Login');
-      }, 2000); // Reinicia a la pantalla inicial
+      }, 2000); // Regresa a la pantalla de inicio de sesión
 
     } catch (error) {
       console.error('Error en la solicitud:', error);
@@ -78,51 +79,66 @@ const RecoverPasswordScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.formContainer}>
-        {step === 1 && (
-          <>
-            <Text style={styles.label}>Correo Electrónico</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Ingrese su correo"
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-            />
-            <TouchableOpacity style={styles.button} onPress={handleSendToken}>
-              <Text style={styles.buttonText}>Enviar Token</Text>
-            </TouchableOpacity>
-          </>
-        )}
-        {step === 2 && (
-          <>
-            <Text style={styles.label}>Token</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Ingrese el token recibido"
-              value={token}
-              onChangeText={setToken}
-            />
-            <Text style={styles.label}>Nueva Contraseña</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Ingrese su nueva contraseña"
-              secureTextEntry
-              value={newPassword}
-              onChangeText={setNewPassword}
-            />
-            <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
-              <Text style={styles.buttonText}>Cambiar Contraseña</Text>
-            </TouchableOpacity>
-          </>
-        )}
-      </View>
+      <ScrollView>
+        <View style={styles.barraSuperior}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botonRetroceso}>
+            <Ionicons name="arrow-back" size={24} color="white" />
+          </TouchableOpacity>
+          <Text style={styles.textoBarra}>Recuperar Contraseña</Text>
+        </View>
 
-      <ErrorModal
-        modalVisible={modalVisible}
-        modalMessage={modalMessage}
-        onClose={() => setModalVisible(false)}
-      />
+        <View style={styles.formContainer}>
+          {step === 1 && (
+            <>
+              <Text style={styles.label}>Correo Electrónico</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Ingrese su correo"
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+              />
+              <TouchableOpacity style={styles.button} onPress={handleSendToken}>
+                <Text style={styles.buttonText}>Enviar Token</Text>
+              </TouchableOpacity>
+            </>
+          )}
+          {step === 2 && (
+            <>
+              <Text style={styles.label}>Correo Electrónico</Text>
+              <TextInput
+                style={[styles.input, { backgroundColor: '#e0e0e0' }]}
+                value={email}
+                editable={false}
+              />
+              <Text style={styles.label}>Token</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Ingrese el token recibido"
+                value={token}
+                onChangeText={setToken}
+              />
+              <Text style={styles.label}>Nueva Contraseña</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Ingrese su nueva contraseña"
+                secureTextEntry
+                value={newPassword}
+                onChangeText={setNewPassword}
+              />
+              <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
+                <Text style={styles.buttonText}>Cambiar Contraseña</Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </View>
+
+        <ErrorModal
+          modalVisible={modalVisible}
+          modalMessage={modalMessage}
+          onClose={() => setModalVisible(false)}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -132,6 +148,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f9f9f9',
     paddingVertical: 40,
+  },
+  barraSuperior: {
+    height: 60,
+    backgroundColor: '#34A853',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  botonRetroceso: {
+    position: 'absolute',
+    left: 10,
+    padding: 10,
+  },
+  textoBarra: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   formContainer: {
     paddingHorizontal: 16,
