@@ -39,7 +39,7 @@ const RecojoActivoList = ({ navigation }) => {
     const fetchAdminData = async () => {
       if (usuarioId) {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/back/obtener_recojosus/${usuarioId}/`);
+          const response = await fetch(`https://verdeulima.azurewebsites.net/back/obtener_recojosus/${usuarioId}/`);
           if (!response.ok) {
             throw new Error('Error al obtener los recojos activos');
           }

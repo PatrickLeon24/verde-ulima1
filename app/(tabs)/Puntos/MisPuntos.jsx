@@ -32,7 +32,7 @@ const MisPuntos = ({ navigation }) => {
     const fetchPuntos = async () => {
       if (usuarioId) {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/back/puntos/${usuarioId}/`);
+          const response = await fetch(`https://verdeulima.azurewebsites.net/back/puntos/${usuarioId}/`);
           if (!response.ok) {
             throw new Error('Error al obtener los puntos');
           }
@@ -51,7 +51,7 @@ const MisPuntos = ({ navigation }) => {
     const fetchHistorial = async () => {
       if (usuarioId) {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/back/historial_cupones/${usuarioId}/`);
+          const response = await fetch(`https://verdeulima.azurewebsites.net/back/historial_cupones/${usuarioId}/`);
           if (!response.ok) {
             throw new Error('Error al obtener el historial de cupones');
           }

@@ -19,7 +19,7 @@ const HistorialRecojos = ({ route }) => {
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/back/historial_recojos/${userData.usuario_id}/`);
+        const response = await fetch(`https://verdeulima.azurewebsites.net/back/historial_recojos/${userData.usuario_id}/`);
         if (!response.ok) {
           throw new Error(`Error en la respuesta: ${response.status}`);
         }

@@ -124,7 +124,7 @@ const PaymentScreen = () => {
         };
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/back/crear_pago', {
+            const response = await fetch('https://verdeulima.azurewebsites.net/back/crear_pago', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ const PaymentScreen = () => {
                     pago_id: pago_id,
                 };
 
-                const gestorPlanResponse = await fetch('http://127.0.0.1:8000/back/gestor_plan', {
+                const gestorPlanResponse = await fetch('https://verdeulima.azurewebsites.net/back/gestor_plan', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

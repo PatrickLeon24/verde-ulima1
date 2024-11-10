@@ -15,7 +15,7 @@ const PantallaPedido = ({ navigation }) => {
     const jsonUserData = await AsyncStorage.getItem('userData');
     if (jsonUserData !== null) {
       const userData = JSON.parse(jsonUserData);
-      const response = await fetch('http://127.0.0.1:8000/back/estado_pedido', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/estado_pedido', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const PantallaPedido = ({ navigation }) => {
     const jsonUserData = await AsyncStorage.getItem('userData');
     if (jsonUserData !== null) {
       const userData = JSON.parse(jsonUserData);
-      const response = await fetch('http://127.0.0.1:8000/back/cancelar_recojo', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/cancelar_recojo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

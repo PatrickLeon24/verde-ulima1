@@ -23,7 +23,7 @@ const HistorialCodigos = ({ route }) => {
   useEffect(() => {
     const fetchCodigosData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/back/historial_codigos/${userData.usuario_id}/`);
+        const response = await fetch(`https://verdeulima.azurewebsites.net/back/historial_codigos/${userData.usuario_id}/`);
         if (!response.ok) {
           throw new Error(`Error en la respuesta: ${response.status}`);
         }

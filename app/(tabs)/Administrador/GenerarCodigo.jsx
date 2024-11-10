@@ -28,7 +28,7 @@ const GenerarCodigoInvitacion = ({ route }) => {
 
   const generarCodigo = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/generar', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/generar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ const RecoverPasswordScreen = () => {
   
   const handleSendToken = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/enviar_token', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/enviar_token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const RecoverPasswordScreen = () => {
 
   const handleChangePassword = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/cambiar_contrasena', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/cambiar_contrasena', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

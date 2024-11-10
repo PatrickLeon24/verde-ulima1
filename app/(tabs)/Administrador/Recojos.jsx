@@ -22,7 +22,7 @@ const RecojoActivoList = ({ route }) => {
 
   const fetchAdminData = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/obtener_recojos');
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/obtener_recojos');
       if (!response.ok) {
         throw new Error(`Error en la respuesta: ${response.status}`);
       }
@@ -44,7 +44,7 @@ const RecojoActivoList = ({ route }) => {
 
   const handleEnviarRecojoId = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/consultar_recojo', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/consultar_recojo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

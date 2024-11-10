@@ -18,7 +18,7 @@ const RegisterII = ({ navigation }) => {
   useEffect(() => {
     const fetchTiposUsuario = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/back/tipos-usuario');
+        const response = await fetch('https://verdeulima.azurewebsites.net/back/tipos-usuario');
         const data = await response.json();
         setTiposUsuario(data);
       } catch (error) {
@@ -56,7 +56,7 @@ const RegisterII = ({ navigation }) => {
       }
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/back/register', {
+        const response = await fetch('https://verdeulima.azurewebsites.net/back/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

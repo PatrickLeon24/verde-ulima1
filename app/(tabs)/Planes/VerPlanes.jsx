@@ -31,7 +31,7 @@ const PantallaVerPlanes = ({ navigation }) => {
   const fetchPlanes = async (filters = {}) => {
     setLoading(true);
     try {
-      let url = 'http://127.0.0.1:8000/back/planesRecojo';
+      let url = 'https://verdeulima.azurewebsites.net/back/planesRecojo';
       const { precio_min, precio_max, frecuencia_recojo } = filters;
       
       // Agregar los filtros a la URL si están presentes

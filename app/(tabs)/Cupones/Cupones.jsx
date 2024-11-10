@@ -14,7 +14,7 @@ const PantallaPuntos = ({navigation}) => {
   useEffect(() => {
     const fetchPlanes = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/back/cupones');
+        const response = await fetch('https://verdeulima.azurewebsites.net/back/cupones');
         if (!response.ok) {
           throw new Error('Error en la carga de los datos');
         }
@@ -50,7 +50,7 @@ const PantallaPuntos = ({navigation}) => {
     const fetchPuntos = async () => {
       if (usuarioId) {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/back/puntos/${usuarioId}/`); 
+          const response = await fetch(`https://verdeulima.azurewebsites.net/back/puntos/${usuarioId}/`); 
           if (!response.ok) {
             throw new Error('Error al obtener los puntos');
           }
@@ -68,8 +68,8 @@ const PantallaPuntos = ({navigation}) => {
 
   if (loading) {
     return (
-      <View /*style={styles.loadingContainer}*/>
-        <Text>Cargando planes...</Text>
+      <View style={styles.loadingContainer}>
+        <Text>Cargando cupones...</Text>
       </View>
     );
   }

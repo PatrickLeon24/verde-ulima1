@@ -12,7 +12,7 @@ const PlanDetailsCupon = ({ navigation, route }) => {
   // Función para realizar el canje del cupón
   const handleCanjeCupon = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/canjear_cupon', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/canjear_cupon', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

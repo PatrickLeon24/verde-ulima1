@@ -49,7 +49,7 @@ const EditProfileScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/guardar_perfil', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/guardar_perfil', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

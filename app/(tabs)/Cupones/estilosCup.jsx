@@ -160,6 +160,11 @@ const estilosCup = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 1,
       },
+      loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
 });
 
 export default estilosCup;
