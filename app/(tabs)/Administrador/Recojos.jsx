@@ -73,7 +73,7 @@ const RecojoActivoList = ({ route }) => {
 
   const handleRetrocederEstado = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/retroceder_estado', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/retroceder_estado', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,17 +143,18 @@ const RecojoActivoList = ({ route }) => {
                   <Text>Fecha de ingreso: {selectedUser.gestorplan__recojo__fecha_ingreso}</Text>
                   <Text>Estado del servicio: {selectedUser.gestorplan__recojo__recojo_trayectoria__trayectoria__estado}</Text>
 
-                  <View style={styles.buttonContainer}>
-                    <Button title="Cerrar" onPress={() => setModalVisible(false)} />
-                    <Button
-                      title="Consultar Recojo"
-                      onPress={handleEnviarRecojoId}
-                    />
-                    <Button
-                      title="Retroceder Estado"
-                      onPress={handleRetrocederEstado}
-                    />
-                  </View>
+                  <View style={[styles.buttonContainer, { flexDirection: 'column', gap: 10 }]}>
+                  <Button
+                    title="Retroceder Estado"
+                    onPress={handleRetrocederEstado}
+                  />
+                  <Button
+                    title="Avanzar Estado"
+                    onPress={handleEnviarRecojoId}
+                    color="green"
+                  />
+                  <Button title="Cerrar" onPress={() => setModalVisible(false)} color="red"/>
+                </View>
                 </>
               )}
             </View>

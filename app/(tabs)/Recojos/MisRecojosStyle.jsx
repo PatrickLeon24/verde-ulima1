@@ -2,10 +2,9 @@ import { StyleSheet } from 'react-native';
 
 const RecojoStyle = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    padding: 16,
-    justifyContent: 'flex-start',
     flex: 1,
+    backgroundColor: 'white',
+    paddingVertical: 40
   },
   card: {
     padding: 15,

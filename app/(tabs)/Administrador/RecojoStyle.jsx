@@ -5,7 +5,7 @@ const RecojoStyle = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f9f9f9', // Fondo gris claro para un contraste suave
-    paddingVertical: 20,
+    paddingVertical: 40,
   },
   header: {
     height: 60,
@@ -60,15 +60,12 @@ const RecojoStyle = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo transparente oscuro
   },
   modalContainer: {
-    width: '85%',
-    backgroundColor: '#fff',
-    borderRadius: 15,
-    padding: 25,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 8,
+    width: '80%', 
+    backgroundColor: 'white', 
+    borderRadius: 10,
+    padding: 20,
+    elevation: 5, 
+    alignItems: 'center',
   },
   modalTitle: {
     fontSize: 22,
@@ -85,8 +82,9 @@ const RecojoStyle = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
+    width: '80%',
     marginTop: 20,
+    alignItems: 'center',
   },
 });
 
