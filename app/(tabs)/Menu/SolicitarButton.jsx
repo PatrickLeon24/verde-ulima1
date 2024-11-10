@@ -15,8 +15,8 @@ const SolicitarButton = ({ userData }) => {
 
     try {
       // Verificar si el usuario tiene un recojo activo
-      const checkResponse = await fetch(`http://127.0.0.1:8000/back/verificar_recojo_activo/${userData.usuario_id}`, {
-        method: 'GET',
+      const checkResponse = await fetch(`http://127.0.0.1:8000/back/verificar_recojo_activo/${userData.usuario_id}/`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
