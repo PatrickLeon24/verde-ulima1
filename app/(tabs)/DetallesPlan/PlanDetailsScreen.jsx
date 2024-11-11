@@ -45,7 +45,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
 
         {/* Botón de pago, desactivado si el usuario ya tiene un plan activo */}
         {planM ?(
-          <Text style={styles.activePlanMessage}>..</Text>
+          <Text style={styles.activePlanMessage}>Este es tu plan actual</Text>
         ):(
           activo ? (
             <Text style={styles.activePlanMessage}>Tienes un recojo activo.</Text>

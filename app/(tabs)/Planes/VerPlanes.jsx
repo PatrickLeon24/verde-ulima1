@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Modal, TextInput } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Modal, TextInput} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PlanItem from './PlanItem';
@@ -12,6 +12,7 @@ const PantallaVerPlanes = ({ navigation }) => {
   const [precioMin, setPrecioMin] = useState('');
   const [precioMax, setPrecioMax] = useState('');
   const [frecuenciaRecojo, setFrecuenciaRecojo] = useState('');
+  const [recojoActivo, setRecojoActivo] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -28,12 +29,30 @@ const PantallaVerPlanes = ({ navigation }) => {
     getUserData(); 
   }, []); 
 
+  useEffect(() => {
+    const verificarRecojoActivo = async () => {
+      if (userData) {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/back/verificar_recojo_activo/${userData.usuario_id}/`, {
+            method: 'POST',
+          });
+          const data = await response.json();
+          setRecojoActivo(data.recojo_activo);
+        } catch (error) {
+          console.error('Error al verificar recojo activo del usuario:', error);
+        }
+      }
+    };
+
+    verificarRecojoActivo();
+  }, [userData]);
+
   const fetchPlanes = async (filters = {}) => {
     setLoading(true);
     try {
       let url = 'http://127.0.0.1:8000/back/planesRecojo';
       const { precio_min, precio_max, frecuencia_recojo } = filters;
-      
+
       // Agregar los filtros a la URL si están presentes
       const queryParams = [];
       if (precio_min) queryParams.push(`precio_min=${precio_min}`);
@@ -74,11 +93,7 @@ const PantallaVerPlanes = ({ navigation }) => {
     setModalVisible(false); // Cerrar el modal después de aplicar los filtros
   };
 
-  if (!userData) {
-    return <Text>Cargando...</Text>; 
-  }
-
-  if (loading) {
+  if (!userData || loading) {
     return (
       <View style={styles.loadingContainer}>
         <Text>Cargando planes...</Text>
@@ -112,7 +127,7 @@ const PantallaVerPlanes = ({ navigation }) => {
             precio={item.precio}
             descripcion={item.descripcion}
             onPress={() => navigation.navigate('VerPlan', { 
-              item, usuario_id: userData.usuario_id
+              item, usuario_id: userData.usuario_id, activo : recojoActivo ,planM:false
             })}
           />
         )}
