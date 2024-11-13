@@ -158,12 +158,12 @@ const PaymentScreen = () => {
                 const gestorPlanResult = await gestorPlanResponse.json();
 
                 if (gestorPlanResponse.ok) {
-                    setModalMessage('Tu pago ha sido procesado y registrado exitosamente.');
+                    setModalMessage('¡Listo! Hemos procesado tu pago. En breve, un administrador confirmará tu plan para que puedas comenzar a disfrutarlo');
                     setModalVisible(true);
 
                     setTimeout(() => {
                         navigation.navigate('Menu');
-                    }, 2000);
+                    }, 7000);
                 } else {
                     console.error('Error al registrar el GestorPlan:', gestorPlanResult);
                     setModalMessage(gestorPlanResult.error || 'Error al registrar el GestorPlan');
