@@ -11,7 +11,7 @@ import yape from '../../../assets/yape.png';
 const PaymentScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const {plan_id, usuario_id } = route.params;
+  const {plan_id, usuario_id, monto_pago } = route.params;
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -121,6 +121,7 @@ const PaymentScreen = () => {
             estado: 'Completado',
             metodo_pago: cardNumber ? 'Tarjeta' : 'Yape',
             fecha_pago: new Date().toISOString().split('T')[0],
+            monto_pago: monto_pago
         };
 
         try {

@@ -58,6 +58,7 @@ const PlanDetailsScreen = ({ navigation, route }) => {
                 navigation.navigate('Pago', {
                   plan_id: item.plan_id,
                   usuario_id: usuario_id,
+                  monto_pago: item.precio
                 });
               }}
             >
