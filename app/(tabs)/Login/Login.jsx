@@ -92,7 +92,7 @@ const Login = ({ navigation }) => {
       </TouchableOpacity>
       
       <Text style={styles.orText}>o continua con</Text>
-      <TouchableOpacity style={styles.googleButton}>
+      <TouchableOpacity style={styles.googleButton} onPress={() => navigation.navigate('Google')}>
         <Image source={google} style={styles.googleIcon} />
         <Text style={styles.googleButtonText}>Google</Text>
       </TouchableOpacity>
