@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const PagoItem = ({ pago, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={() => onPress(pago)}>
+    <Text style={styles.cardText}>Usuario: {pago.usuarioid}</Text>
     <Text style={styles.cardText}>Usuario: {pago.usuario}</Text>
     <Text style={styles.cardText}>Plan: {pago.plan}</Text>
     <Text style={styles.cardText}>Método de Pago: {pago.metodo_pago}</Text>
@@ -17,6 +18,7 @@ const ValidarPagos = () => {
   const [pagosData, setPagosData] = useState([]);
   const [selectedPago, setSelectedPago] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   // Fetch de los pagos no validados
   useEffect(() => {
@@ -55,6 +57,34 @@ const ValidarPagos = () => {
     }
   };
 
+  const handleCardPress = (pago) => {
+    setSelectedUser(pago);
+  };
+
+  const handleEnviarPDF = async () => {
+    try {
+      // Log del usuario_id antes de enviar la solicitud
+      console.log('Resultado de la consulta:', { usuario_id: selectedUser.usuarioid });
+  
+      // Realizando la solicitud POST
+      const response = await fetch('http://127.0.0.1:8000/back/enviar_PDF', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ usuario_id: selectedUser.usuarioid }), // Aquí es donde envías el body
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.status}`);
+      }
+  
+      
+    } catch (error) {
+      console.error('Error al enviar el recojo ID:', error);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.barraSuperior}>
@@ -73,6 +103,7 @@ const ValidarPagos = () => {
               onPress={(pago) => {
                 setSelectedPago(pago);
                 setModalVisible(true);
+                handleCardPress(pago)
               }}
             />
           ))
@@ -93,7 +124,9 @@ const ValidarPagos = () => {
             <Button title="Cerrar" onPress={() => setModalVisible(false)} />
             <TouchableOpacity 
               style={styles.validarButton} 
-              onPress={() => validarPago(selectedPago.id)}
+              onPress={() => {validarPago(selectedPago.id);
+                handleEnviarPDF()
+              }}
             >
               <Text style={styles.validarButtonText}>Validar Pago</Text>
             </TouchableOpacity>
