@@ -15,7 +15,7 @@ const GoogleLogin = ({ navigation }) => {
   
   // Reiniciar la autenticación cada vez que el usuario haga clic en el botón de Google
   const [request, response, promptAsync] = Google.useAuthRequest({
-    clientId: '740624338583-6rsvmcosstuqgdunlj5cnhc8nnkgoog0.apps.googleusercontent.com',
+    clientId: '740624338583-rsrr0h0gklljb635423kehdq02774e3l.apps.googleusercontent.com',
   });
 
   useEffect(() => {
