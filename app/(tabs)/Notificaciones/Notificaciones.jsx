@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 
-const Notificacion = () => {
+const Notificacion = ({route}) => {
+    const {userData} = route.params
     const [notificaciones, setNotificaciones] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -12,7 +13,7 @@ const Notificacion = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ usuario_id: 2 })
+                body: JSON.stringify({ usuario_id: userData.usuario_id })
             });
             const data = await response.json();
             if (data.status === 'success') {

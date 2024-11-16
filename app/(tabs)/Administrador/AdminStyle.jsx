@@ -53,7 +53,7 @@ const AdminStyle = StyleSheet.create({
       button: {
         backgroundColor: 'white', // Color del botón
         width: 219,               // Ancho fijo del botón
-        height: 79,        // Espacio horizontal interno
+        height: 70,        // Espacio horizontal interno
         borderRadius: 15,            // Hace el botón redondeado
         alignItems: 'center',        // Alinea el texto al centro
         marginVertical: 30, 
