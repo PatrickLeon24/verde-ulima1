@@ -61,7 +61,7 @@ const Notificacion = ({route}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
+        paddingVertical: 40,
         backgroundColor: '#fff',
     },
     loadingContainer: {

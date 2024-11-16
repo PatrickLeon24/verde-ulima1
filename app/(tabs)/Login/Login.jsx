@@ -28,6 +28,11 @@ const Login = ({ navigation }) => {
   };
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      setModalMessage('Por favor, ingresa tu correo y contraseña.');
+      setModalVisible(true);
+      return;
+    }
     try {
       const response = await fetch('http://127.0.0.1:8000/back/iniciar_sesion', {
         method: 'POST',
