@@ -24,6 +24,7 @@ import ValidarPagos from './app/(tabs)/Administrador/ValidarPagos';
 import RecuperaContra from './app/(tabs)/RecuperacionContra/RecuperaContra';
 import MisRecojos from './app/(tabs)/Recojos/MisRecojos';
 import GoogleLogin from './app/(tabs)/Google/Google';
+import Notificacion from './app/(tabs)/Notificaciones/Notificaciones';
 
 const Stack = createStackNavigator();
 
@@ -60,6 +61,10 @@ const App = () => {
           name="Menu"
           component={Menu}
           
+        />
+        <Stack.Screen
+          name="Notificaciones"
+          component={Notificacion}
         />
         <Stack.Screen
           name="Recojos"

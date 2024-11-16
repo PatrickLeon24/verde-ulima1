@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, Image, TouchableOpacity, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import { MaterialIcons } from '@expo/vector-icons'; // Importar íconos
 import CuponButton from './CuponButton'; 
 import PlanButton from './PlanButton'; 
 import SolicitarButton from './SolicitarButton';
@@ -10,6 +11,7 @@ import styles from './Style_Menu';
 
 const PantallaConBarraVerde = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
+  const [notificacionesNoLeidas, setNotificacionesNoLeidas] = useState(0);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -27,11 +29,32 @@ const PantallaConBarraVerde = ({ navigation }) => {
       }
     };
 
+    const fetchNotificaciones = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/back/notificaciones', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ usuario_id: 2 }), // Cambiar esto al ID dinámico del usuario
+        });
+        const data = await response.json();
+        if (data.status === 'success') {
+          const noLeidas = data.notificaciones.filter((noti) => !noti.leido).length;
+          setNotificacionesNoLeidas(noLeidas);
+        }
+      } catch (error) {
+        console.error('Error al obtener notificaciones:', error);
+      }
+    };
+
     const unsubscribe = navigation.addListener('focus', () => {
       getUserData();
+      fetchNotificaciones();
     });
 
     getUserData(); 
+    fetchNotificaciones();
 
     return unsubscribe; 
   }, [navigation]);
@@ -49,6 +72,15 @@ const PantallaConBarraVerde = ({ navigation }) => {
           <Image source={require('../../../assets/images/xd.jpg')} style={styles.image} />
         </TouchableOpacity>
         <Text style={styles.textoBarra}>Hola, {nombres} {apellidos}</Text>
+        
+        <TouchableOpacity style={styles.botonCampana} onPress={() => navigation.navigate('Notificaciones')}>
+          <MaterialIcons name="notifications" size={24} color="#fff" />
+          {notificacionesNoLeidas > 0 && (
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>{notificacionesNoLeidas}</Text>
+            </View>
+          )}
+        </TouchableOpacity>
       </View>
 
       <ScrollView contentContainerStyle={styles.botonContainer}>
