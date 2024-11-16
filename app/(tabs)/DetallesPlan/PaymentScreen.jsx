@@ -120,7 +120,6 @@ const PaymentScreen = () => {
         const paymentData = {
             estado: 'Completado',
             metodo_pago: cardNumber ? 'Tarjeta' : 'Yape',
-            fecha_pago: new Date().toISOString().split('T')[0],
             monto_pago: monto_pago
         };
 
@@ -163,7 +162,7 @@ const PaymentScreen = () => {
 
                     setTimeout(() => {
                         navigation.navigate('Menu');
-                    }, 7000);
+                    }, 6000);
                 } else {
                     console.error('Error al registrar el GestorPlan:', gestorPlanResult);
                     setModalMessage(gestorPlanResult.error || 'Error al registrar el GestorPlan');
