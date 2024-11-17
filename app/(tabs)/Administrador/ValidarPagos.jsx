@@ -6,10 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 const PagoItem = ({ pago, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={() => onPress(pago)}>
     <Text style={styles.cardText}>Usuario: {pago.usuarioid}</Text>
-    <Text style={styles.cardText}>Usuario: {pago.usuario}</Text>
+    <Text style={styles.cardText}>Nombre: {pago.usuario}</Text>
     <Text style={styles.cardText}>Plan: {pago.plan}</Text>
     <Text style={styles.cardText}>Método de Pago: {pago.metodo_pago}</Text>
-    <Text style={styles.cardText}>Recojos Solicitados: {pago.recojos_solicitados}</Text>
+    <Text style={styles.cardText}>Monto de Pago: S/. {pago.monto_pago.toFixed(2)}</Text>
   </TouchableOpacity>
 );
 
