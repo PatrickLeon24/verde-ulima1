@@ -73,7 +73,7 @@ const Style_Menu = StyleSheet.create({
       width: 40,              // Ancho de la imagen circular
       height: 40,             // Alto de la imagen circular
       borderRadius: 20,       // Hace la imagen circular
-      marginRight:300,
+      marginRight:250,
       
             // Espaciado entre la imagen y el texto
     },
@@ -99,6 +99,10 @@ const Style_Menu = StyleSheet.create({
       fontSize: 16,
       color: 'black',
     },
+    botonCampana: {
+      position: 'relative',
+      padding: 5,
+    },
     modalOverlay: {
       flex: 1,
       justifyContent: 'center',
@@ -106,7 +110,8 @@ const Style_Menu = StyleSheet.create({
       backgroundColor: 'rgba(0,0,0,0.5)'
     },
     modalContent: {
-      padding: 15,
+      width: '90%',
+      padding: 12,
       backgroundColor: 'white',
       borderRadius: 10,
       alignItems: 'center'

@@ -68,8 +68,8 @@ const PantallaPuntos = ({navigation}) => {
 
   if (loading) {
     return (
-      <View style={styles.loadingContainer}>
-        <Text>Cargando cupones...</Text>
+      <View /*style={styles.loadingContainer}*/>
+        <Text>Cargando planes...</Text>
       </View>
     );
   }

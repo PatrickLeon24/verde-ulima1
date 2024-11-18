@@ -14,6 +14,29 @@ const SolicitarButton = ({ userData }) => {
     }
 
     try {
+      // Verificar si el usuario tiene un recojo activo
+      const checkResponse = await fetch(`https://verdeulima.azurewebsites.net/back/verificar_recojo_activo/${userData.usuario_id}/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!checkResponse.ok) {
+        const errorData = await checkResponse.json();
+        setModalMessage(errorData.error || 'Error al verificar el recojo activo.');
+        setModalVisible(true);
+        return;
+      }
+
+      const checkData = await checkResponse.json();
+      if (checkData.recojo_activo) {
+        setModalMessage('Ya tienes un recojo activo. No puedes iniciar otro hasta que se complete.');
+        setModalVisible(true);
+        return;
+      }
+
+      // Enviar solicitud de recojo si no hay uno activo
       const response = await fetch('https://verdeulima.azurewebsites.net/back/solicitar_recojo', {
         method: 'POST',
         headers: {
@@ -23,8 +46,6 @@ const SolicitarButton = ({ userData }) => {
           usuario_id: userData.usuario_id,
         }),
       });
-      
-      console.log(userData.usuario_id, userData.nombres);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -68,4 +89,3 @@ const SolicitarButton = ({ userData }) => {
 };
 
 export default SolicitarButton;
-

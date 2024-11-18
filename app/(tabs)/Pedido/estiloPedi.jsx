@@ -212,6 +212,7 @@ const estilosPedi = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 20,
     marginHorizontal: 30,
+    justifyContent: 'center',
   },
   cuadratexto: {
     backgroundColor: 'white',
@@ -245,7 +246,7 @@ const estilosPedi = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    width: '80%',
+    width: '70%',
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
     padding: 20,
@@ -253,7 +254,7 @@ const estilosPedi = StyleSheet.create({
     ...shadowStyle,
   },
   modalText: {
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 20,
     ...textCenter,
   },

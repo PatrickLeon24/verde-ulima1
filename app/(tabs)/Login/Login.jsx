@@ -28,6 +28,11 @@ const Login = ({ navigation }) => {
   };
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      setModalMessage('Por favor, ingresa tu correo y contraseña.');
+      setModalVisible(true);
+      return;
+    }
     try {
       const response = await fetch('https://verdeulima.azurewebsites.net/back/iniciar_sesion', {
         method: 'POST',
@@ -92,7 +97,7 @@ const Login = ({ navigation }) => {
       </TouchableOpacity>
       
       <Text style={styles.orText}>o continua con</Text>
-      <TouchableOpacity style={styles.googleButton}>
+      <TouchableOpacity style={styles.googleButton} onPress={() => navigation.navigate('Google')}>
         <Image source={google} style={styles.googleIcon} />
         <Text style={styles.googleButtonText}>Google</Text>
       </TouchableOpacity>

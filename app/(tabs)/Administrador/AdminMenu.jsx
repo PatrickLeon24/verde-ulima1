@@ -7,7 +7,7 @@ const AdminMenu = ({ userData }) => {
   const navigation = useNavigation();
 
   const handleVisualizarRecojos = () => {
-    navigation.navigate('Recojos', {userData});
+    navigation.navigate('Recojos', { userData });
   };
 
   const handleGenerarCodigo = () => {
@@ -21,9 +21,14 @@ const AdminMenu = ({ userData }) => {
   const handleHistorialCodigos = () => {
     navigation.navigate('HistorialCodigos', { userData });
   };
+  
+  const handleValidarPagos = () => {
+    navigation.navigate('ValidarPagos', { userData });
+  };
+
   return (
     <SafeAreaView>
-      <TouchableOpacity style={styles.button} onPress={handleVisualizarRecojos}>
+      <TouchableOpacity style={[styles.button, { marginTop: 70 }]} onPress={handleVisualizarRecojos}>
         <Image source={require('../../../assets/images/entrega.png')} style={styles.image2} />
         <Text style={styles.buttonText1}></Text>
         <Text style={styles.buttonText}>RECOJOS ACTIVOS</Text>
@@ -45,6 +50,13 @@ const AdminMenu = ({ userData }) => {
         <Image source={require('../../../assets/images/historial2.png')} style={styles.image2} />
         <Text style={styles.buttonText1}></Text>
         <Text style={styles.buttonText}>HISTORIAL DE CODIGOS DE INVITACION</Text>     
+      </TouchableOpacity>
+
+      {/* Nuevo botón para validar pagos */}
+      <TouchableOpacity style={styles.button} onPress={handleValidarPagos}>
+        <Image source={require('../../../assets/images/validarpago.png')} style={styles.image2} />
+        <Text style={styles.buttonText1}></Text>
+        <Text style={styles.buttonText}>VALIDAR PAGOS</Text>     
       </TouchableOpacity>
 
     </SafeAreaView>

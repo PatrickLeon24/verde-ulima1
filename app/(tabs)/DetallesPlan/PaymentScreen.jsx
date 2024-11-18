@@ -11,7 +11,7 @@ import yape from '../../../assets/yape.png';
 const PaymentScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const {plan_id, usuario_id } = route.params;
+  const {plan_id, usuario_id, monto_pago } = route.params;
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -120,7 +120,7 @@ const PaymentScreen = () => {
         const paymentData = {
             estado: 'Completado',
             metodo_pago: cardNumber ? 'Tarjeta' : 'Yape',
-            fecha_pago: new Date().toISOString().split('T')[0],
+            monto_pago: monto_pago
         };
 
         try {
@@ -157,12 +157,12 @@ const PaymentScreen = () => {
                 const gestorPlanResult = await gestorPlanResponse.json();
 
                 if (gestorPlanResponse.ok) {
-                    setModalMessage('Tu pago ha sido procesado y registrado exitosamente.');
+                    setModalMessage('¡Listo! Hemos procesado tu pago. En breve, un administrador confirmará tu plan para que puedas comenzar a disfrutarlo');
                     setModalVisible(true);
 
                     setTimeout(() => {
                         navigation.navigate('Menu');
-                    }, 2000);
+                    }, 6000);
                 } else {
                     console.error('Error al registrar el GestorPlan:', gestorPlanResult);
                     setModalMessage(gestorPlanResult.error || 'Error al registrar el GestorPlan');

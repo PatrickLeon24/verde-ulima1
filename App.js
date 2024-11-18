@@ -20,8 +20,11 @@ import Recojos from './app/(tabs)/Administrador/Recojos';
 import GenerarCodigo from './app/(tabs)/Administrador/GenerarCodigo';
 import HistorialRecojos from './app/(tabs)/Administrador/HistorialRecojos';
 import HistorialCodigos from './app/(tabs)/Administrador/HistorialCodigos';
+import ValidarPagos from './app/(tabs)/Administrador/ValidarPagos';
 import RecuperaContra from './app/(tabs)/RecuperacionContra/RecuperaContra';
 import MisRecojos from './app/(tabs)/Recojos/MisRecojos';
+import GoogleLogin from './app/(tabs)/Google/Google';
+import Notificacion from './app/(tabs)/Notificaciones/Notificaciones';
 
 const Stack = createStackNavigator();
 
@@ -60,6 +63,10 @@ const App = () => {
           
         />
         <Stack.Screen
+          name="Notificaciones"
+          component={Notificacion}
+        />
+        <Stack.Screen
           name="Recojos"
           component={Recojos}
         />
@@ -76,6 +83,11 @@ const App = () => {
         <Stack.Screen
           name="HistorialCodigos"
           component={HistorialCodigos}
+        />
+
+        <Stack.Screen
+          name="ValidarPagos"
+          component={ValidarPagos}
         />
 
         <Stack.Screen
@@ -123,6 +135,11 @@ const App = () => {
         <Stack.Screen
           name="VerPlan"
           component={PlanDetailsScreen}
+          
+        />
+        <Stack.Screen
+          name="Google"
+          component={GoogleLogin}
           
         />
         <Stack.Screen

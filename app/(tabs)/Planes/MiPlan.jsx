@@ -9,6 +9,7 @@ const PantallaPlan = ({ navigation }) => {
   const [planesData, setPlanesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
+  const [recojoActivo, setRecojoActivo] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -43,6 +44,11 @@ const PantallaPlan = ({ navigation }) => {
           }
           const data = await response.json();
           setPlanActual(data);
+          const response1 = await fetch(`https://verdeulima.azurewebsites.net/back/verificar_recojo_activo/${userData.usuario_id}/`, {
+            method: 'POST',
+          });
+          const data1 = await response1.json();
+          setRecojoActivo(data1.recojo_activo);
         } catch (error) {
           console.error('Error al cargar el plan actual del usuario:', error);
         }
@@ -67,9 +73,13 @@ const PantallaPlan = ({ navigation }) => {
         setLoading(false);
       }
     };
+    
 
     fetchPlanes();
+
   }, []);
+
+  
 
   if (loading) {
     return (
@@ -99,7 +109,7 @@ const PantallaPlan = ({ navigation }) => {
           descripcion={planActual.descripcion}
           precio={planActual.precio}
           imagen={planActual.imagen}
-          onPress={() => navigation.navigate('VerPlan', { item: planActual, usuario_id : userData.usuario_id })}
+          onPress={() => navigation.navigate('VerPlan', { item: planActual, usuario_id : userData.usuario_id , activo : recojoActivo ,planM:true})}
         />
       ) : (
         <Text>No tienes un plan contratado actualmente.</Text>
@@ -119,7 +129,7 @@ const PantallaPlan = ({ navigation }) => {
             precio={item.precio}
             imagen={item.imagen}
             onPress={() => navigation.navigate('VerPlan', { 
-              item, usuario_id : userData.usuario_id
+              item, usuario_id : userData.usuario_id, activo: recojoActivo,planM:false
             })}
           />
         )}
