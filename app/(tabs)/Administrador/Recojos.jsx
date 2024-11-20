@@ -22,7 +22,7 @@ const RecojoActivoList = ({ route }) => {
 
   const fetchAdminData = async () => {
     try {
-      const response = await fetch('https://verdeulima.azurewebsites.net/back/obtener_recojos');
+      const response = await fetch(`https://verdeulima.azurewebsites.net/back/obtener_recojos/${userData.usuario_id}/`);
       if (!response.ok) {
         throw new Error(`Error en la respuesta: ${response.status}`);
       }
