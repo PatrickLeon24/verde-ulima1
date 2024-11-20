@@ -22,7 +22,7 @@ const RecojoActivoList = ({ route }) => {
 
   const fetchAdminData = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/back/obtener_recojos');
+      const response = await fetch(`http://127.0.0.1:8000/back/obtener_recojos/${userData.usuario_id}/`);
       if (!response.ok) {
         throw new Error(`Error en la respuesta: ${response.status}`);
       }
