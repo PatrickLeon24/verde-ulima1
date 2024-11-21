@@ -77,7 +77,7 @@ const RecojoActivoList = ({ navigation }) => {
                 key={index}
                 numero={index + 1} 
                 
-                plan={recojo.gestorplan__plan__nombre}
+                plan={recojo.gestorplan__nombre_plan}
                 fecha_ingreso={recojo.gestorplan__recojo__fecha_ingreso}
                 fecha_salida={recojo.gestorplan__recojo__fecha_salida}
                 />

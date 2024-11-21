@@ -115,7 +115,7 @@ const RecojoActivoList = ({ route }) => {
               key={index}
               nombre={recojo.nombre}
               apellido={recojo.apellido}
-              plan={recojo.gestorplan__plan__nombre}
+              plan={recojo.gestorplan__nombre_plan}
               fecha_ingreso={recojo.gestorplan__recojo__fecha_ingreso}
               onPress={() => handleCardPress(recojo)}
             />
@@ -139,7 +139,7 @@ const RecojoActivoList = ({ route }) => {
                   <Text>Dni: {selectedUser.DNI}</Text>
                   <Text>Celular: {selectedUser.numero_contacto}</Text>
                   <Text>Direccion: {selectedUser.direccion}</Text>
-                  <Text>Tipo de plan: {selectedUser.gestorplan__plan__nombre}</Text>
+                  <Text>Tipo de plan: {selectedUser.gestorplan__nombre_plan}</Text>
                   <Text>Fecha de ingreso: {selectedUser.gestorplan__recojo__fecha_ingreso}</Text>
                   <Text>Estado del servicio: {selectedUser.gestorplan__recojo__recojo_trayectoria__trayectoria__estado}</Text>
 
