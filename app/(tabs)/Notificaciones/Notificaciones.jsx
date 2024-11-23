@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const Notificacion = ({route}) => {
-    const {userData} = route.params
+const Notificacion = ({ route }) => {
+    const { userData } = route.params;
+    const navigation = useNavigation();
     const [notificaciones, setNotificaciones] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // Función para obtener las notificaciones
     const fetchNotificaciones = async () => {
         try {
             const response = await fetch('http://127.0.0.1:8000/back/notificaciones', {
@@ -28,9 +31,38 @@ const Notificacion = ({route}) => {
         }
     };
 
+    // Función para marcar las notificaciones como leídas
+    const marcarComoLeidas = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/back/marcar-leidas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ usuario_id: userData.usuario_id })
+            });
+            const data = await response.json();
+            if (data.status === 'success') {
+                console.log('Notificaciones marcadas como leídas');
+            } else {
+                console.log('Error al marcar como leídas:', data.error);
+            }
+        } catch (error) {
+            console.log('Error en la solicitud:', error);
+        }
+    };
+
     useEffect(() => {
         fetchNotificaciones();
-    }, []);
+
+        // Listener para ejecutar "marcarComoLeidas" al salir de la pantalla
+        const unsubscribe = navigation.addListener('blur', () => {
+            marcarComoLeidas();
+        });
+
+        // Limpieza del listener al desmontar
+        return unsubscribe;
+    }, [navigation]);
 
     if (loading) {
         return (
