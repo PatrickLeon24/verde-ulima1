@@ -69,7 +69,7 @@ const GoogleLogin = ({ navigation }) => {
           storeUserData(data1);
           navigation.replace('Menu');
         } else {
-          navigation.navigate('RegisterI', { email: data.email, nombres, apellidos });
+          navigation.navigate('RegisterRapido', { email: data.email, nombres, apellidos });
         }
       } else {
         setModalMessage('Error: no se pudo obtener información del usuario.');

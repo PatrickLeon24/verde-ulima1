@@ -15,6 +15,7 @@ import MiPlan from './app/(tabs)/Planes/MiPlan'
 import MisPuntos from './app/(tabs)/Puntos/MisPuntos'
 import Register_I from './app/(tabs)/Register/Register_I'
 import Register_II from './app/(tabs)/Register/Register_II'
+import RegisterRapido from './app/(tabs)/Register/RegisterRapido'
 import Cupon from './app/(tabs)/DetalleCupon/PlanDetailsCupon'
 import Recojos from './app/(tabs)/Administrador/Recojos';
 import GenerarCodigo from './app/(tabs)/Administrador/GenerarCodigo';
@@ -25,6 +26,7 @@ import RecuperaContra from './app/(tabs)/RecuperacionContra/RecuperaContra';
 import MisRecojos from './app/(tabs)/Recojos/MisRecojos';
 import GoogleLogin from './app/(tabs)/Google/Google';
 import Notificacion from './app/(tabs)/Notificaciones/Notificaciones';
+import RegisterRapido2 from './app/(tabs)/Register/RegisterRapido2';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +52,16 @@ const App = () => {
         <Stack.Screen
           name="Register_II"
           component={Register_II}
+          
+        />
+        <Stack.Screen
+          name="RegisterRapido"
+          component={RegisterRapido}
+          
+        />
+        <Stack.Screen
+          name="RegisterRapido2"
+          component={RegisterRapido2}
           
         />
         <Stack.Screen
