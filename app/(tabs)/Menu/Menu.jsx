@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, Image, TouchableOpacity, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons';
 import { Audio } from 'expo-av';
 import CuponButton from './CuponButton';
 import PlanButton from './PlanButton';
@@ -31,55 +31,63 @@ const PantallaConBarraVerde = ({ navigation }) => {
     }
   };
 
-  // Función para obtener las notificaciones
-  const fetchNotificaciones = async () => {
-    if (!userData || userData.tipousuario !== 'Cliente') return; 
+  // Función para obtener notificaciones no leídas
+  const fetchNotificacionesNoLeidas = async () => {
+    if (!userData || userData.tipousuario !== 'Cliente') return;
 
     try {
-      const response = await fetch('https://verdeulima.azurewebsites.net/back/notificaciones', {
+      const response = await fetch('https://verdeulima.azurewebsites.net/back/no_leidas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ usuario_id: userData.usuario_id }),
+        body: JSON.stringify({
+          usuario_id: userData.usuario_id,  // Asegúrate de enviar el usuario_id correctamente
+        }),
       });
       const data = await response.json();
       if (data.status === 'success') {
-        const noLeidas = data.notificaciones.filter((noti) => !noti.leido).length;
+        const noLeidas = data.no_leidas;
         setNotificacionesNoLeidas(noLeidas);
-
-        // Solo reproducir sonido si la cantidad de notificaciones no leídas cambia
+        // Solo reproducir el sonido si el número de notificaciones ha cambiado
         if (noLeidas > 0 && noLeidas !== prevNotificacionesCount) {
           playNotificationSound();
-          setPrevNotificacionesCount(noLeidas);
+          setPrevNotificacionesCount(noLeidas);  // Actualiza el contador de notificaciones previas
         }
       }
     } catch (error) {
-      console.error('Error al obtener notificaciones:', error);
+      console.error('Error al obtener notificaciones no leídas:', error);
     }
   };
 
+  // Reproducir sonido de notificación
   const playNotificationSound = async () => {
     if (!userData || userData.tipousuario !== 'Cliente') return;
 
-    const { sound } = await Audio.Sound.createAsync(
-      require('../../../assets/sounds/notificacion.mp3')
-    );
-    setSound(sound);
-    await sound.playAsync();
+    try {
+      const { sound } = await Audio.Sound.createAsync(
+        require('../../../assets/sounds/notificacion.mp3')  // Asegúrate de que la ruta sea correcta
+      );
+      setSound(sound);
+      await sound.playAsync();
+    } catch (error) {
+      console.error('Error al reproducir el sonido:', error);
+    }
   };
 
+  // Obtener datos del usuario al cargar la pantalla
   useEffect(() => {
     getUserData();
   }, []);
 
+  // Obtener las notificaciones cuando los datos del usuario estén disponibles
   useEffect(() => {
     if (userData) {
-      // Hacer la solicitud de notificaciones al cargar el usuario
-      fetchNotificaciones();
+      fetchNotificacionesNoLeidas(); // Obtener notificaciones no leídas
     }
   }, [userData]);
 
+  // Limpiar sonido cuando se desmonte el componente
   useEffect(() => {
     return sound
       ? () => {
@@ -87,6 +95,17 @@ const PantallaConBarraVerde = ({ navigation }) => {
         }
       : undefined;
   }, [sound]);
+
+  // Actualizar notificaciones periódicamente
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (userData) {
+        fetchNotificacionesNoLeidas();
+      }
+    }, 120000); // Cada 2 minutos
+
+    return () => clearInterval(interval); // Limpiar intervalo al desmontar
+  }, [userData]);
 
   if (!userData) {
     return <Text>Cargando...</Text>;
