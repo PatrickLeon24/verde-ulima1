@@ -8,7 +8,6 @@ const Notificacion = ({ route }) => {
     const [notificaciones, setNotificaciones] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Función para obtener las notificaciones
     const fetchNotificaciones = async () => {
         try {
             const response = await fetch('http://127.0.0.1:8000/back/notificaciones', {
@@ -16,7 +15,7 @@ const Notificacion = ({ route }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ usuario_id: userData.usuario_id })
+                body: JSON.stringify({ usuario_id: userData.usuario_id }),
             });
             const data = await response.json();
             if (data.status === 'success') {
@@ -31,7 +30,6 @@ const Notificacion = ({ route }) => {
         }
     };
 
-    // Función para marcar las notificaciones como leídas
     const marcarComoLeidas = async () => {
         try {
             const response = await fetch('http://127.0.0.1:8000/back/marcar-leidas', {
@@ -39,7 +37,7 @@ const Notificacion = ({ route }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ usuario_id: userData.usuario_id })
+                body: JSON.stringify({ usuario_id: userData.usuario_id }),
             });
             const data = await response.json();
             if (data.status === 'success') {
@@ -55,19 +53,17 @@ const Notificacion = ({ route }) => {
     useEffect(() => {
         fetchNotificaciones();
 
-        // Listener para ejecutar "marcarComoLeidas" al salir de la pantalla
         const unsubscribe = navigation.addListener('blur', () => {
             marcarComoLeidas();
         });
 
-        // Limpieza del listener al desmontar
         return unsubscribe;
     }, [navigation]);
 
     if (loading) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#0000ff" />
+                <ActivityIndicator size="large" color="#3498db" />
             </View>
         );
     }
@@ -82,7 +78,9 @@ const Notificacion = ({ route }) => {
                     <View style={styles.notificacionItem}>
                         <Text style={styles.mensaje}>{item.mensaje}</Text>
                         <Text style={styles.fecha}>{item.fecha_creacion}</Text>
-                        <Text style={styles.estado}>{item.leido ? "Leído" : "No leído"}</Text>
+                        <Text style={[styles.estado, item.leido ? styles.leido : styles.noLeido]}>
+                            {item.leido ? "Leído" : "No leído"}
+                        </Text>
                     </View>
                 )}
             />
@@ -93,38 +91,54 @@ const Notificacion = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#f4f6f8',
+        paddingHorizontal: 20,
         paddingVertical: 40,
-        backgroundColor: '#fff',
     },
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#f4f6f8',
     },
     header: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 20,
+        fontSize: 24,
+        fontWeight: '700',
+        color: '#2c3e50',
         textAlign: 'center',
+        marginBottom: 20,
     },
     notificacionItem: {
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#fff',
         padding: 15,
-        marginVertical: 8,
-        borderRadius: 5,
+        marginVertical: 10,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
     },
     mensaje: {
         fontSize: 16,
-        fontWeight: 'bold',
+        fontWeight: '600',
+        color: '#34495e',
+        marginBottom: 5,
     },
     fecha: {
         fontSize: 14,
-        color: '#666',
+        color: '#7f8c8d',
     },
     estado: {
         fontSize: 12,
-        color: '#888',
-        marginTop: 5,
+        marginTop: 10,
+        fontWeight: 'bold',
+    },
+    leido: {
+        color: '#27ae60',
+    },
+    noLeido: {
+        color: '#e74c3c',
     },
 });
 
