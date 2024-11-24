@@ -2,7 +2,7 @@
   "expo": {
     "name": "Verde-Ulima",
     "slug": "Verde-Ulima",
-    "scheme": "Verde-Ulima" ,
+    "scheme": "verdeulima",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,13 +20,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.patrox2401.VerdeUlima"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "8cde487e-b7e2-48bb-9a3e-9f791471f0b4"
+      }
+    }
   }
 }
