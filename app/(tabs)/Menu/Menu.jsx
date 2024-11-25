@@ -23,17 +23,18 @@ const PantallaConBarraVerde = ({ navigation }) => {
       if (jsonUserData !== null) {
         const data = JSON.parse(jsonUserData);
         setUserData(data);
-      } else {
-        setUserData(null);
+        return data; // Retorna los datos del usuario
       }
+      return null;
     } catch (error) {
       console.error('Error al recuperar los datos del usuario:', error);
+      return null;
     }
   };
 
   // Función para obtener notificaciones no leídas
-  const fetchNotificacionesNoLeidas = async () => {
-    if (!userData || userData.tipousuario !== 'Cliente') return;
+  const fetchNotificacionesNoLeidas = async (usuarioId) => {
+    if (!usuarioId) return;
 
     try {
       const response = await fetch('https://verdeulima.azurewebsites.net/back/no_leidas', {
@@ -42,17 +43,16 @@ const PantallaConBarraVerde = ({ navigation }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          usuario_id: userData.usuario_id,  // Asegúrate de enviar el usuario_id correctamente
+          usuario_id: usuarioId,
         }),
       });
       const data = await response.json();
       if (data.status === 'success') {
         const noLeidas = data.no_leidas;
         setNotificacionesNoLeidas(noLeidas);
-        // Solo reproducir el sonido si el número de notificaciones ha cambiado
         if (noLeidas > 0 && noLeidas !== prevNotificacionesCount) {
           playNotificationSound();
-          setPrevNotificacionesCount(noLeidas);  // Actualiza el contador de notificaciones previas
+          setPrevNotificacionesCount(noLeidas);
         }
       }
     } catch (error) {
@@ -62,11 +62,9 @@ const PantallaConBarraVerde = ({ navigation }) => {
 
   // Reproducir sonido de notificación
   const playNotificationSound = async () => {
-    if (!userData || userData.tipousuario !== 'Cliente') return;
-
     try {
       const { sound } = await Audio.Sound.createAsync(
-        require('../../../assets/sounds/notificacion.mp3')  // Asegúrate de que la ruta sea correcta
+        require('../../../assets/sounds/notificacion.mp3')
       );
       setSound(sound);
       await sound.playAsync();
@@ -75,17 +73,17 @@ const PantallaConBarraVerde = ({ navigation }) => {
     }
   };
 
-  // Obtener datos del usuario al cargar la pantalla
+  // Listener para cargar datos y notificaciones cuando la pantalla esté en foco
   useEffect(() => {
-    getUserData();
-  }, []);
+    const unsubscribeFocus = navigation.addListener('focus', async () => {
+      const data = await getUserData(); // Asegura que se obtengan datos al enfocar la pantalla
+      if (data && data.tipousuario === 'Cliente') {
+        fetchNotificacionesNoLeidas(data.usuario_id);
+      }
+    });
 
-  // Obtener las notificaciones cuando los datos del usuario estén disponibles
-  useEffect(() => {
-    if (userData) {
-      fetchNotificacionesNoLeidas(); // Obtener notificaciones no leídas
-    }
-  }, [userData]);
+    return unsubscribeFocus;
+  }, [navigation]); // No depende de userData directamente
 
   // Limpiar sonido cuando se desmonte el componente
   useEffect(() => {
@@ -95,17 +93,6 @@ const PantallaConBarraVerde = ({ navigation }) => {
         }
       : undefined;
   }, [sound]);
-
-  // Actualizar notificaciones periódicamente
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (userData) {
-        fetchNotificacionesNoLeidas();
-      }
-    }, 120000); // Cada 2 minutos
-
-    return () => clearInterval(interval); // Limpiar intervalo al desmontar
-  }, [userData]);
 
   if (!userData) {
     return <Text>Cargando...</Text>;
