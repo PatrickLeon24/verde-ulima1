@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Modal, Button, SafeAreaView } from 'react-native';
-import styles from './Style_RegisterI'; 
+import styles from './Style_RegisterI';
 
-const RegisterI = ({navigation}) => {
+const RegisterI = ({ navigation }) => {
   const [nombres, setNombres] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [dni, setDni] = useState('');
@@ -12,15 +12,19 @@ const RegisterI = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const validarSoloLetrasYNumeros = (texto) => {
+    // Permite letras, números y espacios
+    const pattern = /^[a-zA-Z0-9\s]+$/;
+    return pattern.test(texto);
+  };
+
   const validarDNI = (dni) => {
-    // Validacion DNI
-    const dniPattern = /^\d{8}$/;
+    const dniPattern = /^\d{8}$/; // 8 dígitos
     return dniPattern.test(dni);
   };
 
   const validarCelular = (celular) => {
-    // Validacion celular
-    const celularPattern = /^\d{9}$/;
+    const celularPattern = /^\d{9}$/; // 9 dígitos
     return celularPattern.test(celular);
   };
 
@@ -32,26 +36,57 @@ const RegisterI = ({navigation}) => {
       return;
     }
 
+    // Validar nombres
+    if (!validarSoloLetrasYNumeros(nombres)) {
+      setErrorMessage('El campo "nombres" solo puede contener letras, números y espacios.');
+      setModalVisible(true);
+      return;
+    }
+
+    // Validar apellidos
+    if (!validarSoloLetrasYNumeros(apellidos)) {
+      setErrorMessage('El campo "apellidos" solo puede contener letras, números y espacios.');
+      setModalVisible(true);
+      return;
+    }
+
+    // Validar dirección
+    if (!validarSoloLetrasYNumeros(direccion)) {
+      setErrorMessage('El campo "dirección" solo puede contener letras, números y espacios.');
+      setModalVisible(true);
+      return;
+    }
+
     // Validar DNI
+    if (!/^\d+$/.test(dni)) {
+      setErrorMessage('El DNI debe contener solo números.');
+      setModalVisible(true);
+      return;
+    }
     if (!validarDNI(dni)) {
-      setErrorMessage('El DNI debe tener 8 dígitos.');
+      setErrorMessage('El DNI debe tener exactamente 8 dígitos.');
       setModalVisible(true);
       return;
     }
 
     // Validar número de celular
+    if (!/^\d+$/.test(celular)) {
+      setErrorMessage('El número de celular debe contener solo números.');
+      setModalVisible(true);
+      return;
+    }
     if (!validarCelular(celular)) {
-      setErrorMessage('El número de celular debe tener 9 dígitos.');
+      setErrorMessage('El número de celular debe tener exactamente 9 dígitos.');
       setModalVisible(true);
       return;
     }
 
-    // Si todas las validaciones pasan, navegar a la segunda parte del registro
+    // Si todas las validaciones pasan, navegar a la siguiente pantalla
     navigation.navigate('Register_II', {
-      nombre : nombres,
-      apellido : apellidos,
-      DNI : dni,
-      numero_contacto : celular,
+      nombre: nombres,
+      apellido: apellidos,
+      DNI: dni,
+      numero_contacto: celular,
       direccion,
       genero: Genero_seleccionado,
     });
