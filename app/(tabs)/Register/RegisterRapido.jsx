@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Modal, Button, SafeAreaView } from 'react-native';
 import styles from './Style_RegisterI';
 
@@ -21,6 +21,12 @@ const RegisterRapido = ({ route, navigation }) => {
     return celularPattern.test(celular);
   };
 
+  const validarDireccion = (direccion) => {
+    // Solo permite letras, espacios, comas y puntos
+    const direccionPattern = /^[A-Za-z0-9\s,\.]*$/;
+    return direccionPattern.test(direccion);
+  };
+
   const handleSubmit = () => {
     if (!nombres || !apellidos || !dni || !celular || !direccion || !Genero_seleccionado) {
       setErrorMessage('Por favor, complete todos los campos.');
@@ -28,14 +34,32 @@ const RegisterRapido = ({ route, navigation }) => {
       return;
     }
 
+    // Validar DNI
+    if (!/^\d+$/.test(dni)) {
+      setErrorMessage('El DNI debe contener solo números.');
+      setModalVisible(true);
+      return;
+    }
     if (!validarDNI(dni)) {
-      setErrorMessage('El DNI debe tener 8 dígitos.');
+      setErrorMessage('El DNI debe tener exactamente 8 dígitos.');
       setModalVisible(true);
       return;
     }
 
+    // Validar número de celular
+    if (!/^\d+$/.test(celular)) {
+      setErrorMessage('El número de celular debe contener solo números.');
+      setModalVisible(true);
+      return;
+    }
     if (!validarCelular(celular)) {
-      setErrorMessage('El número de celular debe tener 9 dígitos.');
+      setErrorMessage('El número de celular debe tener exactamente 9 dígitos.');
+      setModalVisible(true);
+      return;
+    }
+
+    if (!validarDireccion(direccion)) {
+      setErrorMessage('El campo "dirección" solo puede contener letras, números y espacios.');
       setModalVisible(true);
       return;
     }
@@ -47,7 +71,7 @@ const RegisterRapido = ({ route, navigation }) => {
       numero_contacto: celular,
       direccion,
       genero: Genero_seleccionado,
-      email:email,  // Pasa el correo obtenido de Google
+      email: email,  // Pasa el correo obtenido de Google
     });
   };
 
@@ -66,6 +90,7 @@ const RegisterRapido = ({ route, navigation }) => {
         value={dni}
         onChangeText={setDni}
       />
+
       <TextInput
         style={styles.input}
         placeholder="Ingrese su número de celular"
@@ -73,6 +98,7 @@ const RegisterRapido = ({ route, navigation }) => {
         value={celular}
         onChangeText={setCelular}
       />
+
       <TextInput
         style={styles.input}
         placeholder="Ingrese su dirección"

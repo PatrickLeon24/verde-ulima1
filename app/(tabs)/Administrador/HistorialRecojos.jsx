@@ -26,7 +26,7 @@ const HistorialRecojos = ({ route }) => {
         const data = await response.json();
         setAdminData(data);
       } catch (error) {
-        console.error(error); // Agregar manejo de errores
+        console.error(error);
       }
     };
 

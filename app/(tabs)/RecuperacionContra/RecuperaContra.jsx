@@ -8,11 +8,12 @@ const RecoverPasswordScreen = () => {
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [step, setStep] = useState(1); // 1: Ingresar correo, 2: Ingresar token y nueva contraseña
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [step, setStep] = useState(1);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const navigation = useNavigation();
-  
+
   const handleSendToken = async () => {
     try {
       const response = await fetch('https://verdeulima.azurewebsites.net/back/enviar_token', {
@@ -33,7 +34,6 @@ const RecoverPasswordScreen = () => {
       setModalMessage('Token enviado al correo.');
       setModalVisible(true);
       setStep(2);
-
     } catch (error) {
       console.error('Error en la solicitud:', error);
       setModalMessage('Error de conexión. Intente nuevamente.');
@@ -42,6 +42,18 @@ const RecoverPasswordScreen = () => {
   };
 
   const handleChangePassword = async () => {
+    if (!token.trim() || !newPassword.trim() || !confirmPassword.trim()) {
+      setModalMessage('Todos los campos son obligatorios.');
+      setModalVisible(true);
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setModalMessage('Las contraseñas no coinciden.');
+      setModalVisible(true);
+      return;
+    }
+
     try {
       const response = await fetch('https://verdeulima.azurewebsites.net/back/cambiar_contrasena', {
         method: 'POST',
@@ -68,8 +80,7 @@ const RecoverPasswordScreen = () => {
       setTimeout(() => {
         setModalVisible(false);
         navigation.navigate('Login');
-      }, 2000); // Regresa a la pantalla de inicio de sesión
-
+      }, 2000);
     } catch (error) {
       console.error('Error en la solicitud:', error);
       setModalMessage('Error de conexión. Intente nuevamente.');
@@ -125,6 +136,14 @@ const RecoverPasswordScreen = () => {
                 secureTextEntry
                 value={newPassword}
                 onChangeText={setNewPassword}
+              />
+              <Text style={styles.label}>Confirmar Nueva Contraseña</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Confirme su nueva contraseña"
+                secureTextEntry
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
               />
               <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
                 <Text style={styles.buttonText}>Cambiar Contraseña</Text>
