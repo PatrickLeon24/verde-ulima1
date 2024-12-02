@@ -7,23 +7,22 @@ const GenerarCodigoInvitacion = ({ route }) => {
   const navigation = useNavigation();
   const { userData } = route.params;
   const [codigo, setCodigo] = useState(null);
-  const [progress, setProgress] = useState(0); // Progreso de linea
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     generarCodigo();
-    // Temporizador para aumentar el progreso
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval);
-          navigation.navigate('Menu'); // Redirige al menú cuando llegue al 100%
+          navigation.navigate('Menu'); 
           return prev;
         }
         return prev + 1;
       });
-    }, 50); // Ajusta el intervalo para la velocidad del llenado (más bajo = más rápido)
+    }, 50); 
 
-    return () => clearInterval(interval); // Limpia el intervalo cuando finaliza
+    return () => clearInterval(interval);
   }, []);
 
   const generarCodigo = async () => {
