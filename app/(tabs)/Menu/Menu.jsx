@@ -73,19 +73,18 @@ const PantallaConBarraVerde = ({ navigation }) => {
     }
   };
 
-  // Listener para cargar datos y notificaciones cuando la pantalla esté en foco
+
   useEffect(() => {
     const unsubscribeFocus = navigation.addListener('focus', async () => {
-      const data = await getUserData(); // Asegura que se obtengan datos al enfocar la pantalla
+      const data = await getUserData(); 
       if (data && data.tipousuario === 'Cliente') {
         fetchNotificacionesNoLeidas(data.usuario_id);
       }
     });
 
     return unsubscribeFocus;
-  }, [navigation]); // No depende de userData directamente
+  }, [navigation]); 
 
-  // Limpiar sonido cuando se desmonte el componente
   useEffect(() => {
     return sound
       ? () => {

@@ -30,34 +30,9 @@ const Notificacion = ({ route }) => {
         }
     };
 
-    const marcarComoLeidas = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:8000/back/marcar-leidas', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ usuario_id: userData.usuario_id }),
-            });
-            const data = await response.json();
-            if (data.status === 'success') {
-                console.log('Notificaciones marcadas como leídas');
-            } else {
-                console.log('Error al marcar como leídas:', data.error);
-            }
-        } catch (error) {
-            console.log('Error en la solicitud:', error);
-        }
-    };
-
     useEffect(() => {
         fetchNotificaciones();
 
-        const unsubscribe = navigation.addListener('blur', () => {
-            marcarComoLeidas();
-        });
-
-        return unsubscribe;
     }, [navigation]);
 
     if (loading) {
